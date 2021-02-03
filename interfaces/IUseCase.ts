@@ -1,4 +1,4 @@
-export default interface IUseCase {
+export interface IUseCase {
   call: (...args: any[]) => any;
   __name: string;
 }

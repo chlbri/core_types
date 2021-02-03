@@ -2,7 +2,7 @@ import { CoreTypes } from "../Types";
 import { Exception, UNKNOWN_EXCEPTION } from "./Exceptions";
 import { Validator } from "./Validators";
 
-export default abstract class ValueObject<T extends CoreTypes> {
+export abstract class ValueObject<T extends CoreTypes> {
   constructor(private value: T, private validators: Validator<T>[]) {
     this.chain = this.chain.bind(this);
   }
@@ -20,18 +20,10 @@ export default abstract class ValueObject<T extends CoreTypes> {
   }
 
   get isValid() {
-    return ValueObject.validate(this.value);
-  }
-
-  static validate<T>(value: T | Exception): value is T {
-    return !(value instanceof Exception);
+    return !(this.value instanceof Exception);
   }
 
   chain<N extends CoreTypes>(next: ValueObject<N>) {
     return this.isValid ? next : this;
   }
-}
-
-function validate<T>(value: T | Exception): value is T {
-  return !(value instanceof Exception);
 }
