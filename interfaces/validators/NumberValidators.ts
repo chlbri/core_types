@@ -1,4 +1,4 @@
-import Validator from "./Validator";
+import { Validator } from "./Validator";
 
 abstract class NumberValidator extends Validator<number> {}
 
@@ -20,4 +20,9 @@ class NumberMinMaxValidator extends NumberValidator {
   }
 }
 
-export { NumberMinValidator, NumberMaxValidator, NumberMinMaxValidator };
+export {
+  NumberValidator,
+  NumberMinValidator,
+  NumberMaxValidator,
+  NumberMinMaxValidator,
+};

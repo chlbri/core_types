@@ -1,6 +1,6 @@
 import { CoreTypes } from "../Types";
-import Exception, { UNKNOWN_EXCEPTION } from "./Exceptions";
-import Validator from "./validators/Validator";
+import { Exception, UNKNOWN_EXCEPTION } from "./Exceptions";
+import { Validator } from "./Validators";
 
 export default abstract class ValueObject<T extends CoreTypes> {
   constructor(private value: T, private validators: Validator<T>[]) {

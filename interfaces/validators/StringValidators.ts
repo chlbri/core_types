@@ -1,4 +1,4 @@
-import Validator from "./Validator";
+import { Validator } from "./Validator";
 
 abstract class StringValidator extends Validator<string> {}
 
@@ -21,6 +21,7 @@ class StringMinMaxLengthValidator extends StringValidator {
 }
 
 export {
+  StringValidator,
   StringMinLengthValidator,
   StringMaxLengthValidator,
   StringMinMaxLengthValidator,

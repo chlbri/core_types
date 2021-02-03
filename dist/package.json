@@ -1,11 +1,10 @@
 {
   "name": "core_types",
   "version": "0.0.1",
-  "description": "Core of all projects",
+  "description": "The core of all packages/projects",
+  "main": "index.js",
   "author": "chlbri",
   "license": "MIT",
   "private": true,
-  "scripts": {
-    "tsc": "tsc"
-  }
+  "types": "index.d.ts"
 }

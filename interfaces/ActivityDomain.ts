@@ -6,4 +6,11 @@ type ActivityDomain<T extends IUseCase[] = IUseCase[]> = DomainUseCaseSchema<
   "__name"
 >;
 
-export default ActivityDomain;
+function useCaseFromDomain<D extends ActivityDomain, K extends keyof D>(
+  domain: D,
+  useCase: K
+): D[K]["call"] {
+  return domain[useCase].call;
+}
+
+export { ActivityDomain, useCaseFromDomain };

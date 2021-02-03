@@ -22,6 +22,4 @@ function isBad(arg: FetchStatus) {
   return arg > 205;
 }
 
-export default Fetch;
-
-export { FetchStatus, FetchResponses, isGood, isBad, isFetchStatus };
+export { Fetch, FetchStatus, FetchResponses, isGood, isBad, isFetchStatus };
