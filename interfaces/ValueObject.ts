@@ -1,4 +1,4 @@
-import { CoreTypes } from "../types";
+import { CoreTypes } from "../Types";
 import Exception, { UNKNOWN_EXCEPTION } from "./Exceptions";
 import Validator from "./validators/Validator";
 

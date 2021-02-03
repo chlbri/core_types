@@ -1,4 +1,4 @@
-import { CoreTypes } from "../../types";
+import { CoreTypes } from "../../Types";
 import Exception, { DEFAULT_EXCEPTION } from "../Exceptions";
 
 type Condition<T = any> = (arg: T) => boolean;
