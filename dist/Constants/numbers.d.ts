@@ -1,3 +1,0 @@
-declare const ERROR_CODE_DEFAULT: 404;
-declare const ERROR_UNKNOWN: 499;
-export { ERROR_CODE_DEFAULT, ERROR_UNKNOWN };

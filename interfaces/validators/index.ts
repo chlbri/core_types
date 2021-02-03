@@ -1,3 +1,3 @@
-export * from "./NumberValidators";
-export * from "./StringValidators";
+export * from "./Number";
+export * from "./String";
 export * from "./Validator";
