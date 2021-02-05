@@ -4,8 +4,10 @@
   "description": "Core of all projects",
   "author": "chlbri",
   "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "private": true,
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc "
   }
 }

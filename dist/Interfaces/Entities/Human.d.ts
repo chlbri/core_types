@@ -1,5 +1,4 @@
-import { Entity } from "./Entity";
-export interface Human extends Entity {
+export interface Human {
     firstNames: string;
     lastName: string;
 }

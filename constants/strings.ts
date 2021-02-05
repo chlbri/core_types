@@ -1,4 +1,0 @@
-const EXCEPTION_MESSAGE_DEFAULT = "Not well-formated" as const;
-const EXCEPTION_MESSAGE_UNKNOWN = "Unexpected" as const;
-
-export { EXCEPTION_MESSAGE_DEFAULT, EXCEPTION_MESSAGE_UNKNOWN };

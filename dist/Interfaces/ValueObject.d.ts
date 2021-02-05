@@ -1,6 +1,6 @@
 import { CoreTypes } from "../Types";
 import { Exception } from "./Exceptions";
-import { Validator } from "./Validators";
+import { Validator } from "./validators";
 export declare abstract class ValueObject<T extends CoreTypes> {
     private value;
     private validators;

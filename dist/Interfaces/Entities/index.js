@@ -13,3 +13,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./Entity"), exports);
 __exportStar(require("./Human"), exports);
 __exportStar(require("./HumanAdd"), exports);
+__exportStar(require("./Login"), exports);
