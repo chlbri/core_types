@@ -6,12 +6,12 @@ type NExclude<T, U extends T> = T extends U ? never : T;
 
 type GoodResponse<T = undefined> = {
   status: NExtract<FetchStatus, 200 | 204>;
-  payload: T;
+  payload?: T;
 };
 
 type BadResponse<T = undefined> = {
   status: NExclude<FetchStatus, 200 | 204>;
-  payload?: T;
+  error?: T;
 };
 
 type ReturnData<

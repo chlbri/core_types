@@ -99,6 +99,17 @@ type CoreDataBaseSchema<
     : never
   : never;
 
+
+type DataBaseOrUseCase<
+T,
+K extends keyof T,
+Before extends string = "",
+After extends string = ""
+> = _SetEntityForUseCase<T,K,Before,After> | _SetEntityForDatabase<T,K,Before,After>;
+
+
+
+
 type DomainUseCaseSchema<
   T extends _ReadonlyArrayUnknown,
   K extends keyof T[number],
