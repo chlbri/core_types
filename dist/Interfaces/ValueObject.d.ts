@@ -1,4 +1,4 @@
-import { Exception } from "./Exceptions";
+import { Exception } from "./exceptions";
 import { Validator } from "./validators";
 export declare abstract class ValueObject<T> {
     private value;

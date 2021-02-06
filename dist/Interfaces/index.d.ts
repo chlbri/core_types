@@ -1,6 +1,6 @@
 export * from "./ActivityDomain";
 export * from "./entities";
-export * from "./Exceptions";
+export * from "./exceptions";
 export * from "./IUseCase";
 export * from "./NFunction";
 export * from "./ReturnData";

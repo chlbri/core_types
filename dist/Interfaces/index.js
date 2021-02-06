@@ -12,7 +12,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./ActivityDomain"), exports);
 __exportStar(require("./entities"), exports);
-__exportStar(require("./Exceptions"), exports);
+__exportStar(require("./exceptions"), exports);
 __exportStar(require("./IUseCase"), exports);
 __exportStar(require("./NFunction"), exports);
 __exportStar(require("./ReturnData"), exports);

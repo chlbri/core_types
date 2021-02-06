@@ -1,9 +1,10 @@
+import { Exception } from "../exceptions/Exception";
 import { Validator } from "./Validator";
 
 abstract class StringValidator extends Validator<string> {}
 
 class StringMinLengthValidator extends StringValidator {
-  constructor(min: number) {
+  constructor(min: number, exception?:Exception) {
     super((value) => value.length > min);
   }
 }

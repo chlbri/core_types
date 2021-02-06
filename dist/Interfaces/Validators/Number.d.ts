@@ -1,4 +1,4 @@
-import { Exception } from "../Exceptions";
+import { Exception } from "../exceptions/Exception";
 import { Validator } from "./Validator";
 declare abstract class NumberValidator extends Validator<number> {
 }

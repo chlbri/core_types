@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ValueObject = void 0;
-const Exceptions_1 = require("./Exceptions");
+const exceptions_1 = require("./exceptions");
 class ValueObject {
     constructor(value, validators) {
         this.value = value;
@@ -17,10 +17,10 @@ class ValueObject {
                 return validator.exception;
             return this.value;
         }
-        return Exceptions_1.UNKNOWN_EXCEPTION;
+        return exceptions_1.UNKNOWN_EXCEPTION;
     }
     get isValid() {
-        return !(this.value instanceof Exceptions_1.Exception);
+        return !(this.value instanceof exceptions_1.Exception);
     }
     chain(next) {
         return this.isValid ? next : this;

@@ -1,4 +1,4 @@
-import { Exception, UNKNOWN_EXCEPTION } from "./Exceptions";
+import { Exception, UNKNOWN_EXCEPTION } from "./exceptions";
 import { Validator } from "./validators";
 
 export abstract class ValueObject<T> {

@@ -1,4 +1,4 @@
-import { DEFAULT_EXCEPTION, Exception } from "../Exceptions";
+import { DEFAULT_EXCEPTION, Exception } from "../exceptions";
 
 type Condition<T = any> = (arg: T) => boolean;
 

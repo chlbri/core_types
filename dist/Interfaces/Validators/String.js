@@ -6,7 +6,7 @@ class StringValidator extends Validator_1.Validator {
 }
 exports.StringValidator = StringValidator;
 class StringMinLengthValidator extends StringValidator {
-    constructor(min) {
+    constructor(min, exception) {
         super((value) => value.length > min);
     }
 }

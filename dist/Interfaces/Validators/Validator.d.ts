@@ -1,4 +1,4 @@
-import { Exception } from "../Exceptions";
+import { Exception } from "../exceptions";
 declare type Condition<T = any> = (arg: T) => boolean;
 declare class Validator<T> {
     validate: Condition<T>;

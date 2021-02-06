@@ -1,8 +1,9 @@
+import { Exception } from "../exceptions/Exception";
 import { Validator } from "./Validator";
 declare abstract class StringValidator extends Validator<string> {
 }
 declare class StringMinLengthValidator extends StringValidator {
-    constructor(min: number);
+    constructor(min: number, exception?: Exception);
 }
 declare class StringMaxLengthValidator extends StringValidator {
     constructor(max: number);
