@@ -1,6 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Response204 = exports.Response500 = exports.Response404 = exports.Response300 = void 0;
+exports.Response204 = exports.Response500 = exports.Response404 = exports.Response300 = exports.isBadResponse = exports.isGoodResponse = void 0;
+const helpers_1 = require("../helpers");
+function isGoodResponse(val) {
+    return helpers_1.isGood(val.status);
+}
+exports.isGoodResponse = isGoodResponse;
+function isBadResponse(val) {
+    return helpers_1.isBad(val.status);
+}
+exports.isBadResponse = isBadResponse;
 const Response500 = {
     status: 500,
 };

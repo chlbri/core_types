@@ -171,7 +171,7 @@ type PromisifyObject<T extends object, K extends keyof T> = T &
       : `${P}Async`]: PromisifyMethod<T[P]>;
   };
 
-type CoreTypes = string | boolean | number | bigint | undefined | null;
+// type CoreTypes = string | boolean | number | bigint | undefined | null | ;
 
 export {
   IndexOfArray,
@@ -188,5 +188,4 @@ export {
   OnPropChangedMethods,
   PromisifyMethod,
   PromisifyObject,
-  CoreTypes,
 };

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StringMinMaxLengthValidator = exports.StringMaxLengthValidator = exports.StringMinLengthValidator = exports.StringValidator = void 0;
+exports.StringMaxLengthValidator = exports.StringMinLengthValidator = exports.StringValidator = void 0;
 const Validator_1 = require("./Validator");
 class StringValidator extends Validator_1.Validator {
 }
@@ -17,9 +17,3 @@ class StringMaxLengthValidator extends StringValidator {
     }
 }
 exports.StringMaxLengthValidator = StringMaxLengthValidator;
-class StringMinMaxLengthValidator extends StringValidator {
-    constructor(min, max) {
-        super((value) => value.length > min && value.length < max);
-    }
-}
-exports.StringMinMaxLengthValidator = StringMinMaxLengthValidator;

@@ -1,5 +1,4 @@
 import { FetchStatus, isBad, isGood } from "../helpers";
-import { CoreTypes } from "../Types";
 
 type NExtract<T, U extends T> = T extends U ? T : never;
 type NExclude<T, U extends T> = T extends U ? never : T;
@@ -14,27 +13,25 @@ type BadResponse<T = undefined> = {
   error?: T;
 };
 
-function isGoodResponse<E, T extends CoreTypes>(
+function isGoodResponse<E, T>(
   val: ReturnData<E, T>
 ): val is GoodResponse {
   return isGood(val.status);
 }
 
-function isBadResponse<E, T extends CoreTypes>(
+function isBadResponse<E, T>(
   val: ReturnData<E, T>
 ): val is BadResponse {
   return isBad(val.status);
 }
 
-type ReturnData<
-  Good = undefined,
-  Bad extends CoreTypes = undefined
-> = GoodResponse<Good> | BadResponse<Bad>;
+type ReturnData<Good = undefined, Bad = undefined> =
+  | GoodResponse<Good>
+  | BadResponse<Bad>;
 
-type PromiseReturnData<
-  Good = undefined,
-  Bad extends CoreTypes = undefined
-> = Promise<ReturnData<Good, Bad>>;
+type PromiseReturnData<Good = undefined, Bad = undefined> = Promise<
+  ReturnData<Good, Bad>
+>;
 
 const Response500: BadResponse = {
   status: 500,

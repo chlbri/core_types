@@ -7,7 +7,4 @@ declare class StringMinLengthValidator extends StringValidator {
 declare class StringMaxLengthValidator extends StringValidator {
     constructor(max: number);
 }
-declare class StringMinMaxLengthValidator extends StringValidator {
-    constructor(min: number, max: number);
-}
-export { StringValidator, StringMinLengthValidator, StringMaxLengthValidator, StringMinMaxLengthValidator, };
+export { StringValidator, StringMinLengthValidator, StringMaxLengthValidator, };

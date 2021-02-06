@@ -1,28 +1,18 @@
+import { Exception } from "../Exceptions";
 import { Validator } from "./Validator";
 
 abstract class NumberValidator extends Validator<number> {}
 
 class NumberMinValidator extends NumberValidator {
-  constructor(min: number) {
-    super((value) => value > min);
+  constructor(min: number, exception?: Exception) {
+    super((value) => value > min, exception);
   }
 }
 
 class NumberMaxValidator extends NumberValidator {
-  constructor(max: number) {
-    super((value) => value < max);
+  constructor(max: number, exception?: Exception) {
+    super((value) => value < max, exception);
   }
 }
 
-class NumberMinMaxValidator extends NumberValidator {
-  constructor(min: number, max: number) {
-    super((value) => value > min && value < max);
-  }
-}
-
-export {
-  NumberValidator,
-  NumberMinValidator,
-  NumberMaxValidator,
-  NumberMinMaxValidator,
-};
+export { NumberValidator, NumberMinValidator, NumberMaxValidator };

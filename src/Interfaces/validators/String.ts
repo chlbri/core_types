@@ -14,15 +14,8 @@ class StringMaxLengthValidator extends StringValidator {
   }
 }
 
-class StringMinMaxLengthValidator extends StringValidator {
-  constructor(min: number, max: number) {
-    super((value) => value.length > min && value.length < max);
-  }
-}
-
 export {
   StringValidator,
   StringMinLengthValidator,
   StringMaxLengthValidator,
-  StringMinMaxLengthValidator,
 };
