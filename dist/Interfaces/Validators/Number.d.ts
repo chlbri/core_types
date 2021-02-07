@@ -1,5 +1,5 @@
 import { Exception } from "../exceptions/Exception";
-import { Validator } from "./Validator";
+import { Validator } from "./validator";
 declare abstract class NumberValidator extends Validator<number> {
 }
 declare class NumberMinValidator extends NumberValidator {
