@@ -20,7 +20,7 @@ class ValueObject {
         return exceptions_1.UNKNOWN_EXCEPTION;
     }
     get isValid() {
-        return !(this.value instanceof exceptions_1.Exception);
+        return !(this.safe instanceof exceptions_1.Exception);
     }
     chain(next) {
         return this.isValid ? next : this;

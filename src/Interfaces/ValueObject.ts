@@ -19,7 +19,7 @@ export abstract class ValueObject<T> {
   }
 
   get isValid() {
-    return !(this.value instanceof Exception);
+    return !(this.safe instanceof Exception);
   }
 
   chain<N>(next: ValueObject<N>) {
