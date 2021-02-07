@@ -5,13 +5,13 @@ abstract class StringValidator extends Validator<string> {}
 
 class StringMinLengthValidator extends StringValidator {
   constructor(min: number, exception?: Exception) {
-    super((value) => value.length > min);
+    super((value) => value.length >= min);
   }
 }
 
 class StringMaxLengthValidator extends StringValidator {
   constructor(max: number) {
-    super((value) => value.length < max);
+    super((value) => value.length <= max);
   }
 }
 
