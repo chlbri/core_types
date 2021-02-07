@@ -99,16 +99,14 @@ type CoreDataBaseSchema<
     : never
   : never;
 
-
 type DataBaseOrUseCase<
-T,
-K extends keyof T,
-Before extends string = "",
-After extends string = ""
-> = _SetEntityForUseCase<T,K,Before,After> | _SetEntityForDatabase<T,K,Before,After>;
-
-
-
+  T,
+  K extends keyof T,
+  Before extends string = "",
+  After extends string = ""
+> =
+  | _SetEntityForUseCase<T, K, Before, After>
+  | _SetEntityForDatabase<T, K, Before, After>;
 
 type DomainUseCaseSchema<
   T extends _ReadonlyArrayUnknown,
@@ -173,6 +171,8 @@ type PromisifyObject<T extends object, K extends keyof T> = T &
 
 // type CoreTypes = string | boolean | number | bigint | undefined | null | ;
 
+type WithoutPassword<T> = Omit<T, "password">;
+
 export {
   IndexOfArray,
   Awaited,
@@ -188,4 +188,5 @@ export {
   OnPropChangedMethods,
   PromisifyMethod,
   PromisifyObject,
+  WithoutPassword,
 };
