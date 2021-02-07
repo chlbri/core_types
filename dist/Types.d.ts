@@ -30,4 +30,5 @@ declare type PromisifyMethod<T> = T extends (...args: infer P) => infer R ? R ex
 declare type PromisifyObject<T extends object, K extends keyof T> = T & {
     [P in K & string as PromisifyMethod<T[P]> extends never ? never : `${P}Async`]: PromisifyMethod<T[P]>;
 };
-export { IndexOfArray, Awaited, TupleOf, Reverse, AddString, TuplifyUnion, UnionType, UnionString, CoreDataBaseSchema, DomainUseCaseSchema, Digit, OnPropChangedMethods, PromisifyMethod, PromisifyObject, };
+declare type WithoutPassword<T> = Omit<T, "password">;
+export { IndexOfArray, Awaited, TupleOf, Reverse, AddString, TuplifyUnion, UnionType, UnionString, CoreDataBaseSchema, DomainUseCaseSchema, Digit, OnPropChangedMethods, PromisifyMethod, PromisifyObject, WithoutPassword, };
