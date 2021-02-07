@@ -7,13 +7,13 @@ class StringValidator extends validator_1.Validator {
 exports.StringValidator = StringValidator;
 class StringMinLengthValidator extends StringValidator {
     constructor(min, exception) {
-        super((value) => value.length > min);
+        super((value) => value.length >= min);
     }
 }
 exports.StringMinLengthValidator = StringMinLengthValidator;
 class StringMaxLengthValidator extends StringValidator {
     constructor(max) {
-        super((value) => value.length < max);
+        super((value) => value.length <= max);
     }
 }
 exports.StringMaxLengthValidator = StringMaxLengthValidator;
