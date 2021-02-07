@@ -9,8 +9,8 @@ declare type BadResponse<T = undefined> = {
     status: NExclude<FetchStatus, 200 | 204>;
     error?: T;
 };
-declare function isGoodResponse<E, T>(val: ReturnData<E, T>): val is GoodResponse;
-declare function isBadResponse<E, T>(val: ReturnData<E, T>): val is BadResponse;
+declare function isGoodResponse<E, T>(val: ReturnData<E, T>): val is GoodResponse<E>;
+declare function isBadResponse<E, T>(val: ReturnData<E, T>): val is BadResponse<T>;
 declare type ReturnData<Good = undefined, Bad = undefined> = GoodResponse<Good> | BadResponse<Bad>;
 declare type PromiseReturnData<Good = undefined, Bad = undefined> = Promise<ReturnData<Good, Bad>>;
 declare const Response500: BadResponse;
