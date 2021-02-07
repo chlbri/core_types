@@ -15,13 +15,13 @@ type BadResponse<T = undefined> = {
 
 function isGoodResponse<E, T>(
   val: ReturnData<E, T>
-): val is GoodResponse {
+): val is GoodResponse<E> {
   return isGood(val.status);
 }
 
 function isBadResponse<E, T>(
   val: ReturnData<E, T>
-): val is BadResponse {
+): val is BadResponse<T> {
   return isBad(val.status);
 }
 
