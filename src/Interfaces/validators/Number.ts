@@ -9,10 +9,28 @@ class NumberMinValidator extends NumberValidator {
   }
 }
 
+class StringValueValidator extends NumberValidator {
+  constructor(exact: number) {
+    super((value) => value === exact);
+  }
+}
+
 class NumberMaxValidator extends NumberValidator {
   constructor(max: number, exception?: Exception) {
     super((value) => value < max, exception);
   }
 }
 
-export { NumberValidator, NumberMinValidator, NumberMaxValidator };
+class RequiredNumberValidator<T> extends Validator<T> {
+  constructor(value: T) {
+    super((value) => typeof value === "number");
+  }
+}
+
+export {
+  NumberValidator,
+  NumberMinValidator,
+  NumberMaxValidator,
+  StringValueValidator,
+  RequiredNumberValidator,
+};

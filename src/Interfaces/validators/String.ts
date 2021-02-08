@@ -1,4 +1,4 @@
-import { Exception } from "../exceptions/Exception";
+import { Exception } from "../exceptions";
 import { Validator } from "./validator";
 
 abstract class StringValidator extends Validator<string> {}
@@ -14,9 +14,16 @@ class StringMaxLengthValidator extends StringValidator {
     super((value) => value.length <= max);
   }
 }
+
 class StringExactLengthValidator extends StringValidator {
-  constructor(max: number) {
-    super((value) => value.length === max);
+  constructor(exact: number) {
+    super((value) => value.length === exact);
+  }
+}
+
+class RequiredStringValidator<T> extends Validator<T> {
+  constructor(value: T) {
+    super((value) => typeof value === "string");
   }
 }
 
@@ -25,4 +32,5 @@ export {
   StringMinLengthValidator,
   StringExactLengthValidator,
   StringMaxLengthValidator,
+  RequiredStringValidator,
 };

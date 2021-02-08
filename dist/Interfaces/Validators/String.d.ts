@@ -1,4 +1,4 @@
-import { Exception } from "../exceptions/Exception";
+import { Exception } from "../exceptions";
 import { Validator } from "./validator";
 declare abstract class StringValidator extends Validator<string> {
 }
@@ -9,6 +9,9 @@ declare class StringMaxLengthValidator extends StringValidator {
     constructor(max: number);
 }
 declare class StringExactLengthValidator extends StringValidator {
-    constructor(max: number);
+    constructor(exact: number);
 }
-export { StringValidator, StringMinLengthValidator, StringExactLengthValidator, StringMaxLengthValidator, };
+declare class RequiredStringValidator<T> extends Validator<T> {
+    constructor(value: T);
+}
+export { StringValidator, StringMinLengthValidator, StringExactLengthValidator, StringMaxLengthValidator, RequiredStringValidator, };

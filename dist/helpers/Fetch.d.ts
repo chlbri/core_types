@@ -10,4 +10,4 @@ declare type FetchResponses = typeof Fetch[FetchStatus];
 declare function isGood(arg: FetchStatus): boolean;
 declare function isFetchStatus(arg: number | string): arg is FetchStatus;
 declare function isBad(arg: FetchStatus): boolean;
-export { Fetch, FetchStatus, FetchResponses, isGood, isBad, isFetchStatus };
+export { Fetch, FetchStatus, FetchResponses, isGood, isBad, isFetchStatus, };

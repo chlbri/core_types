@@ -22,4 +22,11 @@ function isBad(arg: FetchStatus) {
   return arg > 205;
 }
 
-export { Fetch, FetchStatus, FetchResponses, isGood, isBad, isFetchStatus };
+export {
+  Fetch,
+  FetchStatus,
+  FetchResponses,
+  isGood,
+  isBad,
+  isFetchStatus,
+};

@@ -1,2 +1,2 @@
-export * from "./Fetch"
-export * from "./nullish"
+export * from "./Fetch";
+export * from "./nullish";
