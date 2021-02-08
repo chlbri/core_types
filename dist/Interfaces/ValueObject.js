@@ -15,9 +15,8 @@ class ValueObject {
         for (const validator of this.validators) {
             if (!validator.validate(this.value))
                 return validator.exception;
-            return this.value;
         }
-        return exceptions_1.UNKNOWN_EXCEPTION;
+        return this.value;
     }
     get isValid() {
         return !(this.safe instanceof exceptions_1.Exception);

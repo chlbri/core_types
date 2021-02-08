@@ -1,4 +1,4 @@
-import { Exception, UNKNOWN_EXCEPTION } from "./exceptions";
+import { Exception } from "./exceptions";
 import { Validator } from "./validators";
 
 export abstract class ValueObject<T> {
@@ -13,9 +13,8 @@ export abstract class ValueObject<T> {
   get safe() {
     for (const validator of this.validators) {
       if (!validator.validate(this.value)) return validator.exception;
-      return this.value;
     }
-    return UNKNOWN_EXCEPTION;
+    return this.value;
   }
 
   get isValid() {
