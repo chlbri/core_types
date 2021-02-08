@@ -14,9 +14,15 @@ class StringMaxLengthValidator extends StringValidator {
     super((value) => value.length <= max);
   }
 }
+class StringExactLengthValidator extends StringValidator {
+  constructor(max: number) {
+    super((value) => value.length === max);
+  }
+}
 
 export {
   StringValidator,
   StringMinLengthValidator,
+  StringExactLengthValidator,
   StringMaxLengthValidator,
 };
