@@ -32,7 +32,7 @@ exports.RequiredStringValidator = RequiredStringValidator;
 class FormatedNumberValidator extends StringValidator {
     constructor(exact) {
         super((value) => {
-            const reg = new RegExp(`/\d{${exact}}/`);
+            const reg = new RegExp(`\\d{${exact}}`);
             return reg.test(value);
         });
     }
