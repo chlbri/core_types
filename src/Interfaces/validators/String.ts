@@ -22,8 +22,17 @@ class StringExactLengthValidator extends StringValidator {
 }
 
 class RequiredStringValidator<T> extends Validator<T> {
-  constructor(value: T) {
+  constructor() {
     super((value) => typeof value === "string");
+  }
+}
+
+class FormatedNumberValidator extends StringValidator {
+  constructor(exact: number) {
+    super((value) => {
+      const reg = new RegExp(`/\d{${exact}}/`);
+      return reg.test(value);
+    });
   }
 }
 
@@ -33,4 +42,5 @@ export {
   StringExactLengthValidator,
   StringMaxLengthValidator,
   RequiredStringValidator,
+  FormatedNumberValidator,
 };

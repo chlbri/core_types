@@ -12,6 +12,9 @@ declare class StringExactLengthValidator extends StringValidator {
     constructor(exact: number);
 }
 declare class RequiredStringValidator<T> extends Validator<T> {
-    constructor(value: T);
+    constructor();
 }
-export { StringValidator, StringMinLengthValidator, StringExactLengthValidator, StringMaxLengthValidator, RequiredStringValidator, };
+declare class FormatedNumberValidator extends StringValidator {
+    constructor(exact: number);
+}
+export { StringValidator, StringMinLengthValidator, StringExactLengthValidator, StringMaxLengthValidator, RequiredStringValidator, FormatedNumberValidator, };
