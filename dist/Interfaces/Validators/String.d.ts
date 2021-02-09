@@ -1,6 +1,6 @@
 import { Exception } from "../exceptions";
 import { Validator } from "./validator";
-declare abstract class StringValidator extends Validator<string> {
+declare class StringValidator extends Validator<string> {
 }
 declare class StringMinLengthValidator extends StringValidator {
     constructor(min: number, exception?: Exception);
