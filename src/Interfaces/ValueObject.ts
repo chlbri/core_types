@@ -2,7 +2,7 @@ import { Exception } from "./exceptions";
 import { Validator } from "./validators";
 
 export abstract class ValueObject<T> {
-  constructor(private value: T, private validators: Validator<T>[]) {
+  constructor(private value: T, public validators: Validator<T>[]) {
     this.chain = this.chain.bind(this);
   }
 
