@@ -1,6 +1,6 @@
 import { Exception } from "./exceptions";
 import { Validator } from "./validators";
-export declare abstract class ValueObject<T> {
+export declare class ValueObject<T> {
     private value;
     validators: Validator<T>[];
     constructor(value: T, validators: Validator<T>[]);

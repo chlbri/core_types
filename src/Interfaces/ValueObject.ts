@@ -1,7 +1,7 @@
 import { Exception } from "./exceptions";
 import { Validator } from "./validators";
 
-export abstract class ValueObject<T> {
+export class ValueObject<T> {
   constructor(private value: T, public validators: Validator<T>[]) {
     this.chain = this.chain.bind(this);
   }
