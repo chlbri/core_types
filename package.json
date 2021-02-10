@@ -9,5 +9,8 @@
   "private": true,
   "scripts": {
     "tsc": "tsc "
+  },
+  "dependencies": {
+    "yup": "^0.32.8"
   }
 }
