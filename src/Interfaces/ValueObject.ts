@@ -1,8 +1,13 @@
 import { Exception } from "./exceptions";
-import { Validator } from "./validators";
+import { IValidator } from "./validators";
 
-export class ValueObject<T> {
-  constructor(private value: T, public validators: Validator<T>[]) {
+type ReadonlyValidators<T> = IValidator<T>[];
+
+export class ValueObject<
+  T = any,
+  V extends ReadonlyValidators<T> = any
+> {
+  constructor(private value: T, public validators: V) {
     this.chain = this.chain.bind(this);
   }
 
@@ -21,7 +26,9 @@ export class ValueObject<T> {
     return !(this.safe instanceof Exception);
   }
 
-  chain<N>(next: ValueObject<N>) {
+  chain<N, VO extends ReadonlyValidators<N>>(
+    next: ValueObject<N, VO>
+  ): ValueObject {
     return this.isValid ? next : this;
   }
 }
