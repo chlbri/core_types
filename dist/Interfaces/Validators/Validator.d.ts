@@ -1,8 +1,12 @@
 import { Exception } from "../exceptions";
 declare type Condition<T = any> = (arg: T) => boolean;
-declare class Validator<T> {
+interface IValidator<T = any> {
+    validate: Condition<T>;
+    exception: Exception;
+}
+declare class Validator<T = any> implements IValidator<T> {
     validate: Condition<T>;
     exception: Exception;
     constructor(validate: Condition<T>, exception?: Exception);
 }
-export { Condition, Validator };
+export { Condition, Validator, IValidator };
