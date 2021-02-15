@@ -6,7 +6,7 @@ export declare class ValueObject<T = any, V extends ReadonlyValidators<T> = any>
     validators: V;
     constructor(value: T, validators: V);
     get unSafe(): T;
-    get safe(): Exception | T;
+    get safe(): Exception<number> | T;
     get isValid(): boolean;
     chain<N, VO extends ReadonlyValidators<N>>(next: ValueObject<N, VO>): ValueObject;
 }

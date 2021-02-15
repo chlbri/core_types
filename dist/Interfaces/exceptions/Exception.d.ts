@@ -1,6 +1,6 @@
-declare class Exception {
-    readonly statut: number;
+declare class Exception<T extends number = number> {
+    readonly statut: T;
     readonly message: string;
-    constructor(statut: number, message: string);
+    constructor(statut: T, message: string);
 }
 export { Exception };
