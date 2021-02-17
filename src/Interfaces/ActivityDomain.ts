@@ -1,4 +1,4 @@
-import { DomainUseCaseSchema } from "../Types";
+import { DomainUseCaseSchema } from "../helpers/types";
 import { IUseCase } from "./IUseCase";
 
 type ActivityDomain<

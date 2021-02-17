@@ -6,12 +6,12 @@ declare class NumberMinValidator extends NumberValidator {
     constructor(min: number, exception?: Exception);
 }
 declare class StringValueValidator extends NumberValidator {
-    constructor(exact: number);
+    constructor(exact: number, exception?: Exception);
 }
 declare class NumberMaxValidator extends NumberValidator {
     constructor(max: number, exception?: Exception);
 }
-declare class RequiredNumberValidator<T> extends Validator<T> {
-    constructor(value: T);
+declare class RequiredNumberValidator extends Validator {
+    constructor(exception?: Exception);
 }
 export { NumberValidator, NumberMinValidator, NumberMaxValidator, StringValueValidator, RequiredNumberValidator, };

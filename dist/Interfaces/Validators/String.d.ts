@@ -6,15 +6,15 @@ declare class StringMinLengthValidator extends StringValidator {
     constructor(min: number, exception?: Exception);
 }
 declare class StringMaxLengthValidator extends StringValidator {
-    constructor(max: number);
+    constructor(max: number, exception?: Exception);
 }
 declare class StringExactLengthValidator extends StringValidator {
-    constructor(exact: number);
+    constructor(exact: number, exception?: Exception);
 }
-declare class RequiredStringValidator<T> extends Validator<T> {
-    constructor();
+declare class RequiredStringValidator extends Validator {
+    constructor(exception?: Exception);
 }
 declare class FormatedNumberValidator extends StringValidator {
-    constructor(exact: number);
+    constructor(exact: number, exception?: Exception);
 }
 export { StringValidator, StringMinLengthValidator, StringExactLengthValidator, StringMaxLengthValidator, RequiredStringValidator, FormatedNumberValidator, };

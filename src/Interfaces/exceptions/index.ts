@@ -1,4 +1,4 @@
-import { NUMBERS, STRINGS } from "../../Constants";
+import { NUMBERS, STRINGS } from "../../constants";
 import { Exception } from "./Exception";
 
 const DEFAULT_EXCEPTION = new Exception(

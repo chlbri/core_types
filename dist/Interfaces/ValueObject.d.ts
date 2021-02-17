@@ -8,6 +8,7 @@ export declare class ValueObject<T = any, V extends ReadonlyValidators<T> = any>
     get unSafe(): T;
     get safe(): Exception<number> | T;
     get isValid(): boolean;
-    chain<N, VO extends ReadonlyValidators<N>>(next: ValueObject<N, VO>): ValueObject;
+    chain<N, VO extends ReadonlyValidators<N>>(next: ValueObject<N, VO>): VO extends V ? this : ValueObject<N, VO>;
 }
+export declare type SimpleObject<T> = T extends ValueObject<infer R> ? R : T extends (...args: any[]) => any ? never : T;
 export {};

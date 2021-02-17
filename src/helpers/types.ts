@@ -99,15 +99,6 @@ type CoreDataBaseSchema<
     : never
   : never;
 
-type DataBaseOrUseCase<
-  T,
-  K extends keyof T,
-  Before extends string = "",
-  After extends string = ""
-> =
-  | _SetEntityForUseCase<T, K, Before, After>
-  | _SetEntityForDatabase<T, K, Before, After>;
-
 type DomainUseCaseSchema<
   T extends _ReadonlyArrayUnknown,
   K extends keyof T[number],
@@ -124,12 +115,12 @@ type DomainUseCaseSchema<
       [key: string]: T[number];
     };
 
-type StringDashSTring = `${string}-${string}`;
+// type StringDashSTring = `${string}-${string}`;
 
 type _JoinStringHelper = string | number | boolean | bigint;
 
 type JoinString<
-  T extends readonly unknown[],
+  T extends readonly any[],
   sep extends string = " "
 > = T extends []
   ? ""
@@ -142,11 +133,7 @@ type JoinString<
 type Digit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 /**  Exemple de String interpolation*/
-type FourDigits = `${Digit}${Digit}${Digit}${Digit}`;
-
-type UnionType<T, U> = U extends T ? U : never;
-
-type UnionString<T> = UnionType<string, T>;
+// type FourDigits = `${Digit}${Digit}${Digit}${Digit}`;
 
 type OnPropChangedMethods<T, I extends keyof T> = T &
   {
@@ -157,14 +144,14 @@ type OnPropChangedMethods<T, I extends keyof T> = T &
 
 //** T must be an regular Function  */
 type PromisifyMethod<T> = T extends (...args: infer P) => infer R
-  ? R extends Promise<unknown>
+  ? R extends Promise<any>
     ? T
     : (...args: P) => Promise<R>
   : never;
 
-type PromisifyObject<T extends object, K extends keyof T> = T &
+type PromisifyObject<T extends object> = T &
   {
-    [P in K & string as PromisifyMethod<T[P]> extends never
+    [P in keyof T & string as PromisifyMethod<T[P]> extends never
       ? never
       : `${P}Async`]: PromisifyMethod<T[P]>;
   };
@@ -173,6 +160,20 @@ type PromisifyObject<T extends object, K extends keyof T> = T &
 
 type WithoutPassword<T> = Omit<T, "password">;
 
+type OnlyNamesOf<T, TProp> = {
+  [K in keyof T]: Exclude<T[K], undefined> extends TProp ? K : never;
+}[keyof T];
+
+type OnlyPropertiesOf<T, TProp> = Pick<T, OnlyNamesOf<T, TProp>>;
+
+type Email = `${string}@${string}.${string}`;
+
+type MinLetters = string;
+type MaxLetters = string;
+
+type NExtract<T, U extends T> = Extract<T, U>;
+type NExclude<T, U extends T> = Exclude<T, U>;
+
 export {
   IndexOfArray,
   Awaited,
@@ -180,8 +181,7 @@ export {
   Reverse,
   AddString,
   TuplifyUnion,
-  UnionType,
-  UnionString,
+  JoinString,
   CoreDataBaseSchema,
   DomainUseCaseSchema,
   Digit,
@@ -189,4 +189,11 @@ export {
   PromisifyMethod,
   PromisifyObject,
   WithoutPassword,
+  OnlyNamesOf,
+  OnlyPropertiesOf,
+  Email,
+  MinLetters,
+  MaxLetters,
+  NExtract,
+  NExclude,
 };

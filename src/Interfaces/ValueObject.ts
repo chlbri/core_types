@@ -28,7 +28,15 @@ export class ValueObject<
 
   chain<N, VO extends ReadonlyValidators<N>>(
     next: ValueObject<N, VO>
-  ): ValueObject {
+  ): VO extends V ? this : ValueObject<N, VO>;
+
+  chain(next: any) {
     return this.isValid ? next : this;
   }
 }
+
+export type SimpleObject<T> = T extends ValueObject<infer R>
+  ? R
+  : T extends (...args: any[]) => any
+  ? never
+  : T;

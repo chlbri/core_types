@@ -1,4 +1,4 @@
-export * from "./Constants";
+export * from "./constants";
 export * from "./helpers";
 export * from "./Interfaces";
-export * from "./Types";
+export * from "./entities";

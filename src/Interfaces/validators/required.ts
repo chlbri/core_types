@@ -1,7 +1,7 @@
 import { Validator } from "./validator";
 
-export class RequiredValidator<T> extends Validator<T> {
+export class RequiredValidato extends Validator {
   constructor() {
-    super((value: T) => value !== undefined && value !== null);
+    super((value) => value !== undefined && value !== null);
   }
 }
