@@ -1,4 +1,9 @@
-export interface IUseCase {
-  call: (...args: any[]) => any;
-  __name: string;
+interface IUseCase<
+  N extends string = string,
+  F extends (...args: any[]) => any = any
+> {
+  call: F;
+  __name: N;
 }
+
+export { IUseCase };
