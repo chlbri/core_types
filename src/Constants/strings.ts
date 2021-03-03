@@ -1,5 +1,3 @@
-const EXCEPTION_MESSAGE_DEFAULT = "Not well-formated" as const;
-const EXCEPTION_MESSAGE_UNKNOWN = "Unexpected" as const;
 const LOWER_LETTERS = [
   "a",
   "b",
@@ -39,8 +37,4 @@ const LOWER_LETTERS = [
   "û",
 ] as const;
 
-export {
-  LOWER_LETTERS,
-  EXCEPTION_MESSAGE_DEFAULT,
-  EXCEPTION_MESSAGE_UNKNOWN,
-};
+export { LOWER_LETTERS };

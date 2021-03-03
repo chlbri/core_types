@@ -1,5 +1,5 @@
 import { isStatusServerError } from "./server";
-import { generateTestTable, mapperTest } from "./_";
+import { generateTestTable, mapperTest } from "./setup_test";
 
 const expecteds = [
   false,

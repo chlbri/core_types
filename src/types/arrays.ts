@@ -7,6 +7,8 @@ type IndexOfArray<
   ? S[number]
   : IndexOfArray<T, [S["length"], ...S]>;
 
+type LenghtOf<T extends any[]> = T["length"];
+
 // #region  TupleOf
 type _TupleOf<
   T,
@@ -15,11 +17,7 @@ type _TupleOf<
 > = R["length"] extends N ? R : _TupleOf<T, N, [...R, T]>;
 
 type TupleOf<T, N extends number> = N extends N
-  ? 0 extends N
-    ? T
-    : 1 extends N
-    ? T
-    : number extends N
+  ? number extends N
     ? T[]
     : _TupleOf<T, N>
   : never;
@@ -62,4 +60,5 @@ export {
   AddString,
   TuplifyUnion,
   Expected,
+  LenghtOf,
 };

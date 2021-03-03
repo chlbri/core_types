@@ -2,6 +2,7 @@ import { Exception, IValidator } from "../validators";
 
 type ReadonlyValidators<T> = IValidator<T>[];
 
+// TODO : Create test
 export class ValueObject<
   T = any,
   V extends ReadonlyValidators<T> = any

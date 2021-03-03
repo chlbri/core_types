@@ -1,4 +1,8 @@
-import { InformationStatus, Status, SuccesfullStatus } from "..";
+import {
+  InformationStatus,
+  Status,
+  SuccesfullStatus,
+} from "../status";
 
 type ST = Exclude<Status, SuccesfullStatus | InformationStatus>;
 

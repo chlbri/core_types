@@ -1,5 +1,5 @@
 import { isStatusClientError } from "./client";
-import { generateTestTable, mapperTest } from "./_";
+import { generateTestTable, mapperTest } from "./setup_test";
 
 const expecteds = [
   false,

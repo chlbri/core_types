@@ -1,5 +1,5 @@
+import { generateTestTable, mapperTest } from "./setup_test";
 import { isStatusSuccessFull } from "./successfull";
-import { generateTestTable, mapperTest } from "./_";
 
 const expecteds = [
   false,

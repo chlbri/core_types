@@ -1,4 +1,4 @@
-import { DomainUseCaseSchema } from "../types";
+import { DomainUseCaseSchema } from ".";
 import { IUseCase } from "./IUseCase";
 
 type Domain<T extends IUseCase[] = IUseCase[]> = DomainUseCaseSchema<
@@ -14,15 +14,3 @@ function useCase<D extends Domain, K extends keyof D>(
 }
 
 export { Domain, useCase };
-
-// class MyCase implements IUseCase{
-//   call: any;
-//   readonly __name = 'mycase';
-
-// }
-
-// const mycase = new MyCase();
-
-// const domain : ActivityDomain<[MyCase]> = {
-//   mycase
-// }

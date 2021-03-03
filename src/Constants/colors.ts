@@ -409,8 +409,6 @@ const CSS_COLORS = [
 
 const COLOR_DIGITS = [...DIGITS, ...COLOR_STRING_DIGITS] as const;
 
-// type ColorNumberDigit =
-
 export {
   TRANSPARENCY_DIGITS,
   COLOR_NUMBER_DIGITS,
@@ -418,13 +416,3 @@ export {
   CSS_COLORS,
   COLOR_DIGITS,
 };
-
-// const ext = ["00"];
-
-// for (let index = 1; index <= 99; index++) {
-//   ext.push(`${index < 10 ? "0" : ""}${index}`);
-// }
-
-// console.log("====================================");
-// console.debug(ext);
-// console.log("====================================");

@@ -13,7 +13,7 @@ import {
   ReturnData,
   ServerErrorData,
   SuccessData,
-} from "../types/ReturnData";
+} from "../types";
 
 // #region functions
 function isD<T>(func: (val: number) => boolean, data: ReturnData<T>) {

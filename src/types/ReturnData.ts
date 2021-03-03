@@ -6,7 +6,7 @@ import {
   ServerErrorStatus,
   Status,
   SuccesfullStatus,
-} from "..";
+} from "../status";
 
 // #region types
 type SuccessData<T = any> = {
@@ -16,12 +16,12 @@ type SuccessData<T = any> = {
 
 type InformationData<T = any> = {
   status: InformationStatus;
-  payload: Nullish<T>;
+  payload?: Nullish<T>;
 };
 
 type RedirectData<T = any> = {
   status: RedirectStatus;
-  payload: Nullish<T>;
+  payload?: Nullish<T>;
 };
 
 type ClientErrorData = {
