@@ -3,13 +3,6 @@ import { TupleOf } from "../types";
 import { Exception, EXCEPTIONS } from "./exception";
 import { Condition, IValidator } from "./validator";
 
-type Table = readonly (readonly [any, boolean])[];
-
-type Mapper = {
-  cond: Condition;
-  table: Table;
-};
-
 type Length = 3;
 
 type Length2 = 6;

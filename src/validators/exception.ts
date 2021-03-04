@@ -9,9 +9,6 @@ export interface IException<
 export class Exception<T extends ExceptionStatus = ExceptionStatus>
   implements IException<T> {
   constructor(public readonly statut: T) {}
-  // toString(): string {
-  //   return `Exception ==> { statut: ${this.statut}}`;
-  // }
 }
 
 type ExceptionObject = {

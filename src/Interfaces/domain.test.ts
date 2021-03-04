@@ -3,7 +3,7 @@ import { TupleOf } from "../types";
 import { Domain, useCase } from "./domain";
 import { IUseCase } from "./IUseCase";
 
-const spy = jest.fn(useCase);
+// const spy = jest.fn(useCase);
 
 type Length5 = 5;
 
@@ -49,9 +49,9 @@ const domain2: Domain = {
 const paramsTable = namesTable.map((name, index) => {
   const domain = index > 1 ? domain2 : domain1;
   return [domain, name] as const;
-}) as TupleOf<[Domain, string], Length5>;
+}) as TupleOf<never, Length5>;
 // #endregion
 
 describe("Tests   =====================================>", () => {
-  generate5Tests(spy, paramsTable, funcTables);
+  generate5Tests(useCase, paramsTable, funcTables);
 });

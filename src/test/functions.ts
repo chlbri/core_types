@@ -82,6 +82,7 @@ export function generateTests<
 // console.log("====================================");
 // #endregion
 
+// #region Helper Functions
 export function generate1Test<F extends (...args: any[]) => any>(
   func: F,
   actuals: TupleOf<Parameters<F>, 1>,
@@ -261,3 +262,4 @@ export function generate20Tests<F extends (...args: any[]) => any>(
 ) {
   return generateTests(func, actuals, expecteds, uuid);
 }
+// #endregion

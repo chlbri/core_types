@@ -20,8 +20,4 @@ export class Validator<T = any> implements IValidator<T> {
     public validate: Condition<T>,
     public exception: Exception = new Exception(404)
   ) {}
-
-  // toString(): string {
-  //   return `Validator ==> { validate : ${this.validate}, exception : ${this.exception}`;
-  // }
 }

@@ -26,10 +26,6 @@ export class ValueObject<T = any, V extends RV<any> = any> {
   chain(next: ValueObject): ValueObject {
     return this.isValid ? next : this;
   }
-
-  // toString(): string {
-  //   return `VO ==> { value: ${this.value}, validators: ${this.validators}}`;
-  // }
 }
 
 export type SimpleObject<T> = T extends ValueObject<infer R>
