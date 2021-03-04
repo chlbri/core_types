@@ -6,7 +6,6 @@ export function sliceArray<T extends any[], N extends number>(
   array: T,
   splicer: N
 ) {
-  // if (array.length % splicer !== 0) return null;
   return [
     ...new Array(Math.ceil(array.length / splicer))
       .fill(array)
