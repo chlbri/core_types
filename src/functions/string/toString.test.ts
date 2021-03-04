@@ -1,5 +1,5 @@
-import { toString } from "./toString";
 import { generate5Tests } from "../../test";
+import { toString } from "./toString";
 
 describe("Tests", () => {
   generate5Tests(
