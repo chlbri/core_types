@@ -1,21 +1,8 @@
-import { generateTestTable, mapperTest } from "../test";
-import { LenghtOf, TupleOf } from "../types";
+import { generateTests } from "../test";
 import { isArray } from "./array";
 
-const actuals: TupleOf<any, 5> = [
-  [1],
-  [2],
-  [[3, 4]],
-  ["true"],
-  [false],
-];
-
-const expecteds: TupleOf<boolean, LenghtOf<typeof actuals>> = [
-  false,
-  false,
-  true,
-  false,
-  false,
-];
-
-generateTestTable(actuals, expecteds).map(mapperTest(isArray));
+generateTests(
+  isArray,
+  [[1], [2], [[3, 4]], ["true"], [false]],
+  [false, false, true, false, false]
+);

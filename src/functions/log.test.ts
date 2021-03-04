@@ -1,14 +1,19 @@
+import { generate5Tests } from "../test";
 import { log } from "./log";
 
-const table = [1, 2, 3, 4, "true", false] as const;
-const logSpy = jest.spyOn(console, "log");
-it("should log the data", () => {
-  table.forEach(log);
-  expect(logSpy).toBeCalledWith(1);
-  expect(logSpy).toBeCalledWith(2);
-  expect(logSpy).toBeCalledWith(3);
-  expect(logSpy).toBeCalledWith(4);
-  expect(logSpy).toBeCalledWith("true");
-  expect(logSpy).toBeCalledWith(false);
-  expect(logSpy).toBeCalledTimes(6);
+describe("should log the data", () => {
+  const spy = generate5Tests(
+    log,
+    [[1], [2], [3, 4], ["true"], [false]],
+    [undefined, undefined, undefined, undefined, undefined]
+  ).spy;
+
+  it("Last Verifications   ==========================================> ", () => {
+    expect(spy).toBeCalledWith(1);
+    expect(spy).toBeCalledWith(2);
+    expect(spy).toBeCalledWith(3, 4);
+    expect(spy).toBeCalledWith("true");
+    expect(spy).toBeCalledWith(false);
+    expect(spy).toBeCalledTimes(5);
+  });
 });

@@ -1,3 +1,5 @@
+import { generate8Tests } from "../test/functions";
+import { TupleOf } from "../types";
 import {
   NumberExactValidator,
   NumberMaxValidator,
@@ -5,185 +7,64 @@ import {
   RequiredNumberValidator,
 } from "./number";
 
-type Table = readonly (readonly [any, boolean])[];
+type Length = 8;
 
-describe("min", () => {
-  type Mapper = {
-    min: number;
-    table: Table;
-  };
-  const mapping: Mapper[] = [
-    {
-      min: 5,
-      table: [
-        [5, true],
-        [2, false],
-        [7, true],
-        [1, false],
-        [4, false],
-        [9, true],
-      ] as const,
-    },
-    {
-      min: 3,
-      table: [
-        [5, true],
-        [2, false],
-        [7, true],
-        [1, false],
-        [4, true],
-        [9, true],
-      ] as const,
-    },
-    {
-      min: 7,
-      table: [
-        [5, false],
-        [2, false],
-        [7, true],
-        [1, false],
-        [4, false],
-        [9, true],
-      ] as const,
-    },
-  ];
+const testTable: TupleOf<[number], Length> = [
+  [4],
+  [5],
+  [6],
+  [7],
+  [8],
+  [12],
+  [13],
+  [14],
+];
 
-  mapping.map(({ min, table }) => {
-    const validator = new NumberMinValidator(min);
-    const spy = jest.spyOn(validator, "validate");
-    table.map(([actual, expected]) =>
-      it(`Min : ${min}  ==>     ${actual} must returns ${expected}`, () => {
-        expect(validator.validate(actual)).toBe(expected);
-        expect(spy).toBeCalledWith(actual);
-      })
-    );
-  });
-});
-
-describe("exact", () => {
-  type Mapper = {
-    exact: number;
-    table: Table;
-  };
-
-  const mapping: Mapper[] = [
-    {
-      exact: 5,
-      table: [
-        [3, false],
-        [5, true],
-        [7, false],
-      ] as const,
-    },
-    {
-      exact: 3,
-      table: [
-        [3, true],
-        [5, false],
-        [7, false],
-      ] as const,
-    },
-    {
-      exact: 7,
-      table: [
-        [3, false],
-        [5, false],
-        [7, true],
-      ] as const,
-    },
-  ];
-
-  mapping.map(({ exact, table }) => {
-    const validator = new NumberExactValidator(exact);
-    const spy = jest.spyOn(validator, "validate");
-    table.map(([actual, expected]) =>
-      it(`Exact : ${exact}  ==>     ${actual} must returns ${expected}`, () => {
-        expect(validator.validate(actual)).toBe(expected);
-        expect(spy).toBeCalledWith(actual);
-      })
-    );
-  });
-});
-
-describe("max", () => {
-  type Mapper = {
-    max: number;
-    table: Table;
-  };
-
-  const mapping: Mapper[] = [
-    {
-      max: 5,
-      table: [
-        [4, true],
-        [5, true],
-        [6, false],
-        [7, false],
-        [8, false],
-        [12, false],
-        [13, false],
-        [14, false],
-      ] as const,
-    },
-    {
-      max: 13,
-      table: [
-        [4, true],
-        [5, true],
-        [6, true],
-        [7, true],
-        [8, true],
-        [12, true],
-        [13, true],
-        [14, false],
-      ] as const,
-    },
-    {
-      max: 7,
-      table: [
-        [4, true],
-        [5, true],
-        [6, true],
-        [7, true],
-        [8, false],
-        [12, false],
-        [13, false],
-        [14, false],
-      ] as const,
-    },
-  ];
-
-  mapping.map(({ max, table }) => {
-    const validator = new NumberMaxValidator(max);
-    const spy = jest.spyOn(validator, "validate");
-    table.map(([actual, expected]) =>
-      it(`Exact : ${max}  ==>     ${actual} must returns ${expected}`, () => {
-        expect(validator.validate(actual)).toBe(expected);
-        expect(spy).toBeCalledWith(actual);
-      })
-    );
-  });
-});
-
-describe("required", () => {
-  const mapping: Table = [
-    [4, true],
-    [5, true],
-    ["str1", false],
-    ["str2", false],
-    [18, true],
-    [undefined, false],
-    [null, false],
-    [54, true],
-  ];
-
-  const validator = new RequiredNumberValidator();
-  const spy = jest.spyOn(validator, "validate");
-
-  mapping.map(([actual, expected]) => {
-    return it(`Required  ==>     ${actual} must returns ${expected}`, () => {
-      expect(validator.validate(actual)).toBe(expected);
-      expect(spy).toBeCalledWith(actual);
+describe("NumberMinValidator  =================================>", () => {
+  function tester(val: number, expecteds: TupleOf<boolean, Length>) {
+    return describe(`Minimum Validation : ${val}  ====>`, () => {
+      const validator = new NumberMinValidator(val);
+      return generate8Tests(validator.validate, testTable, expecteds);
     });
-  });
+  }
+
+  tester(5, [false, true, true, true, true, true, true, true]);
+  tester(13, [false, false, false, false, false, false, true, true]);
+  tester(7, [false, false, false, true, true, true, true, true]);
+});
+
+describe("NumberExactValidator  =================================>", () => {
+  function tester(val: number, expecteds: TupleOf<boolean, 8>) {
+    return describe(`Exact Validation : ${val}  ====>`, () => {
+      const validator = new NumberExactValidator(val);
+      return generate8Tests(validator.validate, testTable, expecteds);
+    });
+  }
+
+  tester(5, [false, true, false, false, false, false, false, false]);
+  tester(13, [false, false, false, false, false, false, true, false]);
+  tester(7, [false, false, false, true, false, false, false, false]);
+});
+
+describe("NumberMaxValidator  =================================>", () => {
+  function tester(val: number, expecteds: TupleOf<boolean, 8>) {
+    return describe(`Maximum Validation : ${val}  ====>`, () => {
+      const validator = new NumberMaxValidator(val);
+      return generate8Tests(validator.validate, testTable, expecteds);
+    });
+  }
+
+  tester(5, [true, true, false, false, false, false, false, false]);
+  tester(13, [true, true, true, true, true, true, true, false]);
+  tester(7, [true, true, true, true, false, false, false, false]);
+});
+
+describe("RequiredNumberValidator  =================================>", () => {
+  const validator = new RequiredNumberValidator();
+
+  generate8Tests(
+    validator.validate,
+    [[4], [5], ["str1"], ["str2"], [true], [undefined], [null], [54]],
+    [true, true, false, false, false, false, false, true]
+  );
 });

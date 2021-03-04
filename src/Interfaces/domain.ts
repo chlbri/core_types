@@ -55,10 +55,9 @@ export type Domain<
   T extends IUseCase[] = IUseCase[]
 > = DomainUseCaseSchema<T, "__name">;
 
-// TODO : Create Test
-export function useCase<D extends Domain, K extends keyof D>(
-  domain: D,
-  useCase: K
-): D[K]["call"] {
-  return domain[useCase].call;
+export function useCase<
+  D extends Domain,
+  K extends keyof D = keyof D
+>(domain: D, use: K): D[K]["call"] {
+  return domain[use].call;
 }

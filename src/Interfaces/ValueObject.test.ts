@@ -1,8 +1,10 @@
-import { generateTestTable, mapperTest, TestActual } from "../test";
+import { sliceArray } from "../functions";
+import { generate18Tests, generateTests } from "../test";
 import { LenghtOf, TupleOf } from "../types";
 import {
   EXCEPTIONS,
   FormatedNumberValidator,
+  IValidator,
   NumberExactValidator,
   NumberMaxValidator,
   NumberMinValidator,
@@ -15,6 +17,23 @@ import {
 } from "../validators";
 import { ValueObject as VO } from "./ValueObject";
 
+// #region Functions to test
+const safe = (vo: VO) => vo.safe;
+const unSafe = (vo: VO) => vo.unSafe;
+const isValid = (vo: VO) => vo.isValid;
+const chain = (vo1: VO, vo2: VO) => vo1.chain(vo2);
+// #endregion
+
+// #region Type Helpers
+type SafeParameters = Parameters<typeof safe>;
+type SafeReturnType = ReturnType<typeof safe>;
+type UnSafeReturnType = ReturnType<typeof unSafe>;
+type IsValidReturnType = ReturnType<typeof isValid>;
+type ChainParameters = Parameters<typeof chain>;
+type ChainReturnType = ReturnType<typeof chain>;
+// #endregion
+
+// #region Validators
 const requiredV = new RequiredValidator(EXCEPTIONS[404]);
 const numberMinV = new NumberMinValidator(5, EXCEPTIONS[302]);
 const numberExactV = new NumberExactValidator(7, EXCEPTIONS[341]);
@@ -36,54 +55,140 @@ const stringNumberFormatedV2 = new FormatedNumberValidator(
   6,
   EXCEPTIONS[390]
 );
+// #endregion
 
-const actuals: TupleOf<TestActual<VO>, 18> = [
-  [new VO(5, [requiredV, numberMinV])], //true*
-  [new VO(17, [requiredV, numberMaxV])], //false*
-  [new VO(undefined, [requiredV, numberMaxV])], //false*
-  [new VO(undefined, [numberMaxV])], //false*
-  [new VO("123456731045", [stringMinV, stringNumberFormatedV1])], //true*
-  [new VO("4444", [stringMinV, stringNumberFormatedV1])], //false*
-  [new VO("cinq5", [stringMinV, stringNumberFormatedV1])], //false*
-  [new VO("55555", [stringMinV, stringNumberFormatedV1])], //true*
-  [new VO("55555", [stringMinV, stringNumberFormatedV2])], //false*
-  [new VO("six==6", [stringMinV, stringNumberFormatedV2])], //false*
-  [new VO("666666", [stringMinV, stringNumberFormatedV2])], //true*
-  [new VO("sept==7", [stringExactV])], //true*
-  [new VO("six==6", [stringRequiredV])], //true*
-  [new VO("onze======11", [stringMaxV])], //false*
-  [new VO(45, [numberRequiredV])], //true
-  [new VO(7, [numberExactV])], //true
-  [new VO(415, [numberExactV])], //false
-  [new VO("45", [numberRequiredV])], //false
-];
+// #region Other types
+type LengthChain = 9;
+type Length = LenghtOf<typeof valueActuals>;
+// #endregion
 
-const expecteds: TupleOf<any, LenghtOf<typeof actuals>> = [
+// #region Datas to test
+const valueActuals = [
   5,
-  EXCEPTIONS[351],
-  EXCEPTIONS[404],
-  EXCEPTIONS[351],
+  17,
+  undefined,
+  undefined,
   "123456731045",
-  EXCEPTIONS[307],
-  EXCEPTIONS[380],
+  "4444",
+  "cinq5",
   "55555",
-  EXCEPTIONS[390],
-  EXCEPTIONS[390],
+  "55555",
+  "six==6",
   "666666",
   "sept==7",
   "six==6",
-  EXCEPTIONS[352],
+  "onze======11",
   45,
   7,
+  415,
+  "45",
+] as const;
+
+const validatorsActuals: TupleOf<IValidator[], Length> = [
+  [requiredV, numberMinV],
+  [requiredV, numberMaxV],
+  [requiredV, numberMaxV],
+  [numberMaxV],
+  [stringMinV, stringNumberFormatedV1],
+  [stringMinV, stringNumberFormatedV1],
+  [stringMinV, stringNumberFormatedV1],
+  [stringMinV, stringNumberFormatedV1],
+  [stringMinV, stringNumberFormatedV2],
+  [stringMinV, stringNumberFormatedV2],
+  [stringMinV, stringNumberFormatedV2],
+  [stringExactV],
+  [stringRequiredV],
+  [stringMaxV],
+  [numberRequiredV],
+  [numberExactV],
+  [numberExactV],
+  [numberRequiredV],
+];
+
+function getActuals() {
+  return validatorsActuals.map((validatorsActual, i) => {
+    const out = new VO(valueActuals[i], validatorsActual);
+    return [out] as const;
+  }) as TupleOf<SafeParameters, Length>;
+}
+
+const chainActuals = sliceArray(getActuals(), 2) as TupleOf<
+  ChainParameters,
+  LengthChain
+>;
+
+const chainsExpected: TupleOf<ChainReturnType, LengthChain> = [
+  getActuals()[1][0],
+  getActuals()[2][0],
+  getActuals()[5][0],
+  getActuals()[6][0],
+  getActuals()[8][0],
+  getActuals()[11][0],
+  getActuals()[13][0],
+  getActuals()[15][0],
+  getActuals()[16][0],
+];
+
+const safExpecteds: TupleOf<SafeReturnType, Length> = [
+  valueActuals[0],
+  EXCEPTIONS[351],
+  EXCEPTIONS[404],
+  EXCEPTIONS[351],
+  valueActuals[4],
+  EXCEPTIONS[307],
+  EXCEPTIONS[380],
+  valueActuals[7],
+  EXCEPTIONS[390],
+  EXCEPTIONS[390],
+  valueActuals[10],
+  valueActuals[11],
+  valueActuals[12],
+  EXCEPTIONS[352],
+  valueActuals[14],
+  valueActuals[15],
   EXCEPTIONS[341],
   EXCEPTIONS[405],
 ];
 
-const mapping = generateTestTable(actuals, expecteds);
+const unSafExpecteds = valueActuals as TupleOf<
+  UnSafeReturnType,
+  Length
+>;
 
-const safeHelper = (vo: VO) => vo.safe;
+const isValidExpecteds: TupleOf<IsValidReturnType, Length> = [
+  true,
+  false,
+  false,
+  false,
+  true,
+  false,
+  false,
+  true,
+  false,
+  false,
+  true,
+  true,
+  true,
+  false,
+  true,
+  true,
+  false,
+  false,
+];
+// #endregion
 
 describe("VO.safe", () => {
-  const mapper = mapperTest(safeHelper);
-  mapping.map(mapper);
+  generate18Tests(safe, getActuals(), safExpecteds, true);
+});
+
+describe("VO.unSafe", () => {
+  generate18Tests(unSafe, getActuals(), unSafExpecteds, true);
+});
+
+describe("VO.isValid", () => {
+  generateTests(isValid, getActuals(), isValidExpecteds, true);
+});
+
+describe("VO.chain", () => {
+  generateTests(chain, chainActuals, chainsExpected, true);
 });

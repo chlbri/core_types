@@ -1,13 +1,12 @@
-import { EXCEPTION_CODES } from "../status";
+import { ExceptionStatus, EXCEPTION_CODES } from "../status";
+import { generateTests } from "../test/functions";
+import { TupleOf } from "../types";
 import { Exception, EXCEPTIONS } from "./exception";
 
 describe("Tests", () => {
-  (() =>
-    EXCEPTION_CODES.map((val) =>
-      it(`${val} shoulds return ${JSON.stringify(
-        new Exception(val)
-      )}`, () => {
-        expect(EXCEPTIONS[val]).toStrictEqual(new Exception(val));
-      })
-    ))();
+  generateTests(
+    (code: ExceptionStatus) => EXCEPTIONS[code],
+    EXCEPTION_CODES.map((val) => [val]) as TupleOf<[ExceptionStatus]>,
+    EXCEPTION_CODES.map((val) => new Exception(val))
+  );
 });

@@ -1,7 +1,5 @@
 import { TupleOf } from "../types";
 
-export type TestActual<T> = T extends any[] ? T : [T];
-
 export type TestElement<T1 = any, T2 = any> = [T1, T2];
 
 export type TestTable<

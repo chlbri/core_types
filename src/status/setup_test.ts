@@ -1,3 +1,4 @@
+import { generate17Tests } from "../test/functions";
 import { TupleOf } from "../types";
 
 export const DATA_TEST = [
@@ -18,6 +19,26 @@ export const DATA_TEST = [
   505,
   1000,
   700,
+] as const;
+
+export const actuals = [
+  [4],
+  [100],
+  [101],
+  [104],
+  [200],
+  [202],
+  [204],
+  [300],
+  [303],
+  [304],
+  [400],
+  [404],
+  [500],
+  [504],
+  [505],
+  [1000],
+  [700],
 ] as const;
 
 export type Length = typeof DATA_TEST["length"];
@@ -45,4 +66,35 @@ export function mapperTest(spy: (val: number) => boolean) {
       expect(_spy(actual)).toBe(expected);
       expect(_spy).toBeCalledWith(actual);
     });
+}
+
+type RET = Parameters<(...val: [number]) => any>;
+
+export function generateStatusTests(
+  func: (...val: [number]) => boolean,
+  expecteds: TupleOf<boolean, 17>
+) {
+  return generate17Tests(
+    func,
+    [
+      [4],
+      [100],
+      [101],
+      [104],
+      [200],
+      [202],
+      [204],
+      [300],
+      [303],
+      [304],
+      [400],
+      [404],
+      [500],
+      [504],
+      [505],
+      [1000],
+      [700],
+    ],
+    expecteds
+  );
 }

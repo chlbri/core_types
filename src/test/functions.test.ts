@@ -1,5 +1,9 @@
 import { TupleOf } from "../types";
-import { generateTestTable, mapperTest } from "./functions";
+import {
+  generateTests,
+  generateTestTable,
+  mapperTest,
+} from "./functions";
 import { TestTable } from "./types";
 
 function dumpFunction1(val1: number, val2: number) {
@@ -35,7 +39,7 @@ const actuals2f1: TupleOf<ForTest1, Length2> = [
   [5, 6],
   [15, 37],
   [24, 7],
-];
+]; /* as const */
 
 const actuals2f2: TupleOf<ForTest2, Length2> = [[-5], [-15], [24]];
 
@@ -52,7 +56,7 @@ const expecteds2: TupleOf<boolean, Length2> = [false, false, true];
 describe("Generate the Table of Tests", () => {
   const spy = jest.fn(generateTestTable);
   it("For 5 elements", () => {
-    const actual = spy(actuals1f1, expecteds1);
+    const actual = spy(dumpFunction1, actuals1f1, expecteds1);
     const expected: TestTable<ForTest1, boolean, Length1> = [
       [[5, 6], false],
       [[1, 0], true],
@@ -62,11 +66,11 @@ describe("Generate the Table of Tests", () => {
     ];
 
     expect(actual).toStrictEqual(expected);
-    expect(spy).toBeCalledWith(actuals1f1, expecteds1);
+    expect(spy).toBeCalledWith(dumpFunction1, actuals1f1, expecteds1);
   });
 
   it("For 3 elements", () => {
-    const actual = spy(actuals2f1, expecteds2);
+    const actual = spy(dumpFunction2, actuals2f1, expecteds2);
     const expected: TestTable<ForTest1, boolean, Length2> = [
       [[5, 6], false],
       [[15, 37], false],
@@ -74,38 +78,78 @@ describe("Generate the Table of Tests", () => {
     ];
 
     expect(actual).toStrictEqual(expected);
-    expect(spy).toBeCalledWith(actuals2f1, expecteds2);
+    expect(spy).toBeCalledWith(dumpFunction2, actuals2f1, expecteds2);
   });
 });
 
 describe("Map all Tests", () => {
   (() =>
     describe(`Function  ==>   ${dumpFunction1}`, () => {
-      const spy = jest.fn(mapperTest);
-      const func = mapperTest(dumpFunction1);
+      const spy = jest.fn(dumpFunction1);
+      const func = mapperTest(spy);
       describe("For 5 elements", () => {
-        const table = generateTestTable(actuals1f1, expecteds1);
+        const table = generateTestTable(
+          dumpFunction1,
+          actuals1f1,
+          expecteds1
+        );
         table.map(func);
       });
 
       describe("For 3 elements", () => {
-        const table = generateTestTable(actuals2f1, expecteds2);
+        const table = generateTestTable(
+          dumpFunction1,
+          actuals2f1,
+          expecteds2
+        );
         table.map(func);
       });
     }))();
 
   (() =>
     describe(`Function  ==>   ${dumpFunction2}`, () => {
-      const spy = jest.fn(mapperTest);
-      const func = spy(dumpFunction2);
+      const spy = jest.fn(dumpFunction2);
+      const func = mapperTest(spy);
       describe("For 5 elements", () => {
-        const table = generateTestTable(actuals1f2, expecteds1);
+        const table = generateTestTable(
+          dumpFunction2,
+          actuals1f2,
+          expecteds1
+        );
         table.map(func);
       });
 
       describe("For 3 elements", () => {
-        const table = generateTestTable(actuals2f2, expecteds2);
+        const table = generateTestTable(
+          dumpFunction2,
+          actuals2f2,
+          expecteds2
+        );
         table.map(func);
+      });
+    }))();
+});
+
+describe("Generate all Tests", () => {
+  (() =>
+    describe(`Function  ==>   ${dumpFunction1}`, () => {
+      describe("For 5 elements", () => {
+        generateTests(dumpFunction1, actuals1f1, expecteds1);
+      });
+
+      describe("For 3 elements", () => {
+        generateTests(dumpFunction1, actuals2f1, expecteds2);
+      });
+    }))();
+
+  (() =>
+    describe(`Function  ==>   ${dumpFunction2}`, () => {
+      describe("For 5 elements", () => {
+        generateTests(dumpFunction2, actuals1f2, expecteds1);
+      });
+
+      describe("For 3 elements", () => {
+        generateTests(dumpFunction2, actuals2f2, expecteds2);
       });
     }))();
 });
