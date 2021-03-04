@@ -1,6 +1,6 @@
 import { isN } from "./_";
 
-const SERVER_ERROR_STATUS = [
+export const SERVER_ERROR_STATUS = [
   500,
   501,
   502,
@@ -103,14 +103,10 @@ const SERVER_ERROR_STATUS = [
   599,
 ] as const;
 
-type ServerErrorStatus = typeof SERVER_ERROR_STATUS[number];
+export type ServerErrorStatus = typeof SERVER_ERROR_STATUS[number];
 
-function isStatusServerError(val: number): val is ServerErrorStatus {
+export function isStatusServerError(
+  val: number
+): val is ServerErrorStatus {
   return isN(SERVER_ERROR_STATUS, val);
 }
-
-export {
-  SERVER_ERROR_STATUS,
-  ServerErrorStatus,
-  isStatusServerError,
-};

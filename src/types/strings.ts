@@ -1,17 +1,20 @@
 import { NUMBERS, STRINGS } from "../constants";
 
-type LowerLetters = typeof STRINGS.LOWER_LETTERS[number];
+export type LowerLetters = typeof STRINGS.LETTERS[number];
 
-type UpperLetters = Uppercase<LowerLetters>;
+export type UpperLetters = Uppercase<LowerLetters>;
 
-type Digit = typeof NUMBERS.DIGITS[number];
+export type Digit = typeof NUMBERS.DIGITS[number];
 
-type StringLocalLitterals = LowerLetters | UpperLetters | Digit;
-type Email = `${string}@${string}.${string}`;
+export type StringLocalLitterals =
+  | LowerLetters
+  | UpperLetters
+  | Digit;
+export type Email = `${string}@${string}.${string}`;
 
-type _JoinStringHelper = string | number | boolean | bigint;
+export type _JoinStringHelper = string | number | boolean | bigint;
 
-type JoinString<
+export type JoinString<
   T extends readonly any[],
   sep extends string = " "
 > = T extends []
@@ -22,18 +25,8 @@ type JoinString<
   ? `${T[0]}${sep}${JoinString<U, sep>}`
   : string;
 
-type AddString<
+export type AddString<
   T,
   Before extends string = "",
   After extends string = ""
 > = `${Before}${T & string}${After}`;
-
-export {
-  LowerLetters,
-  UpperLetters,
-  Digit,
-  StringLocalLitterals,
-  Email,
-  JoinString,
-  AddString,
-};

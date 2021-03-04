@@ -1,13 +1,9 @@
 import { Exception, IValidator } from "../validators";
 
-type ReadonlyValidators<T> = IValidator<T>[];
+type RV<T> = readonly IValidator<T>[];
 
-// TODO : Create test
-export class ValueObject<
-  T = any,
-  V extends ReadonlyValidators<T> = any
-> {
-  constructor(private value: T, public validators: V) {
+export class ValueObject<T = any, V extends RV<any> = any> {
+  constructor(private value: T, public validators?: V) {
     this.chain = this.chain.bind(this);
   }
 
@@ -16,6 +12,7 @@ export class ValueObject<
   }
 
   get safe() {
+    if (!this.validators) return this.value;
     for (const validator of this.validators) {
       if (!validator.validate(this.value)) return validator.exception;
     }
@@ -28,6 +25,10 @@ export class ValueObject<
 
   chain(next: ValueObject): ValueObject {
     return this.isValid ? next : this;
+  }
+
+  toString(): string {
+    return `VO ==> { value: ${this.value}, validators: ${this.validators}}`;
   }
 }
 

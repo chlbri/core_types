@@ -1,5 +1,5 @@
 import {
-  ExactValueValidator,
+  NumberExactValidator,
   NumberMaxValidator,
   NumberMinValidator,
   RequiredNumberValidator,
@@ -94,7 +94,7 @@ describe("exact", () => {
   ];
 
   mapping.map(({ exact, table }) => {
-    const validator = new ExactValueValidator(exact);
+    const validator = new NumberExactValidator(exact);
     const spy = jest.spyOn(validator, "validate");
     table.map(([actual, expected]) =>
       it(`Exact : ${exact}  ==>     ${actual} must returns ${expected}`, () => {

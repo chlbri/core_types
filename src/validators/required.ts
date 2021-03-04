@@ -1,7 +1,9 @@
+import { isNullish } from "../functions";
+import { Exception } from "./exception";
 import { Validator } from "./validator";
 
 export class RequiredValidator extends Validator {
-  constructor() {
-    super((value) => !!value);
+  constructor(exception?: Exception) {
+    super((value) => !isNullish(value), exception);
   }
 }

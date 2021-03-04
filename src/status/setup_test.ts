@@ -1,6 +1,6 @@
-import { Expected as ExpectedT, TupleOf } from "../types";
+import { TupleOf } from "../types";
 
-const DATA_TEST = [
+export const DATA_TEST = [
   4,
   100,
   101,
@@ -20,15 +20,15 @@ const DATA_TEST = [
   700,
 ] as const;
 
-type Length = typeof DATA_TEST["length"];
+export type Length = typeof DATA_TEST["length"];
 
-type Expected = ExpectedT<Length>;
+export type Expected = TupleOf<boolean, Length>;
 
 type ForTest = [number, boolean];
 
 type Table = TupleOf<ForTest, Length>;
 
-function generateTestTable(...responses: Expected): Table {
+export function generateTestTable(...responses: Expected): Table {
   const out: ForTest[] = [];
   for (let index = 0; index < DATA_TEST.length; index++) {
     const actual = DATA_TEST[index];
@@ -38,7 +38,7 @@ function generateTestTable(...responses: Expected): Table {
   return out as Table;
 }
 
-function mapperTest(spy: (val: number) => boolean) {
+export function mapperTest(spy: (val: number) => boolean) {
   const _spy = jest.fn(spy);
   return ([actual, expected]: ForTest) =>
     it(`${actual} should return ${expected}`, () => {
@@ -46,5 +46,3 @@ function mapperTest(spy: (val: number) => boolean) {
       expect(_spy).toBeCalledWith(actual);
     });
 }
-
-export { DATA_TEST, mapperTest, generateTestTable, Expected, Length };

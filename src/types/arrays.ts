@@ -1,13 +1,13 @@
-import { AddString } from "./strings";
-
-type IndexOfArray<
+export type IndexOfArray<
   T extends readonly unknown[],
   S extends number[] = []
 > = T["length"] extends S["length"]
   ? S[number]
   : IndexOfArray<T, [S["length"], ...S]>;
 
-type LenghtOf<T extends any[]> = T["length"];
+export type LenghtOf<T> = T extends any[] | readonly any[]
+  ? T["length"]
+  : never;
 
 // #region  TupleOf
 type _TupleOf<
@@ -16,10 +16,14 @@ type _TupleOf<
   R extends unknown[] = []
 > = R["length"] extends N ? R : _TupleOf<T, N, [...R, T]>;
 
-type TupleOf<T, N extends number> = N extends N
+export type TupleOf<T = any, N extends number = number> = N extends N
   ? number extends N
     ? T[]
     : _TupleOf<T, N>
+  : never;
+
+export type GetTupleType<T> = T extends TupleOf<infer U, any>
+  ? U
   : never;
 
 type _UnionToIntersection<U> = (
@@ -39,26 +43,14 @@ type _Push<T extends unknown[], V> = [...T, V];
 type _TuplifyUnionBoolean<T> = [T] extends [never] ? true : false;
 
 // TS4.1+
-type TuplifyUnion<T> = true extends _TuplifyUnionBoolean<T>
+export type TuplifyUnion<T> = true extends _TuplifyUnionBoolean<T>
   ? []
   : _Push<TuplifyUnion<Exclude<T, _LastOf<T>>>, _LastOf<T>>;
 
 // #endregion
 
-type Reverse<T> = T extends []
+export type Reverse<T> = T extends []
   ? T
   : T extends [infer Head, ...infer Tail]
   ? [...Reverse<Tail>, Head]
   : T;
-
-type Expected<N extends number = 4> = TupleOf<boolean, N>;
-
-export {
-  IndexOfArray,
-  TupleOf,
-  Reverse,
-  AddString,
-  TuplifyUnion,
-  Expected,
-  LenghtOf,
-};

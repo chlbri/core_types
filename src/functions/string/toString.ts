@@ -1,5 +1,3 @@
-function toString(val: any) {
+export function toString(val: any) {
   return val.toString();
 }
-
-export { toString };

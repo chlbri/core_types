@@ -1,4 +1,3 @@
-import { Nullish } from ".";
 import {
   ClientErrorStatus,
   InformationStatus,
@@ -7,50 +6,42 @@ import {
   Status,
   SuccesfullStatus,
 } from "../status";
+import { Nullish } from "../types";
 
 // #region types
-type SuccessData<T = any> = {
+export type SuccessData<T = any> = {
   status: SuccesfullStatus;
   payload: T;
 };
 
-type InformationData<T = any> = {
+export type InformationData<T = any> = {
   status: InformationStatus;
   payload?: Nullish<T>;
 };
 
-type RedirectData<T = any> = {
+export type RedirectData<T = any> = {
   status: RedirectStatus;
   payload?: Nullish<T>;
 };
 
-type ClientErrorData = {
+export type ClientErrorData = {
   status: ClientErrorStatus;
 };
 
-type ServerErrorData = {
+export type ServerErrorData = {
   status: ServerErrorStatus;
 };
 
-type ReturnData<T = any> =
+export type ReturnData<T = any> =
   | SuccessData<T>
   | InformationData<T>
   | RedirectData<T>
   | ClientErrorData
   | ServerErrorData;
 
-type PromiseReturnData<T = any> = Promise<ReturnData<T>>;
+export type PromiseReturnData<T = any> = Promise<ReturnData<T>>;
 
-type ReturnMessageKey<T extends string = string> = `${T}_${Status}`;
+export type ReturnMessageKey<
+  T extends string = string
+> = `${T}_${Status}`;
 // #endregion
-
-export {
-  SuccessData,
-  InformationData,
-  RedirectData,
-  ClientErrorData,
-  ServerErrorData,
-  ReturnData,
-  PromiseReturnData,
-  ReturnMessageKey,
-};

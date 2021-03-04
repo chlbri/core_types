@@ -1,6 +1,6 @@
 import { isN } from "./_";
 
-const INFORMATION_STATUS = [
+export const INFORMATION_STATUS = [
   100,
   101,
   102,
@@ -103,10 +103,10 @@ const INFORMATION_STATUS = [
   199,
 ] as const;
 
-type InformationStatus = typeof INFORMATION_STATUS[number];
+export type InformationStatus = typeof INFORMATION_STATUS[number];
 
-function isStatusInformation(val: number): val is InformationStatus {
+export function isStatusInformation(
+  val: number
+): val is InformationStatus {
   return isN(INFORMATION_STATUS, val);
 }
-
-export { INFORMATION_STATUS, InformationStatus, isStatusInformation };

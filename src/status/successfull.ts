@@ -1,6 +1,6 @@
 import { isN } from "./_";
 
-const SUCCESSFULL_STATUS = [
+export const SUCCESSFULL_STATUS = [
   200,
   201,
   202,
@@ -103,10 +103,10 @@ const SUCCESSFULL_STATUS = [
   299,
 ] as const;
 
-type SuccesfullStatus = typeof SUCCESSFULL_STATUS[number];
+export type SuccesfullStatus = typeof SUCCESSFULL_STATUS[number];
 
-function isStatusSuccessFull(val: number): val is SuccesfullStatus {
+export function isStatusSuccessFull(
+  val: number
+): val is SuccesfullStatus {
   return isN(SUCCESSFULL_STATUS, val);
 }
-
-export { SUCCESSFULL_STATUS, SuccesfullStatus, isStatusSuccessFull };

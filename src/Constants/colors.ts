@@ -1,6 +1,6 @@
 import { DIGITS } from "./numbers";
 
-const TRANSPARENCY_DIGITS = [
+export const TRANSPARENCY_DIGITS = [
   ...DIGITS,
   10,
   11,
@@ -95,7 +95,7 @@ const TRANSPARENCY_DIGITS = [
   100,
 ] as const;
 
-const COLOR_NUMBER_DIGITS = [
+export const COLOR_NUMBER_DIGITS = [
   ...TRANSPARENCY_DIGITS,
   101,
   102,
@@ -254,9 +254,16 @@ const COLOR_NUMBER_DIGITS = [
   255,
 ] as const;
 
-const COLOR_STRING_DIGITS = ["a", "b", "c", "d", "e", "f"] as const;
+export const COLOR_STRING_DIGITS = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+] as const;
 
-const CSS_COLORS = [
+export const CSS_COLORS = [
   "aliceblue",
   "antiquewhite",
   "aqua",
@@ -407,12 +414,7 @@ const CSS_COLORS = [
   "yellowgreen",
 ] as const;
 
-const COLOR_DIGITS = [...DIGITS, ...COLOR_STRING_DIGITS] as const;
-
-export {
-  TRANSPARENCY_DIGITS,
-  COLOR_NUMBER_DIGITS,
-  COLOR_STRING_DIGITS,
-  CSS_COLORS,
-  COLOR_DIGITS,
-};
+export const COLOR_DIGITS = [
+  ...DIGITS,
+  ...COLOR_STRING_DIGITS,
+] as const;

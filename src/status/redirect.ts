@@ -1,6 +1,6 @@
 import { isN } from "./_";
 
-const REDIRECT_STATUS = [
+export const REDIRECT_STATUS = [
   300,
   301,
   302,
@@ -103,10 +103,8 @@ const REDIRECT_STATUS = [
   399,
 ] as const;
 
-type RedirectStatus = typeof REDIRECT_STATUS[number];
+export type RedirectStatus = typeof REDIRECT_STATUS[number];
 
-function isStatusRedirect(val: number): val is RedirectStatus {
+export function isStatusRedirect(val: number): val is RedirectStatus {
   return isN(REDIRECT_STATUS, val);
 }
-
-export { REDIRECT_STATUS, RedirectStatus, isStatusRedirect };

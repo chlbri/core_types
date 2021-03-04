@@ -1,4 +1,4 @@
-const LOWER_LETTERS = [
+export const LETTERS = [
   "a",
   "b",
   "c",
@@ -36,5 +36,3 @@ const LOWER_LETTERS = [
   "ù",
   "û",
 ] as const;
-
-export { LOWER_LETTERS };

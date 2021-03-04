@@ -1,10 +1,10 @@
 import { Nullish } from "../types";
 import {
   FormatedNumberValidator,
-  RequiredStringValidator,
   StringExactLengthValidator,
   StringMaxLengthValidator,
   StringMinLengthValidator,
+  StringRequiredValidator,
 } from "./string";
 
 type Table = readonly (readonly [any, boolean])[];
@@ -192,7 +192,7 @@ describe("required", () => {
     [null, false],
   ];
 
-  const validator = new RequiredStringValidator();
+  const validator = new StringRequiredValidator();
   const spy = jest.spyOn(validator, "validate");
 
   mapping.map(([actual, expected]) => {

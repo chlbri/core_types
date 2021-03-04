@@ -1,5 +1,3 @@
-function log<T extends any>(data: T) {
+export function log<T extends any>(data: T) {
   console.log(data);
 }
-
-export { log };

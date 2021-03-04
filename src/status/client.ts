@@ -1,6 +1,6 @@
 import { isN } from "./_";
 
-const CLIENT_ERROR_STATUS = [
+export const CLIENT_ERROR_STATUS = [
   400,
   401,
   402,
@@ -103,14 +103,10 @@ const CLIENT_ERROR_STATUS = [
   499,
 ] as const;
 
-type ClientErrorStatus = typeof CLIENT_ERROR_STATUS[number];
+export type ClientErrorStatus = typeof CLIENT_ERROR_STATUS[number];
 
-function isStatusClientError(val: number): val is ClientErrorStatus {
+export function isStatusClientError(
+  val: number
+): val is ClientErrorStatus {
   return isN(CLIENT_ERROR_STATUS, val);
 }
-
-export {
-  CLIENT_ERROR_STATUS,
-  ClientErrorStatus,
-  isStatusClientError,
-};

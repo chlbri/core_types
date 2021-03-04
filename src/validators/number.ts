@@ -1,38 +1,30 @@
 import { Exception } from "./exception";
 import { Validator } from "./validator";
 
-class NumberValidator extends Validator<number> {}
+export class NumberValidator extends Validator<number> {}
 
-class NumberMinValidator extends NumberValidator {
+export class NumberMinValidator extends NumberValidator {
   constructor(min: number, exception?: Exception) {
     super((value) => value >= min, exception);
   }
 }
 
-class ExactValueValidator extends NumberValidator {
+export class NumberExactValidator extends NumberValidator {
   constructor(exact: number, exception?: Exception) {
     super((value) => value === exact, exception);
   }
 }
 
-class NumberMaxValidator extends NumberValidator {
+export class NumberMaxValidator extends NumberValidator {
   constructor(max: number, exception?: Exception) {
     super((value) => value <= max, exception);
   }
 }
 
-class RequiredNumberValidator extends Validator {
+export class RequiredNumberValidator extends Validator {
   constructor(exception?: Exception) {
     super((value) => {
       return typeof value === "number";
     }, exception);
   }
 }
-
-export {
-  NumberValidator,
-  NumberMinValidator,
-  NumberMaxValidator,
-  ExactValueValidator,
-  RequiredNumberValidator,
-};

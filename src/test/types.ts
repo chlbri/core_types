@@ -1,22 +1,11 @@
-import { Expected, TupleOf } from "../types";
+import { TupleOf } from "../types";
 
-type TestActual<T = any, N extends number = number> = TupleOf<T, N>;
+export type TestActual<T> = T extends any[] ? T : [T];
 
-type GetTestActualType<T> = T extends TestActual<infer U> ? U : never;
+export type TestElement<T1 = any, T2 = any> = [T1, T2];
 
-type TestExpected<T extends number = number> = Expected<T>;
-
-type TestElement<T = any> = [T, boolean];
-
-type TestTable<T = any, N extends number = number> = TupleOf<
-  TestElement<T>,
-  N
->;
-
-export {
-  TestActual,
-  GetTestActualType,
-  TestExpected,
-  TestElement,
-  TestTable,
-};
+export type TestTable<
+  T1 = any,
+  T2 = any,
+  N extends number = number
+> = TupleOf<TestElement<T1, T2>, N>;
