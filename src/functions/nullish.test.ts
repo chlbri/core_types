@@ -1,7 +1,7 @@
-import { generateTests } from "../test";
+import { generate4Tests } from "../test";
 import { isNullish } from "./nullish";
 
-generateTests(
+generate4Tests(
   isNullish,
   [[undefined], ["e"], [null], [7]],
   [true, false, true, false]
