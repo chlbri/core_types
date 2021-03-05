@@ -263,5 +263,3 @@ export function generate20Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 // #endregion
-
-
