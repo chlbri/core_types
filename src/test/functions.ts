@@ -62,7 +62,7 @@ export function generateTests<
   const mapper = mapperTest(spy, uuid);
   const tests = table.map(mapper);
   const len = expecteds.length;
-  it(`${func} should be call ${len} times`, () => {
+  it(`${func.name} should be call ${len} times`, () => {
     expect(spy).toBeCalledTimes(len);
   });
   return { tests, spy } as const;
@@ -263,3 +263,5 @@ export function generate20Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 // #endregion
+
+

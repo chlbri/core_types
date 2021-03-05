@@ -54,8 +54,13 @@ describe("Validation of values  =================================>", () => {
     validator: [IValidator],
     expecteds: TupleOf<boolean, Length2>
   ) {
-    return describe(`${JSON.stringify(validator)}  ====>`, () =>
-      generate6Tests(validator[0].validate, valuesTable, expecteds));
+    return describe(`${JSON.stringify(validator[0])}  ====>`, () => {
+      return generate6Tests(
+        validator[0].validate,
+        valuesTable,
+        expecteds
+      );
+    });
   }
 
   tester(validatorsTable[0], [

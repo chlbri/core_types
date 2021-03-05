@@ -5,7 +5,6 @@ import {
   TransparencyDigits,
 } from "../types";
 
-// TODO: Create the tests
 export function rgba(
   red: ColorNumberDigits,
   green: ColorNumberDigits,
