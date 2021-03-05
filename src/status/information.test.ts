@@ -1,7 +1,6 @@
 import { isStatusInformation } from "./information";
 import { generateStatusTests } from "./setup_test";
 
-describe("Tests", () => {
   generateStatusTests(isStatusInformation, [
     false,
     true,
@@ -21,4 +20,4 @@ describe("Tests", () => {
     false,
     false,
   ]);
-});
+

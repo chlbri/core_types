@@ -1,7 +1,6 @@
 import { isStatusRedirect } from "./redirect";
 import { generateStatusTests } from "./setup_test";
 
-describe("Tests", () => {
   generateStatusTests(isStatusRedirect, [
     false,
     false,
@@ -21,4 +20,4 @@ describe("Tests", () => {
     false,
     false,
   ]);
-});
+

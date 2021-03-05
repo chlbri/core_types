@@ -1,5 +1,5 @@
 import { sliceArray } from "../functions";
-import { generate18Tests, generateTests } from "../test";
+import { generate18Tests, generate9Tests } from "../test";
 import { LenghtOf, TupleOf } from "../types";
 import {
   EXCEPTIONS,
@@ -186,9 +186,9 @@ describe("VO.unSafe", () => {
 });
 
 describe("VO.isValid", () => {
-  generateTests(isValid, getActuals(), isValidExpecteds, true);
+  generate18Tests(isValid, getActuals(), isValidExpecteds, true);
 });
 
 describe("VO.chain", () => {
-  generateTests(chain, chainActuals, chainsExpected, true);
+  generate9Tests(chain, chainActuals, chainsExpected, true);
 });

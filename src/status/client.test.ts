@@ -1,7 +1,6 @@
 import { isStatusClientError } from "./client";
 import { generateStatusTests } from "./setup_test";
 
-describe("Tests", () => {
   generateStatusTests(isStatusClientError, [
     false,
     false,
@@ -21,4 +20,4 @@ describe("Tests", () => {
     false,
     false,
   ]);
-});
+

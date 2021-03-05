@@ -52,6 +52,4 @@ const paramsTable = namesTable.map((name, index) => {
 }) as TupleOf<never, Length5>;
 // #endregion
 
-describe("Tests   =====================================>", () => {
-  generate5Tests(useCase, paramsTable, funcTables);
-});
+generate5Tests(useCase, paramsTable, funcTables);
