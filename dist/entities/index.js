@@ -14,3 +14,6 @@ __exportStar(require("./Entity"), exports);
 __exportStar(require("./Human"), exports);
 __exportStar(require("./HumanAdd"), exports);
 __exportStar(require("./Login"), exports);
+__exportStar(require("./WithoutPassword"), exports);
+__exportStar(require("./WithoutId"), exports);
+__exportStar(require("./WithId"), exports);

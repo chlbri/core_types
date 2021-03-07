@@ -6,7 +6,6 @@ export declare type PromisifyMethod<T> = T extends (...args: infer P) => infer R
 export declare type PromisifyObject<T extends object> = T & {
     [P in keyof T & string as PromisifyMethod<T[P]> extends never ? never : `${P}Async`]: PromisifyMethod<T[P]>;
 };
-export declare type WithoutPassword<T> = Omit<T, "password">;
 export declare type OnlyNamesOf<T, TProp> = {
     [K in keyof T]: Exclude<T[K], undefined> extends TProp ? K : never;
 }[keyof T];
