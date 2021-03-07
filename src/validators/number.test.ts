@@ -24,7 +24,7 @@ describe("NumberMinValidator  =================================>", () => {
   function tester(val: number, expecteds: TupleOf<boolean, Length>) {
     return describe(`Minimum Validation : ${val}  ====>`, () => {
       const validator = new NumberMinValidator(val);
-      return generate8Tests(validator.validate, testTable, expecteds);
+      generate8Tests(validator.validate, testTable, expecteds);
     });
   }
 
@@ -37,7 +37,7 @@ describe("NumberExactValidator  =================================>", () => {
   function tester(val: number, expecteds: TupleOf<boolean, 8>) {
     return describe(`Exact Validation : ${val}  ====>`, () => {
       const validator = new NumberExactValidator(val);
-      return generate8Tests(validator.validate, testTable, expecteds);
+      generate8Tests(validator.validate, testTable, expecteds);
     });
   }
 
@@ -50,7 +50,7 @@ describe("NumberMaxValidator  =================================>", () => {
   function tester(val: number, expecteds: TupleOf<boolean, 8>) {
     return describe(`Maximum Validation : ${val}  ====>`, () => {
       const validator = new NumberMaxValidator(val);
-      return generate8Tests(validator.validate, testTable, expecteds);
+      generate8Tests(validator.validate, testTable, expecteds);
     });
   }
 

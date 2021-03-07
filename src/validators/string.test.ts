@@ -25,7 +25,7 @@ describe("StringMinLengthValidator  =================================>", () => {
   function tester(val: number, expecteds: TupleOf<boolean, Length>) {
     return describe(`Minimum Validation : ${val}  ====>`, () => {
       const validator = new StringMinLengthValidator(val);
-      return generate8Tests(validator.validate, testTable, expecteds);
+      generate8Tests(validator.validate, testTable, expecteds);
     });
   }
 
@@ -38,7 +38,7 @@ describe("StringExactLengthValidator  =================================>", () =>
   function tester(val: number, expecteds: TupleOf<boolean, Length>) {
     return describe(`Minimum Validation : ${val}  ====>`, () => {
       const validator = new StringExactLengthValidator(val);
-      return generate8Tests(validator.validate, testTable, expecteds);
+      generate8Tests(validator.validate, testTable, expecteds);
     });
   }
 
@@ -51,7 +51,7 @@ describe("StringMaxLengthValidator  =================================>", () => {
   function tester(val: number, expecteds: TupleOf<boolean, Length>) {
     return describe(`Minimum Validation : ${val}  ====>`, () => {
       const validator = new StringMaxLengthValidator(val);
-      return generate8Tests(validator.validate, testTable, expecteds);
+      generate8Tests(validator.validate, testTable, expecteds);
     });
   }
 
@@ -75,9 +75,9 @@ describe("FormatedNumberValidator  =================================>", () => {
     expecteds: TupleOf<boolean, Length>,
     val?: Nullish<number>
   ) {
-    return describe(`Minimum Validation : ${val}  ====>`, () => {
+    describe(`Minimum Validation : ${val}  ====>`, () => {
       const validator = new FormatedNumberValidator(val);
-      return generate8Tests(validator.validate, testTable, expecteds);
+      generate8Tests(validator.validate, testTable, expecteds);
     });
   }
 

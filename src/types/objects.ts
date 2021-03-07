@@ -19,7 +19,6 @@ export type PromisifyObject<T extends object> = T &
       : `${P}Async`]: PromisifyMethod<T[P]>;
   };
 
-export type WithoutPassword<T> = Omit<T, "password">;
 
 export type OnlyNamesOf<T, TProp> = {
   [K in keyof T]: Exclude<T[K], undefined> extends TProp ? K : never;
