@@ -39,6 +39,11 @@ export interface IRepo<T extends Entity> {
     newValue: WithoutId<Partial<T>>
   ) => PromiseReturnData<WithId<T>>;
 
+  updateId: (
+    id: any,
+    newValue: WithoutId<Partial<T>>
+  ) => PromiseReturnData<WithId<T>>;
+
   updateMany: (
     ...changes: UpdateMany<T>[]
   ) => PromiseReturnData<WithId<T>[]>;
