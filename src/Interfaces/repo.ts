@@ -21,7 +21,7 @@ export interface IRepo<T extends Entity> {
 
   readIds: (
     ids: any[],
-    search: DataSearchOperations<WithoutId<T>>,
+    search?: DataSearchOperations<WithoutId<T>>,
     limit?: number
   ) => PromiseReturnData<WithId<T>[]>;
 
