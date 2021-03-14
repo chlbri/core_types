@@ -33,7 +33,7 @@ export type EndsWith = {
   search: string;
 };
 
-export type DataSearchOperations<T> =
+type _DataSearchOperations<T> =
   | Equals
   | GreaterThan
   | LessThan
@@ -42,3 +42,7 @@ export type DataSearchOperations<T> =
   | StartsWith
   | EndsWith
   | T;
+
+export type DataSearchOperations<T> = {
+  [key in keyof T]?: _DataSearchOperations<T[key]>;
+};
