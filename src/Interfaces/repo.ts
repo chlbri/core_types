@@ -10,6 +10,8 @@ export interface IRepo<T extends Entity> {
 
   read: (value?: T, limit?: number) => PromiseReturnData<WithId<T>[]>;
 
+  readMany: (...ids: any[]) => PromiseReturnData<WithId<T>[]>;
+
   readOne: (value: T) => PromiseReturnData<WithId<T>>;
 
   update: (
