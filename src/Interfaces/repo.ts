@@ -6,7 +6,7 @@ export interface IRepo<T extends Entity> {
 
   createMany: (...values: T[]) => PromiseReturnData<T[]>;
 
-  upsert: (value: T) => PromiseReturnData<T>;
+  upsert: (value: WithId<Partial<T>>) => PromiseReturnData<T>;
 
   read: (value?: T, limit?: number) => PromiseReturnData<T[]>;
 
@@ -14,12 +14,12 @@ export interface IRepo<T extends Entity> {
 
   update: (
     oldValue: T,
-    newValue: WithoutId<T>
+    newValue: WithoutId<Partial<T>>
   ) => PromiseReturnData<T>;
 
   updateMany: (
     oldValue: T,
-    newValue: WithoutId<T>
+    newValue: WithoutId<Partial<T>>
   ) => PromiseReturnData<T[]>;
 
   delete: (value: T) => PromiseReturnData<T>;
