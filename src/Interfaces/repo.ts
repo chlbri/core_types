@@ -6,6 +6,8 @@ export interface IRepo<T extends Entity> {
 
   createMany: (...values: T[]) => PromiseReturnData<T[]>;
 
+  upsert: (value: T) => PromiseReturnData<T>;
+
   read: (value?: T, limit?: number) => PromiseReturnData<T[]>;
 
   readOne: (value: T) => PromiseReturnData<T>;
