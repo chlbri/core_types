@@ -12,6 +12,11 @@ export interface IRepo<T extends Entity> {
 
   readMany: (...ids: any[]) => PromiseReturnData<WithId<T>[]>;
 
+  readManyWhere: (
+    serach: WithoutId<T>,
+    ...ids: any[]
+  ) => PromiseReturnData<WithId<T>[]>;
+
   readOne: (value: T) => PromiseReturnData<WithId<T>>;
 
   update: (
