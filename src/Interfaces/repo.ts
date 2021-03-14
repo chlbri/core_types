@@ -19,11 +19,10 @@ export interface IRepo<T extends Entity> {
     limit?: number
   ) => PromiseReturnData<WithId<T>[]>;
 
-  readMany: (...ids: any[]) => PromiseReturnData<WithId<T>[]>;
-
-  readManyWhere: (
+  readIds: (
     ids: any[],
-    search: WithoutId<T>
+    search: DataSearchOperations<WithoutId<T>>,
+    limit?: number
   ) => PromiseReturnData<WithId<T>[]>;
 
   readOne: (
