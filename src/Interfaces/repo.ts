@@ -1,5 +1,11 @@
 import { Entity, WithId, WithoutId } from "../entities";
+import { DataSearchOperations } from "../types";
 import { PromiseReturnData } from "./ReturnData";
+
+type UpdateMany<T> = {
+  search: DataSearchOperations<T>;
+  newValue: WithoutId<Partial<T>>;
+};
 
 export interface IRepo<T extends Entity> {
   create: (value: T) => PromiseReturnData<WithId<T>>;
@@ -8,7 +14,10 @@ export interface IRepo<T extends Entity> {
 
   upsert: (value: WithId<Partial<T>>) => PromiseReturnData<WithId<T>>;
 
-  read: (search?: T, limit?: number) => PromiseReturnData<WithId<T>[]>;
+  read: (
+    search?: DataSearchOperations<T>,
+    limit?: number
+  ) => PromiseReturnData<WithId<T>[]>;
 
   readMany: (...ids: any[]) => PromiseReturnData<WithId<T>[]>;
 
@@ -17,16 +26,17 @@ export interface IRepo<T extends Entity> {
     search: WithoutId<T>
   ) => PromiseReturnData<WithId<T>[]>;
 
-  readOne: (search: T) => PromiseReturnData<WithId<T>>;
-
-  update: (
-    oldValue: T,
-    newValue: WithoutId<Partial<T>>
+  readOne: (
+    search: DataSearchOperations<T>
   ) => PromiseReturnData<WithId<T>>;
 
-  updateMany: (
-    oldValue: T,
+  update: (
+    search: DataSearchOperations<T>,
     newValue: WithoutId<Partial<T>>
+  ) => PromiseReturnData<WithId<T>[]>;
+
+  updateMany: (
+    ...changes: UpdateMany<T>[]
   ) => PromiseReturnData<WithId<T>[]>;
 
   delete: (value: T) => PromiseReturnData<WithId<T>>;

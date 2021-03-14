@@ -33,11 +33,12 @@ export type EndsWith = {
   search: string;
 };
 
-export type DataSearchOperations =
+export type DataSearchOperations<T> =
   | Equals
   | GreaterThan
   | LessThan
   | StringContains
   | ArrayFilter
   | StartsWith
-  | EndsWith;
+  | EndsWith
+  | T;
