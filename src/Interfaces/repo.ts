@@ -8,16 +8,16 @@ export interface IRepo<T extends Entity> {
 
   upsert: (value: WithId<Partial<T>>) => PromiseReturnData<WithId<T>>;
 
-  read: (value?: T, limit?: number) => PromiseReturnData<WithId<T>[]>;
+  read: (search?: T, limit?: number) => PromiseReturnData<WithId<T>[]>;
 
   readMany: (...ids: any[]) => PromiseReturnData<WithId<T>[]>;
 
   readManyWhere: (
-    serach: WithoutId<T>,
-    ...ids: any[]
+    ids: any[],
+    search: WithoutId<T>
   ) => PromiseReturnData<WithId<T>[]>;
 
-  readOne: (value: T) => PromiseReturnData<WithId<T>>;
+  readOne: (search: T) => PromiseReturnData<WithId<T>>;
 
   update: (
     oldValue: T,
