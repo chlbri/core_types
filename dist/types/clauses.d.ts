@@ -26,4 +26,4 @@ export declare type EndsWith = {
     op: "endsWith";
     search: string;
 };
-export declare type DataSearchOperations = Equals | GreaterThan | LessThan | StringContains | ArrayFilter | StartsWith | EndsWith;
+export declare type DataSearchOperations<T> = Equals | GreaterThan | LessThan | StringContains | ArrayFilter | StartsWith | EndsWith | T;
