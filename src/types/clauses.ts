@@ -1,15 +1,30 @@
 export type Equals = {
-  op: "equals";
+  op: "$eq";
+  search: any;
+};
+
+export type NotEquals = {
+  op: "$ne";
   search: any;
 };
 
 export type GreaterThan = {
-  op: "greaterThan";
+  op: "$gt";
+  search: number;
+};
+
+export type GreaterThanOrEquals = {
+  op: "$gte";
   search: number;
 };
 
 export type LessThan = {
-  op: "lessThan";
+  op: "$lt";
+  search: number;
+};
+
+export type LessThanOrEquals = {
+  op: "$lte";
   search: number;
 };
 
@@ -18,8 +33,12 @@ export type StringContains = {
   search: string;
 };
 
-export type ArrayFilter = {
-  op: "filter";
+export type ArrayIn = {
+  op: "$in";
+  search: any[];
+};
+export type ArrayNotIn = {
+  op: "$nin";
   search: any[];
 };
 
@@ -30,15 +49,19 @@ export type StartsWith = {
 
 export type EndsWith = {
   op: "endsWith";
-  search: string;
+  endsWith: string;
 };
 
+// TODO: add logical operators and $exists, $type
 type _DataSearchOperations<T> =
   | Equals
   | GreaterThan
+  | GreaterThanOrEquals
   | LessThan
+  | LessThanOrEquals
   | StringContains
-  | ArrayFilter
+  | ArrayIn
+  | ArrayNotIn
   | StartsWith
   | EndsWith
   | T;

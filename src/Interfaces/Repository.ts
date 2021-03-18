@@ -7,12 +7,14 @@ type UpdateMany<T> = {
   newValue: WithoutId<Partial<T>>;
 };
 
+type PRD<T> = PromiseReturnData<WithId<T>>
+
 export interface IRepo<T extends Entity> {
   create: (value: T) => PromiseReturnData<WithId<T>>;
 
   createMany: (...values: T[]) => PromiseReturnData<WithId<T>[]>;
 
-  upsert: (value: WithId<Partial<T>>) => PromiseReturnData<WithId<T>>;
+  upsert: (value: WithId<T>) => PromiseReturnData<WithId<T>>;
 
   read: (
     search?: DataSearchOperations<T>,
