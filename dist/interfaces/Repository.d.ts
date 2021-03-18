@@ -10,7 +10,7 @@ declare type PRDM<T> = PromiseReturnData<WithId<T>[]>;
 export interface IRepo<T extends Entity> {
     createOne: (value: WithoutId<T>) => PRD<T>;
     createMany: (...values: WithoutId<T>[]) => PRDM<T>;
-    upsert: (value: WithId<T>) => PRD<T>;
+    upsertOne: (value: WithId<T>) => PRD<T>;
     upsertMany: (...values: WithId<T>[]) => PRDM<T>;
     readMany: (search?: DataSearchOperations<T>, limit?: number) => PRDM<T>;
     readManyByIds: (ids: string[], search?: DataSearchOperations<WithoutId<T>>, limit?: number) => PRDM<T>;

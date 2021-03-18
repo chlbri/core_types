@@ -20,7 +20,7 @@ export interface IRepo<T extends Entity> {
 
   createMany: (...values: WithoutId<T>[]) => PRDM<T>;
 
-  upsert: (value: WithId<T>) => PRD<T>;
+  upsertOne: (value: WithId<T>) => PRD<T>;
 
   upsertMany: (...values: WithId<T>[]) => PRDM<T>;
 
