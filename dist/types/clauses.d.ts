@@ -43,8 +43,7 @@ export declare type EndsWith = {
     op: "endsWith";
     endsWith: string;
 };
-declare type _DataSearchOperations<T> = Equals | GreaterThan | GreaterThanOrEquals | LessThan | LessThanOrEquals | StringContains | ArrayIn | ArrayNotIn | StartsWith | EndsWith | WithoutId<T>;
+export declare type ValueSearchOperations<T> = Equals | GreaterThan | GreaterThanOrEquals | LessThan | LessThanOrEquals | StringContains | ArrayIn | ArrayNotIn | StartsWith | EndsWith | WithoutId<T>;
 export declare type DataSearchOperations<T> = {
-    [key in keyof T]?: _DataSearchOperations<T[key]>;
+    [key in keyof T]?: ValueSearchOperations<T[key]>;
 };
-export {};

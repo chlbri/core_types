@@ -55,7 +55,7 @@ export type EndsWith = {
 };
 
 // TODO: add logical operators and $exists, $type
-type _DataSearchOperations<T> =
+export type ValueSearchOperations<T> =
   | Equals
   | GreaterThan
   | GreaterThanOrEquals
@@ -69,5 +69,5 @@ type _DataSearchOperations<T> =
   | WithoutId<T>;
 
 export type DataSearchOperations<T> = {
-  [key in keyof T]?: _DataSearchOperations<T[key]>;
+  [key in keyof T]?: ValueSearchOperations<T[key]>;
 };
