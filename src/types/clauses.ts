@@ -1,5 +1,3 @@
-import { WithoutId } from "../entities";
-
 export type Equals = {
   op: "$eq";
   search: any;
@@ -35,13 +33,14 @@ export type StringContains = {
   search: string;
 };
 
-export type ArrayIn = {
+export type ArrayIn<T = any> = {
   op: "$in";
-  search: any[];
+  search: T[];
 };
-export type ArrayNotIn = {
+
+export type ArrayNotIn<T = any> = {
   op: "$nin";
-  search: any[];
+  search: T[];
 };
 
 export type StartsWith = {
@@ -55,19 +54,33 @@ export type EndsWith = {
 };
 
 // TODO: add logical operators and $exists, $type
-export type ValueSearchOperations<T> =
-  | Equals
-  | GreaterThan
-  | GreaterThanOrEquals
-  | LessThan
-  | LessThanOrEquals
-  | StringContains
-  | ArrayIn
-  | ArrayNotIn
-  | StartsWith
-  | EndsWith
-  | WithoutId<T>;
+export type ValueSearchOperations<
+  T = string | number
+> = T extends number
+  ?
+      | Equals
+      | GreaterThan
+      | GreaterThanOrEquals
+      | LessThan
+      | LessThanOrEquals
+      | ArrayIn
+      | ArrayNotIn
+  : T extends string
+  ?
+      | Equals
+      | StringContains
+      | ArrayIn
+      | ArrayNotIn
+      | StartsWith
+      | EndsWith
+  : Equals | ArrayIn | ArrayNotIn;
+
+export function isSearchOperation(
+  val: any
+): val is ValueSearchOperations {
+  return Object.keys(val).includes("op");
+}
 
 export type DataSearchOperations<T> = {
-  [key in keyof T]?: ValueSearchOperations<T[key]>;
+  [key in keyof T]?: ValueSearchOperations<T[key]> | T[key];
 };
