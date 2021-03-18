@@ -1,1 +1,3 @@
-export type WithId<T> = T & { _id: string };
+import { WithoutId } from "./WithoutId";
+
+export type WithId<T> = WithoutId<T> & { _id: string };
