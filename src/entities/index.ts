@@ -5,3 +5,4 @@ export * from "./Login";
 export * from "./WithoutPassword";
 export * from "./WithoutId";
 export * from "./WithId";
+export * from "./WithPassword";

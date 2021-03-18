@@ -14,4 +14,4 @@ __exportStar(require("./domain"), exports);
 __exportStar(require("./IUseCase"), exports);
 __exportStar(require("./ReturnData"), exports);
 __exportStar(require("./ValueObject"), exports);
-__exportStar(require("./repo"), exports);
+__exportStar(require("./Repository"), exports);

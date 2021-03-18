@@ -17,3 +17,4 @@ __exportStar(require("./Login"), exports);
 __exportStar(require("./WithoutPassword"), exports);
 __exportStar(require("./WithoutId"), exports);
 __exportStar(require("./WithId"), exports);
+__exportStar(require("./WithPassword"), exports);
