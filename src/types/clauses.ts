@@ -1,3 +1,5 @@
+import { WithoutId } from "../entities";
+
 export type Equals = {
   op: "$eq";
   search: any;
@@ -64,7 +66,7 @@ type _DataSearchOperations<T> =
   | ArrayNotIn
   | StartsWith
   | EndsWith
-  | T;
+  | WithoutId<T>;
 
 export type DataSearchOperations<T> = {
   [key in keyof T]?: _DataSearchOperations<T[key]>;

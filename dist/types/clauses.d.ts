@@ -1,3 +1,4 @@
+import { WithoutId } from "../entities";
 export declare type Equals = {
     op: "$eq";
     search: any;
@@ -42,7 +43,7 @@ export declare type EndsWith = {
     op: "endsWith";
     endsWith: string;
 };
-declare type _DataSearchOperations<T> = Equals | GreaterThan | GreaterThanOrEquals | LessThan | LessThanOrEquals | StringContains | ArrayIn | ArrayNotIn | StartsWith | EndsWith | T;
+declare type _DataSearchOperations<T> = Equals | GreaterThan | GreaterThanOrEquals | LessThan | LessThanOrEquals | StringContains | ArrayIn | ArrayNotIn | StartsWith | EndsWith | WithoutId<T>;
 export declare type DataSearchOperations<T> = {
     [key in keyof T]?: _DataSearchOperations<T[key]>;
 };

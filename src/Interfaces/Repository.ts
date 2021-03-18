@@ -22,7 +22,7 @@ export interface IRepo<T extends Entity> {
   ) => PromiseReturnData<WithId<T>[]>;
 
   readIds: (
-    ids: any[],
+    ids: string[],
     search?: DataSearchOperations<WithoutId<T>>,
     limit?: number
   ) => PromiseReturnData<WithId<T>[]>;
@@ -33,18 +33,13 @@ export interface IRepo<T extends Entity> {
 
   readOneById: (id: string) => PromiseReturnData<WithId<T>>;
 
-  update: (
-    search: DataSearchOperations<T>,
-    newValue: WithoutId<Partial<T>>
-  ) => PromiseReturnData<WithId<T>[]>;
-
   updateOne: (
     search: DataSearchOperations<T>,
     newValue: WithoutId<Partial<T>>
   ) => PromiseReturnData<WithId<T>>;
 
   updateId: (
-    id: any,
+    id: string,
     newValue: WithoutId<Partial<T>>
   ) => PromiseReturnData<WithId<T>>;
 
