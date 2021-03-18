@@ -1,1 +1,1 @@
-export type WithId<T> = T & { _id: any };
+export type WithId<T> = T & { _id: string };
