@@ -5,7 +5,7 @@ export type IndexOfArray<
   ? S[number]
   : IndexOfArray<T, [S["length"], ...S]>;
 
-export type LenghtOf<T> = T extends any[] | readonly any[]
+export type LengthOf<T> = T extends any[] | readonly any[]
   ? T["length"]
   : never;
 

@@ -1,11 +1,11 @@
 import { v4 } from "uuid";
-import { LenghtOf, TupleOf } from "../types";
+import { LengthOf, TupleOf } from "../types";
 import { TestElement, TestTable } from "./types";
 
 export function generateTestTable<
   F extends (...args: any[]) => any,
   T1 extends TupleOf<Parameters<F>>,
-  T2 extends TupleOf<ReturnType<F>, LenghtOf<T1>>
+  T2 extends TupleOf<ReturnType<F>, LengthOf<T1>>
 >(func: F, actuals: T1, expecteds: T2) {
   type ActualType = Parameters<F>;
   type ExpectedType = ReturnType<F>;
@@ -13,7 +13,7 @@ export function generateTestTable<
     actuals[index],
     expecteds[index],
   ]);
-  return out as TestTable<ActualType, ExpectedType, LenghtOf<T1>>;
+  return out as TestTable<ActualType, ExpectedType, LengthOf<T1>>;
 }
 
 function testNullText(...actual: any[]) {
@@ -55,7 +55,7 @@ export function mapperTest<P extends any[], R extends any>(
 export function generateTests<
   F extends (...args: any[]) => any,
   T1 extends TupleOf<Parameters<F>>,
-  T2 extends TupleOf<ReturnType<F>, LenghtOf<T1>>
+  T2 extends TupleOf<ReturnType<F>, LengthOf<T1>>
 >(func: F, actuals: T1, expecteds: T2, uuid = false) {
   const table = generateTestTable(func, actuals, expecteds);
   const spy = jest.fn(func);

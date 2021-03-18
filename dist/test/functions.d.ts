@@ -1,9 +1,9 @@
 /// <reference types="jest" />
-import { LenghtOf, TupleOf } from "../types";
+import { LengthOf, TupleOf } from "../types";
 import { TestElement } from "./types";
-export declare function generateTestTable<F extends (...args: any[]) => any, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<ReturnType<F>, LenghtOf<T1>>>(func: F, actuals: T1, expecteds: T2): TupleOf<TestElement<F extends (...args: infer P) => any ? P : never, F extends (...args: any) => infer R ? R : any>, LenghtOf<T1>>;
+export declare function generateTestTable<F extends (...args: any[]) => any, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<ReturnType<F>, LengthOf<T1>>>(func: F, actuals: T1, expecteds: T2): TupleOf<TestElement<F extends (...args: infer P) => any ? P : never, F extends (...args: any) => infer R ? R : any>, LengthOf<T1>>;
 export declare function mapperTest<P extends any[], R extends any>(spy: jest.Mock<R, P>, uuid?: boolean): ([actual, expected]: TestElement<P, R>) => void;
-export declare function generateTests<F extends (...args: any[]) => any, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<ReturnType<F>, LenghtOf<T1>>>(func: F, actuals: T1, expecteds: T2, uuid?: boolean): {
+export declare function generateTests<F extends (...args: any[]) => any, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<ReturnType<F>, LengthOf<T1>>>(func: F, actuals: T1, expecteds: T2, uuid?: boolean): {
     readonly tests: void[];
     readonly spy: jest.Mock<any, any[]>;
 };
