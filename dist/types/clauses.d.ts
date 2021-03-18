@@ -1,21 +1,37 @@
 export declare type Equals = {
-    op: "equals";
+    op: "$eq";
+    search: any;
+};
+export declare type NotEquals = {
+    op: "$ne";
     search: any;
 };
 export declare type GreaterThan = {
-    op: "greaterThan";
+    op: "$gt";
+    search: number;
+};
+export declare type GreaterThanOrEquals = {
+    op: "$gte";
     search: number;
 };
 export declare type LessThan = {
-    op: "lessThan";
+    op: "$lt";
+    search: number;
+};
+export declare type LessThanOrEquals = {
+    op: "$lte";
     search: number;
 };
 export declare type StringContains = {
     op: "contains";
     search: string;
 };
-export declare type ArrayFilter = {
-    op: "filter";
+export declare type ArrayIn = {
+    op: "$in";
+    search: any[];
+};
+export declare type ArrayNotIn = {
+    op: "$nin";
     search: any[];
 };
 export declare type StartsWith = {
@@ -24,9 +40,9 @@ export declare type StartsWith = {
 };
 export declare type EndsWith = {
     op: "endsWith";
-    search: string;
+    endsWith: string;
 };
-declare type _DataSearchOperations<T> = Equals | GreaterThan | LessThan | StringContains | ArrayFilter | StartsWith | EndsWith | T;
+declare type _DataSearchOperations<T> = Equals | GreaterThan | GreaterThanOrEquals | LessThan | LessThanOrEquals | StringContains | ArrayIn | ArrayNotIn | StartsWith | EndsWith | T;
 export declare type DataSearchOperations<T> = {
     [key in keyof T]?: _DataSearchOperations<T[key]>;
 };
