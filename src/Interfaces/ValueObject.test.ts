@@ -1,6 +1,6 @@
 import { sliceArray } from "../functions";
 import { generate18Tests, generate9Tests } from "../test";
-import { LenghtOf, TupleOf } from "../types";
+import { LengthOf, TupleOf } from "../types";
 import {
   EXCEPTIONS,
   FormatedNumberValidator,
@@ -59,7 +59,7 @@ const stringNumberFormatedV2 = new FormatedNumberValidator(
 
 // #region Other types
 type LengthChain = 9;
-type Length = LenghtOf<typeof valueActuals>;
+type Length = LengthOf<typeof valueActuals>;
 // #endregion
 
 // #region Datas to test

@@ -17,12 +17,12 @@ export function isStringLocalLitterals(
   val: any
 ): val is StringLocalLitterals {
   // #region Checkers
-  const all = [];
-  all.push(
+  const all = [
     ...STRINGS.LETTERS,
     ...STRINGS.LETTERS.map((val) => val.toUpperCase()),
-    ...NUMBERS.DIGITS.map((val) => "" + val)
-  );
+    ...NUMBERS.DIGITS.map((val) => "" + val),
+    ...NUMBERS.DIGITS,
+  ];
   // #endregion
 
   return all.includes(val);

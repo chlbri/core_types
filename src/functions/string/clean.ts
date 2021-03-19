@@ -1,6 +1,4 @@
-import {
-  isStringLocalLitterals
-} from "../../types";
+import { isStringLocalLitterals } from "../../types";
 
 export function isClean(value: string) {
   let out = true;
