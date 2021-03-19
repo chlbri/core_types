@@ -4,12 +4,30 @@ export type LowerLetters = typeof STRINGS.LETTERS[number];
 
 export type UpperLetters = Uppercase<LowerLetters>;
 
+export type Letters = UpperLetters | LowerLetters;
+
 export type Digit = typeof NUMBERS.DIGITS[number];
 
-export type StringLocalLitterals =
-  | LowerLetters
-  | UpperLetters
-  | Digit;
+export type StringLocalLitterals = Letters | Digit;
+
+type RAN = ReadonlyArray<number>;
+type RAS = ReadonlyArray<string>;
+
+export function isStringLocalLitterals(
+  val: any
+): val is StringLocalLitterals {
+  // #region Checkers
+  const all = [];
+  all.push(
+    ...STRINGS.LETTERS,
+    ...STRINGS.LETTERS.map((val) => val.toUpperCase()),
+    ...NUMBERS.DIGITS.map((val) => "" + val)
+  );
+  // #endregion
+
+  return all.includes(val);
+}
+
 export type Email = `${string}@${string}.${string}`;
 
 export type _JoinStringHelper = string | number | boolean | bigint;
