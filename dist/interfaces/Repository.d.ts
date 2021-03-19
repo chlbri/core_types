@@ -13,6 +13,7 @@ export interface IRepo<T extends Entity> {
     upsertOne: (value: WithId<T>) => PRD<T>;
     upsertMany: (...values: WithId<T>[]) => PRDM<T>;
     readMany: (search?: DataSearchOperations<T>, limit?: number) => PRDM<T>;
+    createIndex: (...args: T[keyof T][]) => PromiseReturnData<undefined>;
     readManyByIds: (ids: string[], search?: DataSearchOperations<WithoutId<T>>, limit?: number) => PRDM<T>;
     readOne: (search: DataSearchOperations<T>) => PRD<T>;
     readOneById: (_id: string) => PRD<T>;
