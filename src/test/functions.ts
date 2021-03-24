@@ -310,3 +310,185 @@ export function generate20Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 // #endregion
+
+// #region Helper Functions - Async
+export function generateAsync1Test<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 1>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 1>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync2Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 2>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 2>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync3Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 3>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 3>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync4Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 4>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 4>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync5Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 5>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 5>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync6Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 6>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 6>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync7Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 7>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 7>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync8Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 8>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 8>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync9Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 9>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 9>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync10Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 10>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 10>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync11Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 11>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 11>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync12Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 12>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 12>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync13Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 13>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 13>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync14Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 14>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 14>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync15Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 15>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 15>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync16Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 16>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 16>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync17Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 17>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 17>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync18Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 18>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 18>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync19Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 19>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 19>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+
+export function generateAsync20Tests<F extends (...args: any[]) => Promise<any>>(
+  func: F,
+  actuals: TupleOf<Parameters<F>, 20>,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, 20>,
+  uuid = false
+) {
+  return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+// #endregion
