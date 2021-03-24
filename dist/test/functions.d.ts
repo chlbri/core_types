@@ -94,83 +94,83 @@ export declare function generate20Tests<F extends (...args: any[]) => any>(func:
     readonly tests: void[];
     readonly spy: jest.Mock<any, any[]>;
 };
-export declare function generateAsync1Test<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 1>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 1>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync1Test<F extends (...args: any[]) => PromiseReturnData>(func: F, actuals: TupleOf<Parameters<F>, 1>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 1>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync2Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 2>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 2>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync2Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 2>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 2>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync3Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 3>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 3>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync3Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 3>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 3>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync4Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 4>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 4>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync4Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 4>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 4>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync5Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 5>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 5>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync5Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 5>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 5>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync6Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 6>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 6>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync6Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 6>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 6>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync7Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 7>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 7>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync7Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 7>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 7>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync8Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 8>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 8>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync8Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 8>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 8>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync9Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 9>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 9>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync9Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 9>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 9>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync10Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 10>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 10>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync10Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 10>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 10>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync11Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 11>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 11>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync11Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 11>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 11>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync12Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 12>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 12>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync12Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 12>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 12>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync13Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 13>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 13>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync13Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 13>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 13>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync14Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 14>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 14>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync14Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 14>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 14>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync15Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 15>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 15>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync15Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 15>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 15>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync16Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 16>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 16>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync16Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 16>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 16>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync17Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 17>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 17>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync17Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 17>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 17>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync18Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 18>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 18>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync18Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 18>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 18>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync19Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 19>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 19>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync19Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 19>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 19>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };
-export declare function generateAsync20Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 20>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 20>, uuid?: boolean, omits?: ReadonlyArray<keyof typeof expecteds[number]>): {
+export declare function generateAsync20Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 20>, expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 20>, uuid?: boolean, omits?: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>>): {
     readonly tests: void[];
     readonly spy: jest.Mock<PromiseReturnData<any>, any[]>;
 };

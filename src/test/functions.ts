@@ -336,12 +336,14 @@ export function generate20Tests<F extends (...args: any[]) => any>(
 // #endregion
 
 // #region Helper Functions - Async
-export function generateAsync1Test<F extends (...args: any[]) => any>(
+export function generateAsync1Test<
+  F extends (...args: any[]) => PromiseReturnData
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 1>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 1>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -353,7 +355,7 @@ export function generateAsync2Tests<
   actuals: TupleOf<Parameters<F>, 2>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 2>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -365,7 +367,7 @@ export function generateAsync3Tests<
   actuals: TupleOf<Parameters<F>, 3>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 3>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -377,7 +379,7 @@ export function generateAsync4Tests<
   actuals: TupleOf<Parameters<F>, 4>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 4>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -389,7 +391,7 @@ export function generateAsync5Tests<
   actuals: TupleOf<Parameters<F>, 5>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 5>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -401,7 +403,7 @@ export function generateAsync6Tests<
   actuals: TupleOf<Parameters<F>, 6>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 6>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -413,7 +415,7 @@ export function generateAsync7Tests<
   actuals: TupleOf<Parameters<F>, 7>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 7>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -425,7 +427,7 @@ export function generateAsync8Tests<
   actuals: TupleOf<Parameters<F>, 8>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 8>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -437,7 +439,7 @@ export function generateAsync9Tests<
   actuals: TupleOf<Parameters<F>, 9>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 9>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -449,7 +451,7 @@ export function generateAsync10Tests<
   actuals: TupleOf<Parameters<F>, 10>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 10>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -461,7 +463,7 @@ export function generateAsync11Tests<
   actuals: TupleOf<Parameters<F>, 11>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 11>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -473,7 +475,7 @@ export function generateAsync12Tests<
   actuals: TupleOf<Parameters<F>, 12>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 12>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -485,7 +487,7 @@ export function generateAsync13Tests<
   actuals: TupleOf<Parameters<F>, 13>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 13>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -497,7 +499,7 @@ export function generateAsync14Tests<
   actuals: TupleOf<Parameters<F>, 14>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 14>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -509,7 +511,7 @@ export function generateAsync15Tests<
   actuals: TupleOf<Parameters<F>, 15>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 15>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -521,7 +523,7 @@ export function generateAsync16Tests<
   actuals: TupleOf<Parameters<F>, 16>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 16>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -533,7 +535,7 @@ export function generateAsync17Tests<
   actuals: TupleOf<Parameters<F>, 17>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 17>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -545,7 +547,7 @@ export function generateAsync18Tests<
   actuals: TupleOf<Parameters<F>, 18>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 18>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -557,7 +559,7 @@ export function generateAsync19Tests<
   actuals: TupleOf<Parameters<F>, 19>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 19>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
@@ -569,7 +571,7 @@ export function generateAsync20Tests<
   actuals: TupleOf<Parameters<F>, 20>,
   expecteds: TupleOf<DataFromPromise<ReturnType<F>>, 20>,
   uuid = false,
-  omits: ReadonlyArray<keyof typeof expecteds[number]> = []
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
