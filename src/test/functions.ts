@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { LengthOf, TupleOf } from "../types";
+import { LengthOf, ThenArg, TupleOf } from "../types";
 import { TestElement, TestTable } from "./types";
 
 export function generateTestTable<
@@ -7,16 +7,26 @@ export function generateTestTable<
   T1 extends TupleOf<Parameters<F>>,
   T2 extends TupleOf<ReturnType<F>, LengthOf<T1>>
 >(func: F, actuals: T1, expecteds: T2) {
-  type ActualType = Parameters<F>;
-  type ExpectedType = ReturnType<F>;
-  const out: TestElement<ActualType>[] = actuals.map((_, index) => [
+  const out = actuals.map((_, index) => [
     actuals[index],
     expecteds[index],
   ]);
-  return out as TestTable<ActualType, ExpectedType, LengthOf<T1>>;
+  return out as TestTable<T1[number], T2[number], LengthOf<T1>>;
 }
 
-function testNullText(...actual: any[]) {
+export function generateAsyncTestTable<
+  F extends (...args: any[]) => Promise<any>,
+  T1 extends TupleOf<Parameters<F>>,
+  T2 extends TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>
+>(func: F, actuals: T1, expecteds: T2) {
+  const out = actuals.map((_, index) => [
+    actuals[index],
+    expecteds[index],
+  ]);
+  return out as TestTable<T1[number], T2[number], LengthOf<T1>>;
+}
+
+function testNullTest(...actual: any[]) {
   const inner =
     actual == null ||
     actual === [null] ||
@@ -37,7 +47,7 @@ export function mapperTest<P extends any[], R extends any>(
   uuid = false
 ) {
   return ([actual, expected]: TestElement<P, R>) => {
-    const _actualText = testNullText(...actual)
+    const _actualText = testNullTest(...actual)
       ? actual[0]
       : actual.join(", ");
 
@@ -45,6 +55,27 @@ export function mapperTest<P extends any[], R extends any>(
       uuid ? `${v4()} ==>  ` : ""
     }Arguments : [ ${_actualText} ] shoulds return ${expected}`, () => {
       expect(JSON.stringify(spy(...actual))).toStrictEqual(
+        JSON.stringify(expected)
+      );
+      expect(spy).toBeCalledWith(...actual);
+    });
+  };
+}
+
+export function mapperAsyncTest<
+  P extends any[],
+  R extends Promise<any>
+>(spy: jest.Mock<R, P>, uuid = false) {
+  return ([actual, expected]: TestElement<P, ThenArg<R>>) => {
+    const _actualText = testNullTest(...actual)
+      ? actual[0]
+      : actual.join(", ");
+
+    return it(`${
+      uuid ? `${v4()} ==>  ` : ""
+    }Arguments : [ ${_actualText} ] shoulds return ${expected}`, async () => {
+      const _processed = await spy(...actual);
+      expect(JSON.stringify(_processed)).toStrictEqual(
         JSON.stringify(expected)
       );
       expect(spy).toBeCalledWith(...actual);
@@ -60,6 +91,22 @@ export function generateTests<
   const table = generateTestTable(func, actuals, expecteds);
   const spy = jest.fn(func);
   const mapper = mapperTest(spy, uuid);
+  const tests = table.map(mapper);
+  const len = expecteds.length;
+  it(`${func.name} should be call ${len} times`, () => {
+    expect(spy).toBeCalledTimes(len);
+  });
+  return { tests, spy } as const;
+}
+
+export function generateAsyncTests<
+F extends (...args: any[]) => Promise<any>,
+T1 extends TupleOf<Parameters<F>>,
+T2 extends TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>
+>(func: F, actuals: T1, expecteds: T2, uuid = false) {
+  const table = generateAsyncTestTable(func, actuals, expecteds);
+  const spy = jest.fn(func);
+  const mapper = mapperAsyncTest(spy, uuid);
   const tests = table.map(mapper);
   const len = expecteds.length;
   it(`${func.name} should be call ${len} times`, () => {

@@ -179,7 +179,7 @@ export type Slice = {
 export function isSearchOperation(
   val: any
 ): val is ValueSearchOperations {
-  return Object.keys(val).includes("op");
+  return Object.keys(val).every((val) => val.startsWith("$"));
 }
 
 export type DataSearchOperations<T> = {

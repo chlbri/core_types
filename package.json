@@ -3,6 +3,7 @@
   "description": "Core of all projects",
   "author": "chlbri",
   "license": "MIT",
+  "version": "1.2.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": true,
