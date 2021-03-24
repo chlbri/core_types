@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { LengthOf, ThenArg, TupleOf } from "../types";
+import { LengthOf, NOmit, ThenArg, TupleOf } from "../types";
 import { TestElement, TestTable } from "./types";
 
 export function generateTestTable<
@@ -18,12 +18,20 @@ export function generateAsyncTestTable<
   F extends (...args: any[]) => Promise<any>,
   T1 extends TupleOf<Parameters<F>>,
   T2 extends TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>
->(func: F, actuals: T1, expecteds: T2) {
+>(
+  func: F,
+  actuals: T1,
+  expecteds: T2,
+  omits: ReadonlyArray<keyof T2[number]> = []
+) {
+  type R = ReturnType<F>;
+  type Tr = ThenArg<R>;
+  type _Return = NOmit<Tr, typeof omits[number]>;
   const out = actuals.map((_, index) => [
     actuals[index],
     expecteds[index],
   ]);
-  return out as TestTable<T1[number], T2[number], LengthOf<T1>>;
+  return out as TestTable<T1[number], _Return, LengthOf<T1>>;
 }
 
 function testNullTest(...actual: any[]) {
@@ -65,8 +73,14 @@ export function mapperTest<P extends any[], R extends any>(
 export function mapperAsyncTest<
   P extends any[],
   R extends Promise<any>
->(spy: jest.Mock<R, P>, uuid = false) {
-  return ([actual, expected]: TestElement<P, ThenArg<R>>) => {
+>(
+  spy: jest.Mock<R, P>,
+  uuid = false,
+  omits: ReadonlyArray<keyof ThenArg<R>> = []
+) {
+  type Tr = ThenArg<R>;
+  type _Return = NOmit<Tr, typeof omits[number]>;
+  return ([actual, expected]: TestElement<P, _Return>) => {
     const _actualText = testNullTest(...actual)
       ? actual[0]
       : actual.join(", ");
@@ -103,10 +117,16 @@ export function generateAsyncTests<
   F extends (...args: any[]) => any,
   T1 extends TupleOf<Parameters<F>>,
   T2 extends TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>
->(func: F, actuals: T1, expecteds: T2, uuid = false) {
-  const table = generateAsyncTestTable(func, actuals, expecteds);
+>(
+  func: F,
+  actuals: T1,
+  expecteds: T2,
+  uuid = false,
+  omits: ReadonlyArray<keyof T2[number]> = []
+) {
+  const table = generateAsyncTestTable(func, actuals, expecteds, omits);
   const spy = jest.fn(func);
-  const mapper = mapperAsyncTest(spy, uuid);
+  const mapper = mapperAsyncTest(spy, uuid, omits);
   const tests = table.map(mapper);
   const len = expecteds.length;
   it(`${func.name} should be call ${len} times`, () => {
@@ -316,9 +336,9 @@ export function generateAsync1Test<F extends (...args: any[]) => any>(
   func: F,
   actuals: TupleOf<Parameters<F>, 1>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 1>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync2Tests<
@@ -327,9 +347,9 @@ export function generateAsync2Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 2>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 2>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync3Tests<
@@ -338,9 +358,9 @@ export function generateAsync3Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 3>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 3>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync4Tests<
@@ -349,9 +369,9 @@ export function generateAsync4Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 4>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 4>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync5Tests<
@@ -360,9 +380,9 @@ export function generateAsync5Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 5>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 5>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync6Tests<
@@ -371,9 +391,9 @@ export function generateAsync6Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 6>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 6>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync7Tests<
@@ -382,9 +402,9 @@ export function generateAsync7Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 7>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 7>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync8Tests<
@@ -393,9 +413,9 @@ export function generateAsync8Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 8>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 8>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync9Tests<
@@ -404,9 +424,9 @@ export function generateAsync9Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 9>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 9>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync10Tests<
@@ -415,9 +435,9 @@ export function generateAsync10Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 10>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 10>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync11Tests<
@@ -426,9 +446,9 @@ export function generateAsync11Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 11>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 11>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync12Tests<
@@ -437,9 +457,9 @@ export function generateAsync12Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 12>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 12>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync13Tests<
@@ -448,9 +468,9 @@ export function generateAsync13Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 13>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 13>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync14Tests<
@@ -459,9 +479,9 @@ export function generateAsync14Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 14>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 14>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync15Tests<
@@ -470,9 +490,9 @@ export function generateAsync15Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 15>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 15>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync16Tests<
@@ -481,9 +501,9 @@ export function generateAsync16Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 16>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 16>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync17Tests<
@@ -492,9 +512,9 @@ export function generateAsync17Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 17>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 17>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync18Tests<
@@ -503,9 +523,9 @@ export function generateAsync18Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 18>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 18>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync19Tests<
@@ -514,9 +534,9 @@ export function generateAsync19Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 19>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 19>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 
 export function generateAsync20Tests<
@@ -525,8 +545,8 @@ export function generateAsync20Tests<
   func: F,
   actuals: TupleOf<Parameters<F>, 20>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 20>,
-  uuid = false
+  uuid = false, omits: ReadonlyArray<keyof ThenArg<ReturnType<F>>>= []
 ) {
-  return generateAsyncTests(func, actuals, expecteds, uuid);
+  return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 // #endregion
