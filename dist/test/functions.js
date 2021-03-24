@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generate20Tests = exports.generate19Tests = exports.generate18Tests = exports.generate17Tests = exports.generate16Tests = exports.generate15Tests = exports.generate14Tests = exports.generate13Tests = exports.generate12Tests = exports.generate11Tests = exports.generate10Tests = exports.generate9Tests = exports.generate8Tests = exports.generate7Tests = exports.generate6Tests = exports.generate5Tests = exports.generate4Tests = exports.generate3Tests = exports.generate2Tests = exports.generate1Test = exports.generateTests = exports.mapperTest = exports.generateTestTable = void 0;
+exports.generateAsync20Tests = exports.generateAsync19Tests = exports.generateAsync18Tests = exports.generateAsync17Tests = exports.generateAsync16Tests = exports.generateAsync15Tests = exports.generateAsync14Tests = exports.generateAsync13Tests = exports.generateAsync12Tests = exports.generateAsync11Tests = exports.generateAsync10Tests = exports.generateAsync9Tests = exports.generateAsync8Tests = exports.generateAsync7Tests = exports.generateAsync6Tests = exports.generateAsync5Tests = exports.generateAsync4Tests = exports.generateAsync3Tests = exports.generateAsync2Tests = exports.generateAsync1Test = exports.generate20Tests = exports.generate19Tests = exports.generate18Tests = exports.generate17Tests = exports.generate16Tests = exports.generate15Tests = exports.generate14Tests = exports.generate13Tests = exports.generate12Tests = exports.generate11Tests = exports.generate10Tests = exports.generate9Tests = exports.generate8Tests = exports.generate7Tests = exports.generate6Tests = exports.generate5Tests = exports.generate4Tests = exports.generate3Tests = exports.generate2Tests = exports.generate1Test = exports.generateAsyncTests = exports.generateTests = exports.mapperAsyncTest = exports.mapperTest = exports.generateAsyncTestTable = exports.generateTestTable = void 0;
 const uuid_1 = require("uuid");
 function generateTestTable(func, actuals, expecteds) {
     const out = actuals.map((_, index) => [
@@ -10,7 +10,15 @@ function generateTestTable(func, actuals, expecteds) {
     return out;
 }
 exports.generateTestTable = generateTestTable;
-function testNullText(...actual) {
+function generateAsyncTestTable(func, actuals, expecteds) {
+    const out = actuals.map((_, index) => [
+        actuals[index],
+        expecteds[index],
+    ]);
+    return out;
+}
+exports.generateAsyncTestTable = generateAsyncTestTable;
+function testNullTest(...actual) {
     const inner = actual == null ||
         actual === [null] ||
         actual === undefined ||
@@ -23,7 +31,7 @@ function testNullText(...actual) {
 }
 function mapperTest(spy, uuid = false) {
     return ([actual, expected]) => {
-        const _actualText = testNullText(...actual)
+        const _actualText = testNullTest(...actual)
             ? actual[0]
             : actual.join(", ");
         return it(`${uuid ? `${uuid_1.v4()} ==>  ` : ""}Arguments : [ ${_actualText} ] shoulds return ${expected}`, () => {
@@ -33,6 +41,19 @@ function mapperTest(spy, uuid = false) {
     };
 }
 exports.mapperTest = mapperTest;
+function mapperAsyncTest(spy, uuid = false) {
+    return ([actual, expected]) => {
+        const _actualText = testNullTest(...actual)
+            ? actual[0]
+            : actual.join(", ");
+        return it(`${uuid ? `${uuid_1.v4()} ==>  ` : ""}Arguments : [ ${_actualText} ] shoulds return ${expected}`, async () => {
+            const _processed = await spy(...actual);
+            expect(JSON.stringify(_processed)).toStrictEqual(JSON.stringify(expected));
+            expect(spy).toBeCalledWith(...actual);
+        });
+    };
+}
+exports.mapperAsyncTest = mapperAsyncTest;
 function generateTests(func, actuals, expecteds, uuid = false) {
     const table = generateTestTable(func, actuals, expecteds);
     const spy = jest.fn(func);
@@ -45,6 +66,18 @@ function generateTests(func, actuals, expecteds, uuid = false) {
     return { tests, spy };
 }
 exports.generateTests = generateTests;
+function generateAsyncTests(func, actuals, expecteds, uuid = false) {
+    const table = generateAsyncTestTable(func, actuals, expecteds);
+    const spy = jest.fn(func);
+    const mapper = mapperAsyncTest(spy, uuid);
+    const tests = table.map(mapper);
+    const len = expecteds.length;
+    it(`${func.name} should be call ${len} times`, () => {
+        expect(spy).toBeCalledTimes(len);
+    });
+    return { tests, spy };
+}
+exports.generateAsyncTests = generateAsyncTests;
 // #region Generating ....
 // const generateFunction = (val: number) =>
 //   `export function generate${val}Test${
@@ -138,4 +171,86 @@ function generate20Tests(func, actuals, expecteds, uuid = false) {
     return generateTests(func, actuals, expecteds, uuid);
 }
 exports.generate20Tests = generate20Tests;
+// #endregion
+// #region Helper Functions - Async
+function generateAsync1Test(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync1Test = generateAsync1Test;
+function generateAsync2Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync2Tests = generateAsync2Tests;
+function generateAsync3Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync3Tests = generateAsync3Tests;
+function generateAsync4Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync4Tests = generateAsync4Tests;
+function generateAsync5Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync5Tests = generateAsync5Tests;
+function generateAsync6Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync6Tests = generateAsync6Tests;
+function generateAsync7Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync7Tests = generateAsync7Tests;
+function generateAsync8Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync8Tests = generateAsync8Tests;
+function generateAsync9Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync9Tests = generateAsync9Tests;
+function generateAsync10Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync10Tests = generateAsync10Tests;
+function generateAsync11Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync11Tests = generateAsync11Tests;
+function generateAsync12Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync12Tests = generateAsync12Tests;
+function generateAsync13Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync13Tests = generateAsync13Tests;
+function generateAsync14Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync14Tests = generateAsync14Tests;
+function generateAsync15Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync15Tests = generateAsync15Tests;
+function generateAsync16Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync16Tests = generateAsync16Tests;
+function generateAsync17Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync17Tests = generateAsync17Tests;
+function generateAsync18Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync18Tests = generateAsync18Tests;
+function generateAsync19Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync19Tests = generateAsync19Tests;
+function generateAsync20Tests(func, actuals, expecteds, uuid = false) {
+    return generateAsyncTests(func, actuals, expecteds, uuid);
+}
+exports.generateAsync20Tests = generateAsync20Tests;
 // #endregion

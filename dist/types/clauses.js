@@ -6,7 +6,7 @@ const ande = {
 };
 // #endregion
 function isSearchOperation(val) {
-    return Object.keys(val).includes("op");
+    return Object.keys(val).every((val) => val.startsWith("$"));
 }
 exports.isSearchOperation = isSearchOperation;
 const v3 = {

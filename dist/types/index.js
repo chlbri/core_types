@@ -17,3 +17,4 @@ __exportStar(require("./nullish"), exports);
 __exportStar(require("./numbers"), exports);
 __exportStar(require("./objects"), exports);
 __exportStar(require("./strings"), exports);
+__exportStar(require("./promises"), exports);
