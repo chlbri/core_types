@@ -87,7 +87,7 @@ export function mapperAsyncTest<
     return it(`${
       uuid ? `${v4()} ==>  ` : ""
     }Arguments : [ ${_actualText} ] shoulds return ${expected}`, async () => {
-      const _processed = await spy(...actual);
+      const _processed =omit( await spy(...actual);)
       expect(JSON.stringify(_processed)).toStrictEqual(
         JSON.stringify(expected)
       );
