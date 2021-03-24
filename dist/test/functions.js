@@ -10,7 +10,7 @@ function generateTestTable(func, actuals, expecteds) {
     return out;
 }
 exports.generateTestTable = generateTestTable;
-function generateAsyncTestTable(func, actuals, expecteds) {
+function generateAsyncTestTable(func, actuals, expecteds, omits = []) {
     const out = actuals.map((_, index) => [
         actuals[index],
         expecteds[index],
@@ -41,7 +41,7 @@ function mapperTest(spy, uuid = false) {
     };
 }
 exports.mapperTest = mapperTest;
-function mapperAsyncTest(spy, uuid = false) {
+function mapperAsyncTest(spy, uuid = false, omits = []) {
     return ([actual, expected]) => {
         const _actualText = testNullTest(...actual)
             ? actual[0]
@@ -66,10 +66,10 @@ function generateTests(func, actuals, expecteds, uuid = false) {
     return { tests, spy };
 }
 exports.generateTests = generateTests;
-function generateAsyncTests(func, actuals, expecteds, uuid = false) {
-    const table = generateAsyncTestTable(func, actuals, expecteds);
+function generateAsyncTests(func, actuals, expecteds, uuid = false, omits = []) {
+    const table = generateAsyncTestTable(func, actuals, expecteds, omits);
     const spy = jest.fn(func);
-    const mapper = mapperAsyncTest(spy, uuid);
+    const mapper = mapperAsyncTest(spy, uuid, omits);
     const tests = table.map(mapper);
     const len = expecteds.length;
     it(`${func.name} should be call ${len} times`, () => {
@@ -173,84 +173,84 @@ function generate20Tests(func, actuals, expecteds, uuid = false) {
 exports.generate20Tests = generate20Tests;
 // #endregion
 // #region Helper Functions - Async
-function generateAsync1Test(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync1Test(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync1Test = generateAsync1Test;
-function generateAsync2Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync2Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync2Tests = generateAsync2Tests;
-function generateAsync3Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync3Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync3Tests = generateAsync3Tests;
-function generateAsync4Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync4Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync4Tests = generateAsync4Tests;
-function generateAsync5Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync5Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync5Tests = generateAsync5Tests;
-function generateAsync6Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync6Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync6Tests = generateAsync6Tests;
-function generateAsync7Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync7Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync7Tests = generateAsync7Tests;
-function generateAsync8Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync8Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync8Tests = generateAsync8Tests;
-function generateAsync9Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync9Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync9Tests = generateAsync9Tests;
-function generateAsync10Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync10Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync10Tests = generateAsync10Tests;
-function generateAsync11Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync11Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync11Tests = generateAsync11Tests;
-function generateAsync12Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync12Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync12Tests = generateAsync12Tests;
-function generateAsync13Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync13Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync13Tests = generateAsync13Tests;
-function generateAsync14Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync14Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync14Tests = generateAsync14Tests;
-function generateAsync15Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync15Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync15Tests = generateAsync15Tests;
-function generateAsync16Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync16Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync16Tests = generateAsync16Tests;
-function generateAsync17Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync17Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync17Tests = generateAsync17Tests;
-function generateAsync18Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync18Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync18Tests = generateAsync18Tests;
-function generateAsync19Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync19Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync19Tests = generateAsync19Tests;
-function generateAsync20Tests(func, actuals, expecteds, uuid = false) {
-    return generateAsyncTests(func, actuals, expecteds, uuid);
+function generateAsync20Tests(func, actuals, expecteds, uuid = false, omits = []) {
+    return generateAsyncTests(func, actuals, expecteds, uuid, omits);
 }
 exports.generateAsync20Tests = generateAsync20Tests;
 // #endregion

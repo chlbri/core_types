@@ -6,7 +6,7 @@ import {
   Status,
   SuccesfullStatus,
 } from "../status";
-import { Nullish } from "../types";
+import { Nullish, ThenArg } from "../types";
 
 // #region types
 export type SuccessData<T = any> = {
@@ -40,6 +40,12 @@ export type ReturnData<T = any> =
   | ServerErrorData;
 
 export type PromiseReturnData<T = any> = Promise<ReturnData<T>>;
+
+export type DataFromPromise<T> = T extends PromiseReturnData<infer U>
+  ? U
+  : T extends PromiseLike<any>
+  ? ThenArg<T>
+  : T;
 
 export type ReturnMessageKey<
   T extends string = string

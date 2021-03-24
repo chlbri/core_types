@@ -1,5 +1,10 @@
 import { v4 } from "uuid";
-import { LengthOf, ThenArg, TupleOf } from "../types";
+import {
+  DataFromPromise,
+  PromiseReturnData,
+  ReturnData,
+} from "../interfaces";
+import { LengthOf, NOmit, ThenArg, TupleOf } from "../types";
 import { TestElement, TestTable } from "./types";
 
 export function generateTestTable<
@@ -18,12 +23,23 @@ export function generateAsyncTestTable<
   F extends (...args: any[]) => any,
   T1 extends TupleOf<Parameters<F>>,
   T2 extends TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>
->(func: F, actuals: T1, expecteds: T2) {
+>(
+  func: F,
+  actuals: T1,
+  expecteds: T2,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
+) {
+  type Tr = DataFromPromise<ReturnType<F>>;
+  type _Return = NOmit<Tr, typeof omits[number]>;
   const out = actuals.map((_, index) => [
     actuals[index],
     expecteds[index],
   ]);
-  return out as TestTable<T1[number], T2[number], LengthOf<T1>>;
+  return out as TestTable<
+    T1[number],
+    ReturnData<_Return>,
+    LengthOf<T1>
+  >;
 }
 
 function testNullTest(...actual: any[]) {
@@ -62,10 +78,10 @@ export function mapperTest<P extends any[], R extends any>(
   };
 }
 
-export function mapperAsyncTest<
-  P extends any[],
-  R extends any
->(spy: jest.Mock<R, P>, uuid = false) {
+export function mapperAsyncTest<P extends any[], R extends any>(
+  spy: jest.Mock<R, P>,
+  uuid = false
+) {
   return ([actual, expected]: TestElement<P, ThenArg<R>>) => {
     const _actualText = testNullTest(...actual)
       ? actual[0]
@@ -100,9 +116,9 @@ export function generateTests<
 }
 
 export function generateAsyncTests<
-F extends (...args: any[]) => any,
-T1 extends TupleOf<Parameters<F>>,
-T2 extends TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>
+  F extends (...args: any[]) => any,
+  T1 extends TupleOf<Parameters<F>>,
+  T2 extends TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>
 >(func: F, actuals: T1, expecteds: T2, uuid = false) {
   const table = generateAsyncTestTable(func, actuals, expecteds);
   const spy = jest.fn(func);
@@ -316,178 +332,236 @@ export function generateAsync1Test<F extends (...args: any[]) => any>(
   func: F,
   actuals: TupleOf<Parameters<F>, 1>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 1>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync2Tests<F extends (...args: any[]) => any>(
+export function generateAsync2Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 2>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 2>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync3Tests<F extends (...args: any[]) => any>(
+export function generateAsync3Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 3>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 3>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync4Tests<F extends (...args: any[]) => any>(
+export function generateAsync4Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 4>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 4>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync5Tests<F extends (...args: any[]) => any>(
+export function generateAsync5Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 5>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 5>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync6Tests<F extends (...args: any[]) => any>(
+export function generateAsync6Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 6>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 6>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync7Tests<F extends (...args: any[]) => any>(
+export function generateAsync7Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 7>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 7>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync8Tests<F extends (...args: any[]) => any>(
+export function generateAsync8Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 8>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 8>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync9Tests<F extends (...args: any[]) => any>(
+export function generateAsync9Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 9>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 9>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync10Tests<F extends (...args: any[]) => any>(
+export function generateAsync10Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 10>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 10>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync11Tests<F extends (...args: any[]) => any>(
+export function generateAsync11Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 11>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 11>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync12Tests<F extends (...args: any[]) => any>(
+export function generateAsync12Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 12>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 12>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync13Tests<F extends (...args: any[]) => any>(
+export function generateAsync13Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 13>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 13>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync14Tests<F extends (...args: any[]) => any>(
+export function generateAsync14Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 14>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 14>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync15Tests<F extends (...args: any[]) => any>(
+export function generateAsync15Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 15>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 15>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync16Tests<F extends (...args: any[]) => any>(
+export function generateAsync16Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 16>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 16>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync17Tests<F extends (...args: any[]) => any>(
+export function generateAsync17Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 17>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 17>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync18Tests<F extends (...args: any[]) => any>(
+export function generateAsync18Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 18>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 18>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync19Tests<F extends (...args: any[]) => any>(
+export function generateAsync19Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 19>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 19>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
 
-export function generateAsync20Tests<F extends (...args: any[]) => any>(
+export function generateAsync20Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 20>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 20>,
-  uuid = false
+  uuid = false,
+  omits: ReadonlyArray<keyof DataFromPromise<ReturnType<F>>> = []
 ) {
   return generateAsyncTests(func, actuals, expecteds, uuid);
 }
