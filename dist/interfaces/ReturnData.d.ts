@@ -1,5 +1,5 @@
 import { ClientErrorStatus, InformationStatus, RedirectStatus, ServerErrorStatus, Status, SuccesfullStatus } from "../status";
-import { Nullish } from "../types";
+import { Nullish, ThenArg } from "../types";
 export declare type SuccessData<T = any> = {
     status: SuccesfullStatus;
     payload: T;
@@ -20,4 +20,5 @@ export declare type ServerErrorData = {
 };
 export declare type ReturnData<T = any> = SuccessData<T> | InformationData<T> | RedirectData<T> | ClientErrorData | ServerErrorData;
 export declare type PromiseReturnData<T = any> = Promise<ReturnData<T>>;
+export declare type DataFromPromise<T> = T extends PromiseReturnData<infer U> ? U : T extends PromiseLike<any> ? ThenArg<T> : T;
 export declare type ReturnMessageKey<T extends string = string> = `${T}_${Status}`;
