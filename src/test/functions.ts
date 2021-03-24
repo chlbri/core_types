@@ -100,7 +100,7 @@ export function generateTests<
 }
 
 export function generateAsyncTests<
-F extends (...args: any[]) => Promise<unknown>,
+F extends (...args: any[]) => any,
 T1 extends TupleOf<Parameters<F>>,
 T2 extends TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>
 >(func: F, actuals: T1, expecteds: T2, uuid = false) {
