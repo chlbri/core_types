@@ -1,3 +1,5 @@
+import { WithoutId } from "./../entities/WithoutId";
+import { Entity, WithId } from "../entities";
 import {
   ClientErrorStatus,
   InformationStatus,
@@ -41,11 +43,13 @@ export type ReturnData<T = any> =
 
 export type PromiseReturnData<T = any> = Promise<ReturnData<T>>;
 
-export type DataFromPromise<T> = T extends PromiseReturnData<infer U>
-  ? U
-  : T extends PromiseLike<any>
-  ? ThenArg<T>
-  : T;
+export type DataFromPromiseWithId<
+T extends PromiseReturnData<Entity>
+> = T extends PromiseReturnData<infer U> ? ReturnData<WithId<U>> : never;
+
+export type DataFromPromiseWithoutId<
+  T extends PromiseReturnData<Entity>
+> = T extends PromiseReturnData<infer U> ? ReturnData<WithoutId<U>> : never;
 
 export type ReturnMessageKey<
   T extends string = string
