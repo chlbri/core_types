@@ -71,14 +71,17 @@ export function mapperTest<P extends any[], R extends any>(
       ? actual[0]
       : actual.join(", ");
 
-    return it(`${
-      uuid ? `${v4()} ==>  ` : ""
-    }Arguments : [ ${_actualText} ] shoulds return ${expected}`, () => {
-      expect(JSON.stringify(spy(...actual))).toStrictEqual(
-        JSON.stringify(expected)
-      );
-      expect(spy).toBeCalledWith(...actual);
-    });
+    return it(
+      uuid
+        ? `${v4()} ===>  `
+        : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`,
+      () => {
+        expect(JSON.stringify(spy(...actual))).toStrictEqual(
+          JSON.stringify(expected)
+        );
+        expect(spy).toBeCalledWith(...actual);
+      }
+    );
   };
 }
 
@@ -91,15 +94,18 @@ export function mapperAsyncTest<P extends any[], R extends any>(
       ? actual[0]
       : actual.join(", ");
 
-    return it(`${
-      uuid ? `${v4()} ==>  ` : ""
-    }Arguments : [ ${_actualText} ] shoulds return ${expected}`, async () => {
-      const _processed = await spy(...actual);
-      expect(JSON.stringify(_processed)).toStrictEqual(
-        JSON.stringify(expected)
-      );
-      expect(spy).toBeCalledWith(...actual);
-    });
+    return it(
+      uuid
+        ? `${v4()} ===>  `
+        : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`,
+      async () => {
+        const _processed = await spy(...actual);
+        expect(JSON.stringify(_processed)).toStrictEqual(
+          JSON.stringify(expected)
+        );
+        expect(spy).toBeCalledWith(...actual);
+      }
+    );
   };
 }
 

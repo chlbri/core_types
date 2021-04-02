@@ -42,7 +42,9 @@ function mapperTest(spy, uuid = false) {
         const _actualText = testNullTest(...actual)
             ? actual[0]
             : actual.join(", ");
-        return it(`${uuid ? `${uuid_1.v4()} ==>  ` : ""}Arguments : [ ${_actualText} ] shoulds return ${expected}`, () => {
+        return it(uuid
+            ? `${uuid_1.v4()} ===>  `
+            : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`, () => {
             expect(JSON.stringify(spy(...actual))).toStrictEqual(JSON.stringify(expected));
             expect(spy).toBeCalledWith(...actual);
         });
@@ -54,7 +56,9 @@ function mapperAsyncTest(spy, uuid = false) {
         const _actualText = testNullTest(...actual)
             ? actual[0]
             : actual.join(", ");
-        return it(`${uuid ? `${uuid_1.v4()} ==>  ` : ""}Arguments : [ ${_actualText} ] shoulds return ${expected}`, async () => {
+        return it(uuid
+            ? `${uuid_1.v4()} ===>  `
+            : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`, async () => {
             const _processed = await spy(...actual);
             expect(JSON.stringify(_processed)).toStrictEqual(JSON.stringify(expected));
             expect(spy).toBeCalledWith(...actual);
