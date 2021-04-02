@@ -4,21 +4,21 @@ import { ClientErrorStatus, InformationStatus, RedirectStatus, ServerErrorStatus
 import { Nullish } from "../types";
 export declare type SuccessData<T = any> = T extends true | undefined | null ? {
     status: SuccesfullStatus;
-    payload: T;
 } : {
     status: SuccesfullStatus;
+    payload: T;
 };
 export declare type InformationData<T = any> = T extends true | undefined | null ? {
-    status: InformationStatus;
-    payload?: Nullish<T>;
+    status: SuccesfullStatus;
 } : {
     status: InformationStatus;
+    payload?: Nullish<T>;
 };
 export declare type RedirectData<T = any> = T extends true | undefined | null ? {
-    status: RedirectStatus;
-    payload?: Nullish<T>;
+    status: SuccesfullStatus;
 } : {
     status: RedirectStatus;
+    payload?: Nullish<T>;
 };
 export declare type ClientErrorData = {
     status: ClientErrorStatus;

@@ -14,10 +14,10 @@ import { Nullish, ThenArg } from "../types";
 export type SuccessData<T = any> = T extends true | undefined | null
   ? {
       status: SuccesfullStatus;
-      payload: T;
     }
   : {
       status: SuccesfullStatus;
+      payload: T;
     };
 
 export type InformationData<T = any> = T extends
@@ -25,20 +25,20 @@ export type InformationData<T = any> = T extends
   | undefined
   | null
   ? {
-      status: InformationStatus;
-      payload?: Nullish<T>;
+      status: SuccesfullStatus;
     }
   : {
       status: InformationStatus;
+      payload?: Nullish<T>;
     };
 
 export type RedirectData<T = any> = T extends true | undefined | null
   ? {
-      status: RedirectStatus;
-      payload?: Nullish<T>;
+      status: SuccesfullStatus;
     }
   : {
       status: RedirectStatus;
+      payload?: Nullish<T>;
     };
 
 export type ClientErrorData = {
