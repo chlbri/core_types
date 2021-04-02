@@ -11,35 +11,20 @@ import {
 import { Nullish, ThenArg } from "../types";
 
 // #region types
-export type SuccessData<T = any> = T extends true | undefined | null
-  ? {
-      status: SuccesfullStatus;
-    }
-  : {
-      status: SuccesfullStatus;
-      payload: T;
-    };
+export type SuccessData<T = any> = {
+  status: SuccesfullStatus;
+  payload: T;
+};
 
-export type InformationData<T = any> = T extends
-  | true
-  | undefined
-  | null
-  ? {
-      status: SuccesfullStatus;
-    }
-  : {
-      status: InformationStatus;
-      payload?: Nullish<T>;
-    };
+export type InformationData<T = any> = {
+  status: InformationStatus;
+  payload?: Nullish<T>;
+};
 
-export type RedirectData<T = any> = T extends true | undefined | null
-  ? {
-      status: SuccesfullStatus;
-    }
-  : {
-      status: RedirectStatus;
-      payload?: Nullish<T>;
-    };
+export type RedirectData<T = any> = {
+  status: RedirectStatus;
+  payload?: Nullish<T>;
+};
 
 export type ClientErrorData = {
   status: ClientErrorStatus;

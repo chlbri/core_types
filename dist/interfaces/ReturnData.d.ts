@@ -2,21 +2,15 @@ import { WithoutId } from "./../entities/WithoutId";
 import { Entity, WithId } from "../entities";
 import { ClientErrorStatus, InformationStatus, RedirectStatus, ServerErrorStatus, Status, SuccesfullStatus } from "../status";
 import { Nullish } from "../types";
-export declare type SuccessData<T = any> = T extends true | undefined | null ? {
-    status: SuccesfullStatus;
-} : {
+export declare type SuccessData<T = any> = {
     status: SuccesfullStatus;
     payload: T;
 };
-export declare type InformationData<T = any> = T extends true | undefined | null ? {
-    status: SuccesfullStatus;
-} : {
+export declare type InformationData<T = any> = {
     status: InformationStatus;
     payload?: Nullish<T>;
 };
-export declare type RedirectData<T = any> = T extends true | undefined | null ? {
-    status: SuccesfullStatus;
-} : {
+export declare type RedirectData<T = any> = {
     status: RedirectStatus;
     payload?: Nullish<T>;
 };
