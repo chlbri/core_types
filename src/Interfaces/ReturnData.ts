@@ -11,20 +11,35 @@ import {
 import { Nullish, ThenArg } from "../types";
 
 // #region types
-export type SuccessData<T = any> = {
-  status: SuccesfullStatus;
-  payload: T;
-};
+export type SuccessData<T = any> = T extends true | undefined | null
+  ? {
+      status: SuccesfullStatus;
+      payload: T;
+    }
+  : {
+      status: SuccesfullStatus;
+    };
 
-export type InformationData<T = any> = {
-  status: InformationStatus;
-  payload?: Nullish<T>;
-};
+export type InformationData<T = any> = T extends
+  | true
+  | undefined
+  | null
+  ? {
+      status: InformationStatus;
+      payload?: Nullish<T>;
+    }
+  : {
+      status: InformationStatus;
+    };
 
-export type RedirectData<T = any> = {
-  status: RedirectStatus;
-  payload?: Nullish<T>;
-};
+export type RedirectData<T = any> = T extends true | undefined | null
+  ? {
+      status: RedirectStatus;
+      payload?: Nullish<T>;
+    }
+  : {
+      status: RedirectStatus;
+    };
 
 export type ClientErrorData = {
   status: ClientErrorStatus;
@@ -44,12 +59,16 @@ export type ReturnData<T = any> =
 export type PromiseReturnData<T = any> = Promise<ReturnData<T>>;
 
 export type DataFromPromiseWithId<
-T extends PromiseReturnData<Entity>
-> = T extends PromiseReturnData<infer U> ? ReturnData<WithId<U>> : never;
+  T extends PromiseReturnData<Entity>
+> = T extends PromiseReturnData<infer U>
+  ? ReturnData<WithId<U>>
+  : never;
 
 export type DataFromPromiseWithoutId<
   T extends PromiseReturnData<Entity>
-> = T extends PromiseReturnData<infer U> ? ReturnData<WithoutId<U>> : never;
+> = T extends PromiseReturnData<infer U>
+  ? ReturnData<WithoutId<U>>
+  : never;
 
 export type ReturnMessageKey<
   T extends string = string

@@ -1,19 +1,19 @@
 import { Entity, WithId, WithoutId } from "../entities";
 import { DataSearchOperations } from "../types";
-import { PromiseReturnData } from "./ReturnData";
+import { PromiseReturnData as PD } from "./ReturnData";
 declare type UpdateHelper<T> = {
     search: DataSearchOperations<T>;
     newValue: WithoutId<Partial<T>>;
 };
-declare type PRD<T> = PromiseReturnData<WithId<T>>;
-declare type PRDM<T> = PromiseReturnData<WithId<T>[]>;
+declare type PRD<T> = PD<WithId<T>>;
+declare type PRDM<T> = PD<WithId<T>[]>;
 export interface IRepo<T extends Entity> {
     createOne: (value: WithoutId<T>) => PRD<T>;
     createMany: (...values: WithoutId<T>[]) => PRDM<T>;
     upsertOne: (value: WithId<T>) => PRD<T>;
-    upsertMany: (...values: WithId<T>[]) => PRDM<T>;
     readMany: (search?: DataSearchOperations<T>, limit?: number) => PRDM<T>;
-    createIndex: (...args: T[keyof T][]) => PromiseReturnData<undefined>;
+    count: (search?: DataSearchOperations<T>) => PRDM<T>;
+    createIndex: (...args: T[keyof T][]) => PD<undefined>;
     readManyByIds: (ids: string[], search?: DataSearchOperations<WithoutId<T>>, limit?: number) => PRDM<T>;
     readOne: (search: DataSearchOperations<T>) => PRD<T>;
     readOneById: (_id: string) => PRD<T>;

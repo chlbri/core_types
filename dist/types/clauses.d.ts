@@ -59,11 +59,11 @@ export declare type ExistsProp = {
 export declare type NotExistsProp = {
     $exists: false;
 };
-declare type VSONumber = VSOAny & GreaterThan & GreaterThanOrEquals & LessThan & LessThanOrEquals & Modulo;
-declare type VSOString = VSOAny & StringContains & StartsWith & EndsWith;
-declare type VSOAny = Equals & NotEquals & ObjectIn & ObjectNotIn;
-export declare type ValueSearchOperations<T = string> = T extends number ? VSONumber : T extends string ? VSOString : VSOAny;
-declare type VSO<T = string> = ValueSearchOperations<T>;
+declare type VSOAny<T = any> = Equals & NotEquals & ObjectIn<T> & ObjectNotIn<T>;
+declare type VSONumber = VSOAny<number> & GreaterThan & GreaterThanOrEquals & LessThan & LessThanOrEquals & Modulo;
+declare type VSOString = VSOAny<string> & StringContains & StartsWith & EndsWith;
+export declare type ValueSearchOperations<T = string> = T extends number ? VSONumber : T extends string ? VSOString : VSOAny<T>;
+declare type VSO<T = any> = ValueSearchOperations<T>;
 declare type LogH<T> = Partial<VSO<T> | LogicalClauses<T> | T>;
 export declare type And<T = string> = {
     $and: LogH<T>[];
@@ -81,7 +81,7 @@ export declare type LogicalClauses<T = string> = And<T> | Not<T> | Nor<T> | Or<T
 export declare type Slice = {
     $slice: number | TupleOf<number, 2>;
 };
-export declare function isSearchOperation(val: any): val is ValueSearchOperations;
+export declare function isSearchOperation(val: any): val is VSO;
 export declare type DataSearchOperations<T> = {
     [key in keyof T]?: NotExistsProp | (T[key] extends infer K ? Partial<ExistsProp & VSO<K> & LogicalClauses<K> & ArrayClauses<K>> : never) | T[key];
 };

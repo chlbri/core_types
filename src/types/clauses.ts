@@ -109,11 +109,16 @@ export type NotExistsProp = {
   $exists: false;
 };
 
+type VSOAny<T = any> = Equals &
+  NotEquals &
+  ObjectIn<T> &
+  ObjectNotIn<T>;
+
 type EP = ExistsProp | NotExistsProp;
 // #endregion
 
 // #region VSONumber
-type VSONumber = VSOAny &
+type VSONumber = VSOAny<number> &
   GreaterThan &
   GreaterThanOrEquals &
   LessThan &
@@ -122,19 +127,20 @@ type VSONumber = VSOAny &
 // #endregion
 
 // #region VSOString
-type VSOString = VSOAny & StringContains & StartsWith & EndsWith;
+type VSOString = VSOAny<string> &
+  StringContains &
+  StartsWith &
+  EndsWith;
 // #endregion
-
-type VSOAny = Equals & NotEquals & ObjectIn & ObjectNotIn;
 
 // TODO: add logical operators and $exists, $type
 export type ValueSearchOperations<T = string> = T extends number
   ? VSONumber
   : T extends string
   ? VSOString
-  : VSOAny;
+  : VSOAny<T>;
 
-type VSO<T = string> = ValueSearchOperations<T>;
+type VSO<T = any> = ValueSearchOperations<T>;
 
 // #region Logical
 
@@ -176,9 +182,7 @@ export type Slice = {
 
 // #endregion
 
-export function isSearchOperation(
-  val: any
-): val is ValueSearchOperations {
+export function isSearchOperation(val: any): val is VSO {
   return Object.keys(val).every((val) => val.startsWith("$"));
 }
 
@@ -192,27 +196,3 @@ export type DataSearchOperations<T> = {
         : never)
     | T[key];
 };
-
-interface I1 {
-  name: string;
-  age: number;
-}
-
-const v3: DataSearchOperations<I1> = {
-  age: {
-    $lte: 4,
-    $and: [1, 3, { $gt: 3 }],
-    $not: { $mod: 3 },
-  },
-  name: "3",
-};
-
-type T1 =
-  | NotExistsProp
-  | Partial<
-      ExistsProp &
-        VSO<string[]> &
-        ArrayClauses<string[]> &
-        LogicalClauses<string>
-    >;
-const v1: T1 = { $exists: false };
