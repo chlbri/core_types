@@ -8,8 +8,7 @@ export interface IRepo<T extends Entity> {
     createMany: (...values: WithoutId<T>[]) => PRDM<T>;
     upsertOne: (value: WithId<T>) => PRD<T>;
     readMany: (search?: DataSearchOperations<T>, limit?: number) => PRDM<T>;
-    count: (search?: DataSearchOperations<T>) => PRDM<T>;
-    createIndex: (...args: T[keyof T][]) => PD<undefined>;
+    count: (search?: DataSearchOperations<T>) => PD<number>;
     readManyByIds: (ids: string[], search?: DataSearchOperations<WithoutId<T>>, limit?: number) => PRDM<T>;
     readOne: (search: DataSearchOperations<T>) => PRD<T>;
     readOneById: (_id: string) => PRD<T>;

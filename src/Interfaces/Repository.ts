@@ -27,9 +27,7 @@ export interface IRepo<T extends Entity> {
     limit?: number
   ) => PRDM<T>;
 
-  count: (search?: DataSearchOperations<T>) => PRDM<T>;
-
-  createIndex: (...args: T[keyof T][]) => PD<undefined>;
+  count: (search?: DataSearchOperations<T>) => PD<number>;
 
   readManyByIds: (
     ids: string[],
