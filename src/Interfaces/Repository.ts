@@ -16,7 +16,7 @@ type PRD<T> = PD<WithId<T>>;
 type PRDM<T> = PD<WithId<T>[]>;
 
 export interface IRepo<T extends Entity> {
-  createOne: (value: WithoutId<T>) => PRD<T>;
+  createOne: (value: T) => PRD<T>;
 
   createMany: (...values: WithoutId<T>[]) => PRDM<T>;
 
@@ -51,11 +51,19 @@ export interface IRepo<T extends Entity> {
     newValue: WithoutId<Partial<T>>
   ) => PRD<T>;
 
-  updateMany: (...changes: UpdateHelper<T>[]) => PRDM<T>;
+  updateMany: (
+    search: DataSearchOperations<T>,
+    newValue: WithoutId<Partial<T>>,
+    limit?: number | undefined
+  ) => PRDM<T>;
 
   updateManyByIds: (
-    _ids: string[],
-    changes: UpdateHelper<T>[]
+    ids: string[],
+    newValue: WithoutId<Partial<T>>,
+    options?: {
+      search?: DataSearchOperations<T>;
+      limit?: number;
+    }
   ) => PRDM<T>;
 
   deleteOne: (search: DataSearchOperations<T>) => PRD<T>;
@@ -65,7 +73,10 @@ export interface IRepo<T extends Entity> {
   deleteMany: (search: DataSearchOperations<T>) => PRDM<T>;
 
   deleteManyByIds: <A extends string[]>(
-    _ids: A,
-    search: DataSearchOperations<T>
+    ids: A,
+    options?: {
+      search?: DataSearchOperations<T>;
+      limit?: number;
+    }
   ) => PRDM<T>;
 }
