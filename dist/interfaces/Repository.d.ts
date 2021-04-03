@@ -5,7 +5,7 @@ declare type PRD<T> = PD<WithId<T>>;
 declare type PRDM<T> = PD<WithId<T>[]>;
 export interface IRepo<T extends Entity> {
     createOne: (value: T) => PRD<T>;
-    createMany: (...values: WithoutId<T>[]) => PRDM<T>;
+    createMany: (values: WithoutId<T>[]) => PRDM<T>;
     upsertOne: (value: WithId<T>) => PRD<T>;
     readMany: (search?: DataSearchOperations<T>, limit?: number) => PRDM<T>;
     count: (search?: DataSearchOperations<T>) => PD<number>;

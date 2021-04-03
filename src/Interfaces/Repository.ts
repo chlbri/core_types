@@ -18,7 +18,7 @@ type PRDM<T> = PD<WithId<T>[]>;
 export interface IRepo<T extends Entity> {
   createOne: (value: T) => PRD<T>;
 
-  createMany: (...values: WithoutId<T>[]) => PRDM<T>;
+  createMany: (values: WithoutId<T>[]) => PRDM<T>;
 
   upsertOne: (value: WithId<T>) => PRD<T>;
 
