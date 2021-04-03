@@ -5,3 +5,4 @@ export * from "./log";
 export * from "./nullish";
 export * from "./ReturnData";
 export * from "./string";
+export * from "./sleep";
