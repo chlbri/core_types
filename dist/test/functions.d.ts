@@ -1,12 +1,15 @@
 /// <reference types="jest" />
-import { DataFromPromiseWithoutId } from "../interfaces";
+import { WithId } from "../entities";
+import { DataFromPromiseWithoutId, PromiseReturnData } from "../interfaces";
 import { LengthOf, ThenArg, TupleOf } from "../types";
 import { TestElement } from "./types";
 export declare function generateTestTable<F extends (...args: any[]) => any, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<ReturnType<F>, LengthOf<T1>>>(func: F, actuals: T1, expecteds: T2): TupleOf<TestElement<T1[number], T2[number]>, LengthOf<T1>>;
 export declare function generateAsyncTestTable<F extends (...args: any[]) => any, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>>(func: F, actuals: T1, expecteds: T2): TupleOf<TestElement<T1[number], T2[number]>, LengthOf<T1>>;
-export declare function generateDataTestTableWithoutId<F extends (...args: any[]) => any, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, LengthOf<T1>>>(func: F, actuals: T1, expecteds: T2): TupleOf<TestElement<T1[number], T2[number]>, LengthOf<T1>>;
+export declare function generateReturnDataTestTable<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, LengthOf<T1>>>(func: F, actuals: T1, expecteds: T2): TupleOf<TestElement<T1[number], T2[number]>, LengthOf<T1>>;
 export declare function mapperTest<P extends any[], R extends any>(spy: jest.Mock<R, P>, uuid?: boolean): ([actual, expected]: TestElement<P, R>) => void;
 export declare function mapperAsyncTest<P extends any[], R extends any>(spy: jest.Mock<R, P>, uuid?: boolean): ([actual, expected]: TestElement<P, ThenArg<R>>) => void;
+export declare function returnSimpleData(data: any): any;
+export declare function mapperReturnDataTest<P extends any[], R extends PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(spy: jest.Mock<R, P>, uuid?: boolean): ([actual, expected]: TestElement<P, DataFromPromiseWithoutId<R>>) => void;
 export declare function generateTests<F extends (...args: any[]) => any, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<ReturnType<F>, LengthOf<T1>>>(func: F, actuals: T1, expecteds: T2, uuid?: boolean): {
     readonly tests: void[];
     readonly spy: jest.Mock<any, any[]>;
@@ -14,6 +17,10 @@ export declare function generateTests<F extends (...args: any[]) => any, T1 exte
 export declare function generateAsyncTests<F extends (...args: any[]) => any, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>>(func: F, actuals: T1, expecteds: T2, uuid?: boolean): {
     readonly tests: void[];
     readonly spy: jest.Mock<any, any[]>;
+};
+export declare function generateReturnDataTests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, LengthOf<T1>>>(func: F, actuals: T1, expecteds: T2, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
 };
 export declare function generate1Test<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 1>, expecteds: TupleOf<ReturnType<F>, 1>, uuid?: boolean): {
     readonly tests: void[];
@@ -174,4 +181,84 @@ export declare function generateAsync19Tests<F extends (...args: any[]) => any>(
 export declare function generateAsync20Tests<F extends (...args: any[]) => any>(func: F, actuals: TupleOf<Parameters<F>, 20>, expecteds: TupleOf<ThenArg<ReturnType<F>>, 20>, uuid?: boolean): {
     readonly tests: void[];
     readonly spy: jest.Mock<any, any[]>;
+};
+export declare function generateReturnData1Test<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 1>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 1>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData2Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 2>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 2>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData3Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 3>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 3>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData4Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 4>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 4>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData5Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 5>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 5>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData6Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 6>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 6>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData7Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 7>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 7>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData8Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 8>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 8>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData9Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 9>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 9>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData10Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 10>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 10>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData11Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 11>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 11>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData12Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 12>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 12>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData13Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 13>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 13>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData14Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 14>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 14>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData15Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 15>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 15>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData16Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 16>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 16>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData17Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 17>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 17>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData18Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 18>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 18>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData19Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 19>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 19>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
+};
+export declare function generateReturnData20Tests<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(func: F, actuals: TupleOf<Parameters<F>, 20>, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 20>, uuid?: boolean): {
+    readonly tests: void[];
+    readonly spy: jest.Mock<PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, any[]>;
 };

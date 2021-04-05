@@ -16,5 +16,5 @@ __exportStar(require("./identity"), exports);
 __exportStar(require("./log"), exports);
 __exportStar(require("./nullish"), exports);
 __exportStar(require("./ReturnData"), exports);
-__exportStar(require("./string"), exports);
 __exportStar(require("./sleep"), exports);
+__exportStar(require("./string"), exports);
