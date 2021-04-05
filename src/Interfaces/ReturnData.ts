@@ -1,4 +1,3 @@
-import { WithoutId } from "./../entities/WithoutId";
 import { Entity, WithId } from "../entities";
 import {
   ClientErrorStatus,
@@ -8,7 +7,8 @@ import {
   Status,
   SuccesfullStatus,
 } from "../status";
-import { Nullish, ThenArg } from "../types";
+import { Nullish } from "../types";
+import { WithoutId } from "./../entities/WithoutId";
 
 // #region types
 export type SuccessData<T = any> = {
@@ -46,13 +46,17 @@ export type PromiseReturnData<T = any> = Promise<ReturnData<T>>;
 export type DataFromPromiseWithId<
   T extends PromiseReturnData<Entity>
 > = T extends PromiseReturnData<infer U>
-  ? ReturnData<WithId<U>>
+  ? U extends any[]
+    ? ReturnData<WithId<U[number]>[]>
+    : ReturnData<WithId<U>>
   : never;
 
 export type DataFromPromiseWithoutId<
-  T extends PromiseReturnData<Entity>
+  T extends PromiseReturnData<any>
 > = T extends PromiseReturnData<infer U>
-  ? ReturnData<WithoutId<U>>
+  ? U extends any[]
+    ? ReturnData<WithoutId<U[number]>[]>
+    : ReturnData<WithoutId<U>>
   : never;
 
 export type ReturnMessageKey<

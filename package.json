@@ -3,13 +3,14 @@
   "description": "Core of all projects",
   "author": "chlbri",
   "license": "MIT",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": true,
   "scripts": {
     "tsc": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "generateTestsFunctions": "ts-node src\test\functions.ts"
   },
   "dependencies": {
     "yup": "^0.32.8"

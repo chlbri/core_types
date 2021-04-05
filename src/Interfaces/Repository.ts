@@ -1,5 +1,5 @@
 import { Entity, WithId, WithoutId } from "../entities";
-import { DataSearchOperations, LengthOf, TupleOf } from "../types";
+import { DataSearchOperations } from "../types";
 import { PromiseReturnData as PD } from "./ReturnData";
 
 type UpdateHelper<T> = {
