@@ -187,8 +187,13 @@ export function isSearchOperation(val: any): val is VSO {
 }
 
 export type SearchOperation<K> =
-  | NotExistsProp
-  | Partial<ExistsProp & VSO<K> & LogicalClauses<K> & ArrayClauses<K>>
+  | Partial<
+      NotExistsProp &
+        ExistsProp &
+        VSO<K> &
+        LogicalClauses<K> &
+        ArrayClauses<K>
+    >
   | K;
 
 export type DataSearchOperations<T> = {
