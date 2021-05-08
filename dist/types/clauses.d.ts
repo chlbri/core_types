@@ -82,7 +82,7 @@ export declare type Slice = {
     $slice: number | TupleOf<number, 2>;
 };
 export declare function isSearchOperation(val: any): val is VSO;
-export declare type SearchOperation<K> = Partial<NotExistsProp & ExistsProp & VSO<K> & LogicalClauses<K> & ArrayClauses<K>> | K;
+export declare type SearchOperation<K> = Partial<(NotExistsProp | ExistsProp) & VSO<K> & LogicalClauses<K> & ArrayClauses<K>> | K;
 export declare type DataSearchOperations<T> = {
     [key in keyof T]?: SearchOperation<T[key]>;
 };
