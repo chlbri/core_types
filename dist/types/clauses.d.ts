@@ -43,11 +43,12 @@ export declare type Text = {
     $text: string | RegExp;
 };
 export declare type TypeAliases = "double" | "string" | "object" | "array" | "binData" | "objectId" | "bool";
+declare type ArrayHelper1<T extends any[]> = Partial<VSO<T[number]>> | T[number];
 export declare type All<T extends any[] = any[]> = {
-    $all: T extends any[] ? T[number] : never;
+    $all: T extends any[] ? ArrayHelper1<T> : never;
 };
 export declare type ElementMatch<T extends any[] = any[]> = {
-    $em: T extends any[] ? VSO<T[number]> | T[number] : never;
+    $em: T extends any[] ? ArrayHelper1<T> : never;
 };
 export declare type Size<T extends any[] = any[]> = {
     $size: T extends any[] ? number : never;

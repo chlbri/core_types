@@ -83,12 +83,16 @@ export type TypeAliases =
   | "bool";
 
 // #region Array
+
+type ArrayHelper1<T extends any[]> =
+  | Partial<VSO<T[number]>>
+  | T[number];
 export type All<T extends any[] = any[]> = {
-  $all: T extends any[] ? T[number] : never;
+  $all: T extends any[] ? ArrayHelper1<T> : never;
 };
 
 export type ElementMatch<T extends any[] = any[]> = {
-  $em: T extends any[] ? VSO<T[number]> | T[number] : never;
+  $em: T extends any[] ? ArrayHelper1<T> : never;
 };
 
 export type Size<T extends any[] = any[]> = {
