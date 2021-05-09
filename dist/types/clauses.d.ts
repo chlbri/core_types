@@ -44,7 +44,7 @@ export declare type Text = {
 };
 export declare type TypeAliases = "double" | "string" | "object" | "array" | "binData" | "objectId" | "bool";
 export declare type All<T extends any[] = any[]> = {
-    $all: T extends any[] ? T : never;
+    $all: T extends any[] ? T[number] : never;
 };
 export declare type ElementMatch<T extends any[] = any[]> = {
     $em: T extends any[] ? VSO<T[number]> | T[number] : never;

@@ -84,7 +84,7 @@ export type TypeAliases =
 
 // #region Array
 export type All<T extends any[] = any[]> = {
-  $all: T extends any[] ? T : never;
+  $all: T extends any[] ? T[number] : never;
 };
 
 export type ElementMatch<T extends any[] = any[]> = {
