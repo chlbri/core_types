@@ -197,6 +197,7 @@ export type SearchOperation<K> = K extends
   | boolean
   | null
   | undefined
+  | any[]
   ?
       | Partial<
           (NotExistsProp | ExistsProp) &
