@@ -31,7 +31,7 @@ export interface IRepo<T extends Entity> {
 
   readManyByIds: (
     ids: string[],
-    search?: DataSearchOperations<WithoutId<T>>,
+    search?: DataSearchOperations<T>,
     limit?: number
   ) => PRDM<T>;
 

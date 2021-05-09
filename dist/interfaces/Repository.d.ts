@@ -9,7 +9,7 @@ export interface IRepo<T extends Entity> {
     upsertOne: (value: WithId<T>) => PRD<T>;
     readMany: (search?: DataSearchOperations<T>, limit?: number) => PRDM<T>;
     count: (search?: DataSearchOperations<T>) => PD<number>;
-    readManyByIds: (ids: string[], search?: DataSearchOperations<WithoutId<T>>, limit?: number) => PRDM<T>;
+    readManyByIds: (ids: string[], search?: DataSearchOperations<T>, limit?: number) => PRDM<T>;
     readOne: (search: DataSearchOperations<T>) => PRD<T>;
     readOneById: (_id: string) => PRD<T>;
     updateOne: (search: DataSearchOperations<T>, newValue: WithoutId<Partial<T>>) => PRD<T>;
