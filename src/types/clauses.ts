@@ -190,15 +190,27 @@ export function isSearchOperation(val: any): val is VSO {
   return Object.keys(val).every((val) => val.startsWith("$"));
 }
 
-export type SearchOperation<K> =
-  | Partial<
-      (NotExistsProp | ExistsProp) &
-        VSO<K> &
-        LogicalClauses<K> &
-        ArrayClauses<K>
-    >
-  | K;
+export type SearchOperation<K> = K extends
+  | string
+  | number
+  | bigint
+  | boolean
+  | null
+  | undefined
+  ?
+      | Partial<
+          (NotExistsProp | ExistsProp) &
+            VSO<K> &
+            LogicalClauses<K> &
+            ArrayClauses<K>
+        >
+      | K
+  : {
+      [key in keyof K]?: SearchOperation<K[key]>;
+    };
 
-export type DataSearchOperations<T> = {
-  [key in keyof T]?: SearchOperation<T[key]>;
-};
+export type DataSearchOperations<T> =
+  | Not<T>
+  | {
+      [key in keyof T]?: SearchOperation<T[key]>;
+    };
