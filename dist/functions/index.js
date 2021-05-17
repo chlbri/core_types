@@ -12,6 +12,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./array"), exports);
 __exportStar(require("./color"), exports);
+__exportStar(require("./dao"), exports);
 __exportStar(require("./identity"), exports);
 __exportStar(require("./log"), exports);
 __exportStar(require("./nullish"), exports);

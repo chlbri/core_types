@@ -1,12 +1,12 @@
 import { WithPassword } from "../entities";
-import { PromiseReturnData } from "./ReturnData";
-export interface IAuthRepo<User> {
-    signIn: (...args: string[]) => PromiseReturnData<User>;
-    signUp: (...args: string[]) => PromiseReturnData<User>;
+import { PromiseReturnData as PD } from "./ReturnData";
+export interface IAuthRepo1<User> {
+    signIn: (...args: string[]) => PD<User>;
+    signUp: (...args: string[]) => PD<User>;
     currentUser: User;
 }
 export interface IAuthRepo2<User> {
-    requestCode: (login: string) => PromiseReturnData<WithPassword<User>>;
-    signIn: (...args: string[]) => PromiseReturnData<User>;
+    requestCode: (login: string) => PD<WithPassword<User>>;
+    signIn: (...args: string[]) => PD<User>;
     currentUser: User;
 }

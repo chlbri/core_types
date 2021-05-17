@@ -1,3 +1,4 @@
+export * from "./Actor";
 export * from "./Entity";
 export * from "./Human";
 export * from "./HumanAdd";

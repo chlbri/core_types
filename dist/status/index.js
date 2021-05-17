@@ -13,6 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.isStatus = exports.STATUS_CODES = exports.EXCEPTION_CODES = void 0;
 const client_1 = require("./client");
 const information_1 = require("./information");
+const permission_1 = require("./permission");
 const redirect_1 = require("./redirect");
 const server_1 = require("./server");
 const successfull_1 = require("./successfull");
@@ -21,6 +22,7 @@ exports.EXCEPTION_CODES = [
     ...redirect_1.REDIRECT_STATUS,
     ...client_1.CLIENT_ERROR_STATUS,
     ...server_1.SERVER_ERROR_STATUS,
+    ...permission_1.PERMISSION_ERROR_STATUS,
 ];
 exports.STATUS_CODES = [
     ...successfull_1.SUCCESSFULL_STATUS,
@@ -33,6 +35,7 @@ function isStatus(val) {
 exports.isStatus = isStatus;
 __exportStar(require("./client"), exports);
 __exportStar(require("./information"), exports);
+__exportStar(require("./permission"), exports);
 __exportStar(require("./redirect"), exports);
 __exportStar(require("./server"), exports);
 __exportStar(require("./successfull"), exports);
