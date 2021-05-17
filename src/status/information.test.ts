@@ -19,4 +19,6 @@ generateStatusTests(isStatusInformation, [
   false,
   false,
   false,
+  false,
+  false,
 ]);

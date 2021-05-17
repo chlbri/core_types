@@ -1,24 +1,24 @@
+import { isStatusPermission } from "./permission";
 import { generateStatusTests } from "./setup_test";
-import { isStatusSuccessFull } from "./successfull";
 
-generateStatusTests(isStatusSuccessFull, [
+generateStatusTests(isStatusPermission, [
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
   false,
   false,
   false,
   false,
   true,
   true,
-  true,
-  false,
-  false,
-  false,
-  false,
-  false,
-  false,
-  false,
-  false,
-  false,
-  false,
-  false,
-  false,
 ]);

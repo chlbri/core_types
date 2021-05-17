@@ -1,11 +1,11 @@
-import { generate17Tests } from "../test/functions";
+import { generate19Tests } from "../test/functions";
 import { TupleOf } from "../types";
 
 export function generateStatusTests(
   func: (...val: [number]) => boolean,
-  expecteds: TupleOf<boolean, 17>
+  expecteds: TupleOf<boolean, 19>
 ) {
-  return generate17Tests(
+  return generate19Tests(
     func,
     [
       [4],
@@ -25,6 +25,8 @@ export function generateStatusTests(
       [505],
       [1000],
       [700],
+      [600],
+      [641],
     ],
     expecteds
   );

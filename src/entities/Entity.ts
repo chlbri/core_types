@@ -2,6 +2,9 @@ import { SimpleObject } from "../interfaces";
 
 export interface Entity {
   _id?: string;
+  _read?: number;
+  _update?: number;
+  _delete?: number;
 }
 
 export function isEntity(val: any): val is Entity {
@@ -13,3 +16,30 @@ export type SimpleEntity<T extends Entity> = {
     ? never
     : K]: SimpleObject<T[K]>;
 };
+
+/* 
+
+  addDefaultPermissions(value: T) {
+    (["Read", "Update", "Delete"] as const).forEach((val) => {
+      this[`addDefault${val}Permission` as const](value);
+    });
+  }
+
+  addDefaultReadPermission(value: T) {
+    if (!value._read) {
+      value._read = this.permissions.read;
+    }
+  }
+
+  addDefaultUpdatePermission(value: T) {
+    if (!value._update) {
+      value._update = this.permissions.update;
+    }
+  }
+
+  addDefaultDeletePermission(value: T) {
+    if (!value._delete) {
+      value._read = this.permissions.delete;
+    }
+  }
+*/

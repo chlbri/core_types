@@ -1,6 +1,7 @@
 import {
   ClientErrorData,
   InformationData,
+  PermissionErrorData,
   RedirectData,
   ReturnData,
   ServerErrorData,
@@ -10,6 +11,7 @@ import {
   isStatus,
   isStatusClientError,
   isStatusInformation,
+  isStatusPermission,
   isStatusRedirect,
   isStatusServerError,
   isStatusSuccessFull,
@@ -36,10 +38,24 @@ export function isInformation<T>(
   return isD(isStatusInformation, data);
 }
 
+export function isPermission(
+  data: ReturnData
+): data is PermissionErrorData {
+  return isD(isStatusPermission, data);
+}
+
 export function isRedirect<T>(
   data: ReturnData<T>
 ): data is RedirectData<T> {
   return isD(isStatusRedirect, data);
+}
+
+export function hadPayload<T>(
+  data: ReturnData<T>
+): data is RedirectData<T> | SuccessData<T> | InformationData<T> {
+  return (
+    isRedirect(data) || isSuccessFull(data) || isInformation(data)
+  );
 }
 
 export function isClientError(

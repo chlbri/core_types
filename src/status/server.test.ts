@@ -19,4 +19,6 @@ generateStatusTests(isStatusServerError, [
   true,
   false,
   false,
+  false,
+  false,
 ]);

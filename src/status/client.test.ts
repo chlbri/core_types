@@ -19,4 +19,6 @@ generateStatusTests(isStatusClientError, [
   false,
   false,
   false,
+  false,
+  false,
 ]);

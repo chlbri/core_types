@@ -1,5 +1,6 @@
 import { CLIENT_ERROR_STATUS } from "./client";
 import { INFORMATION_STATUS } from "./information";
+import { PERMISSION_ERROR_STATUS } from "./permission";
 import { REDIRECT_STATUS } from "./redirect";
 import { SERVER_ERROR_STATUS } from "./server";
 import { SUCCESSFULL_STATUS } from "./successfull";
@@ -9,6 +10,7 @@ export const EXCEPTION_CODES = [
   ...REDIRECT_STATUS,
   ...CLIENT_ERROR_STATUS,
   ...SERVER_ERROR_STATUS,
+  ...PERMISSION_ERROR_STATUS,
 ] as const;
 
 export const STATUS_CODES = [
@@ -27,6 +29,7 @@ export function isStatus(val: number): val is Status {
 
 export * from "./client";
 export * from "./information";
+export * from "./permission";
 export * from "./redirect";
 export * from "./server";
 export * from "./successfull";
