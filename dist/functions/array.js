@@ -7,7 +7,9 @@ function isArray(value) {
 exports.isArray = isArray;
 function sliceArray(array, splicer) {
     return [
-        ...new Array(Math.ceil(array.length / splicer)).map((_) => array
+        ...new Array(Math.ceil(array.length / splicer))
+            .fill(array)
+            .map((_) => array
             .splice(0, splicer)
             .map((val) => (isArray(val) ? val[0] : val))),
     ];

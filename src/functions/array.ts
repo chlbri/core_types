@@ -7,10 +7,12 @@ export function sliceArray<T extends any[], N extends number>(
   splicer: N
 ) {
   return [
-    ...new Array(Math.ceil(array.length / splicer)).map((_) =>
-      array
-        .splice(0, splicer)
-        .map((val) => (isArray(val) ? val[0] : val))
-    ),
+    ...new Array(Math.ceil(array.length / splicer))
+      .fill(array)
+      .map((_) =>
+        array
+          .splice(0, splicer)
+          .map((val) => (isArray(val) ? val[0] : val))
+      ),
   ] as const;
 }

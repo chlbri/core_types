@@ -25,8 +25,8 @@ export function generateStatusTests(
       [505],
       [1000],
       [700],
-      [600],
-      [641],
+      [6000],
+      [6041],
     ],
     expecteds
   );
