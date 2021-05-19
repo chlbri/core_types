@@ -23,6 +23,10 @@ export type GetTupleType<T> = T extends TupleOf<infer U, any>
   ? U
   : never;
 
+export type GetTupleNumber<T> = T extends TupleOf<any, infer U>
+  ? U
+  : never;
+
 type _UnionToIntersection<U> = (
   U extends unknown ? (k: U) => void : never
 ) extends (k: infer I) => void
