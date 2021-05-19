@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateAsync20Tests = exports.generateAsync19Tests = exports.generateAsync18Tests = exports.generateAsync17Tests = exports.generateAsync16Tests = exports.generateAsync15Tests = exports.generateAsync14Tests = exports.generateAsync13Tests = exports.generateAsync12Tests = exports.generateAsync11Tests = exports.generateAsync10Tests = exports.generateAsync9Tests = exports.generateAsync8Tests = exports.generateAsync7Tests = exports.generateAsync6Tests = exports.generateAsync5Tests = exports.generateAsync4Tests = exports.generateAsync3Tests = exports.generateAsync2Tests = exports.generateAsync1Test = exports.generate20Tests = exports.generate19Tests = exports.generate18Tests = exports.generate17Tests = exports.generate16Tests = exports.generate15Tests = exports.generate14Tests = exports.generate13Tests = exports.generate12Tests = exports.generate11Tests = exports.generate10Tests = exports.generate9Tests = exports.generate8Tests = exports.generate7Tests = exports.generate6Tests = exports.generate5Tests = exports.generate4Tests = exports.generate3Tests = exports.generate2Tests = exports.generate1Test = exports.generateReturnDataTests = exports.generateAsyncTests = exports.generateTests = exports.mapperReturnDataTest = exports.returnSimpleData = exports.mapperAsyncTest = exports.mapperTest = exports.generateReturnDataTestTable = exports.generateAsyncTestTable = exports.generateTestTable = void 0;
 exports.generateReturnData20Tests = exports.generateReturnData19Tests = exports.generateReturnData18Tests = exports.generateReturnData17Tests = exports.generateReturnData16Tests = exports.generateReturnData15Tests = exports.generateReturnData14Tests = exports.generateReturnData13Tests = exports.generateReturnData12Tests = exports.generateReturnData11Tests = exports.generateReturnData10Tests = exports.generateReturnData9Tests = exports.generateReturnData8Tests = exports.generateReturnData7Tests = exports.generateReturnData6Tests = exports.generateReturnData5Tests = exports.generateReturnData4Tests = exports.generateReturnData3Tests = exports.generateReturnData2Tests = exports.generateReturnData1Test = void 0;
-const uuid_1 = require("uuid");
+const nanoid_1 = require("nanoid");
 const functions_1 = require("../functions");
 // #region Configurations
 function generateTestTable(func, actuals, expecteds) {
@@ -46,7 +46,7 @@ function mapperTest(spy, uuid = false) {
             ? actual[0]
             : actual.join(", ");
         return it(uuid
-            ? `${uuid_1.v4()} ===>  `
+            ? `${nanoid_1.nanoid()} ===>  `
             : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`, () => {
             expect(JSON.stringify(spy(...actual))).toStrictEqual(JSON.stringify(expected));
             expect(spy).toBeCalledWith(...actual);
@@ -60,7 +60,7 @@ function mapperAsyncTest(spy, uuid = false) {
             ? actual[0]
             : actual.join(", ");
         return it(uuid
-            ? `${uuid_1.v4()} ===>  `
+            ? `${nanoid_1.nanoid()} ===>  `
             : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`, async () => {
             const _processed = await spy(...actual);
             expect(JSON.stringify(_processed)).toStrictEqual(JSON.stringify(expected));
@@ -80,7 +80,7 @@ function mapperReturnDataTest(spy, uuid = false) {
             ? actual[0]
             : actual.join(", ");
         return it(uuid
-            ? `${uuid_1.v4()} ===>  `
+            ? `${nanoid_1.nanoid()} ===>  `
             : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`, async () => {
             const { status, payload } = (await spy(...actual));
             let _processed;

@@ -1,4 +1,4 @@
-import { v4 } from "uuid";
+import { nanoid } from "nanoid";
 import { WithId } from "../entities";
 import { isArray } from "../functions";
 import {
@@ -79,7 +79,7 @@ export function mapperTest<P extends any[], R extends any>(
 
     return it(
       uuid
-        ? `${v4()} ===>  `
+        ? `${nanoid()} ===>  `
         : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`,
       () => {
         expect(JSON.stringify(spy(...actual))).toStrictEqual(
@@ -102,7 +102,7 @@ export function mapperAsyncTest<P extends any[], R extends any>(
 
     return it(
       uuid
-        ? `${v4()} ===>  `
+        ? `${nanoid()} ===>  `
         : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`,
       async () => {
         const _processed = await spy(...actual);
@@ -136,7 +136,7 @@ export function mapperReturnDataTest<
 
     return it(
       uuid
-        ? `${v4()} ===>  `
+        ? `${nanoid()} ===>  `
         : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`,
       async () => {
         const { status, payload } = (await spy(...actual)) as any;
