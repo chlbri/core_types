@@ -3,6 +3,7 @@ export declare type LengthOf<T> = T extends any[] | readonly any[] ? T["length"]
 declare type _TupleOf<T, N extends number, R extends unknown[] = []> = R["length"] extends N ? R : _TupleOf<T, N, [...R, T]>;
 export declare type TupleOf<T = any, N extends number = number> = N extends N ? number extends N ? T[] : _TupleOf<T, N> : never;
 export declare type GetTupleType<T> = T extends TupleOf<infer U, any> ? U : never;
+export declare type GetTupleNumber<T> = T extends TupleOf<any, infer U> ? U : never;
 declare type _UnionToIntersection<U> = (U extends unknown ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
 declare type _LastOf<T> = _UnionToIntersection<T extends unknown ? () => T : never> extends () => infer R ? R : never;
 declare type _Push<T extends unknown[], V> = [...T, V];
