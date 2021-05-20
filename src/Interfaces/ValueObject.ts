@@ -11,14 +11,11 @@ export class ValueObject<T = any, V extends RV<T> = any> {
     return this.value;
   }
 
-  validate(){
-
-  }
-
   get safe() {
     if (!this.validators) return this.value;
     for (const validator of this.validators) {
-      if (!validator.validate(this.value)) return validator.exception;
+      if (!validator.validate(this.value))
+        return validator.exception;
     }
     return this.value;
   }

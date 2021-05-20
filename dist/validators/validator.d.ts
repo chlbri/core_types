@@ -13,4 +13,5 @@ export declare class Validator<T = any> implements IValidator<T> {
     validate: Condition<T>;
     exception: Exception;
     constructor(validate: Condition<T>, exception?: Exception);
+    chain(validator: Validator<T>, exception?: Exception): Validator<T>;
 }

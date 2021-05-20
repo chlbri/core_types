@@ -7,5 +7,9 @@ class Validator {
         this.validate = validate;
         this.exception = exception;
     }
+    chain(validator, exception = new exception_1.Exception(404)) {
+        const out = new Validator((arg) => this.validate(arg) && validator.validate(arg), exception);
+        return out;
+    }
 }
 exports.Validator = Validator;
