@@ -11,6 +11,8 @@ class ValueObject {
     get unSafe() {
         return this.value;
     }
+    validate() {
+    }
     get safe() {
         if (!this.validators)
             return this.value;

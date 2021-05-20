@@ -3,7 +3,7 @@ import { WithId } from "../entities";
 import { isArray } from "../functions";
 import {
   DataFromPromiseWithoutId,
-  PromiseReturnData,
+  PromiseReturnData
 } from "../interfaces";
 import { LengthOf, ThenArg, TupleOf } from "../types";
 import { TestElement, TestTable } from "./types";

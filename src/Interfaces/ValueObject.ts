@@ -2,13 +2,17 @@ import { Exception, IValidator } from "../validators";
 
 type RV<T> = readonly IValidator<T>[];
 
-export class ValueObject<T = any, V extends RV<any> = any> {
+export class ValueObject<T = any, V extends RV<T> = any> {
   constructor(private value: T, public validators?: V) {
     this.chain = this.chain.bind(this);
   }
 
   get unSafe(): T {
     return this.value;
+  }
+
+  validate(){
+
   }
 
   get safe() {

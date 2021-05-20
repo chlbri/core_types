@@ -7,7 +7,8 @@ export interface IException<
 }
 
 export class Exception<T extends ExceptionStatus = ExceptionStatus>
-  implements IException<T> {
+  implements IException<T>
+{
   constructor(public readonly statut: T) {}
 }
 

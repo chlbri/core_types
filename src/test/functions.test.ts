@@ -14,7 +14,7 @@ import {
   mapperAsyncTest,
   mapperReturnDataTest,
   mapperTest,
-  returnSimpleData,
+  returnSimpleData
 } from "./functions";
 import { TestTable } from "./types";
 
@@ -413,10 +413,8 @@ const user3 = {
 };
 // #endregion
 
-const returnDataActualsf1l1: TupleOf<
-  ParametersForTestOne,
-  Length1
-> = [[user1], [user3], [user2], [user1], [user2]];
+const returnDataActualsf1l1: TupleOf<ParametersForTestOne, Length1> =
+  [[user1], [user3], [user2], [user1], [user2]];
 
 const returnDataExpectedsf1l1: TupleOf<
   ReturnDataForTestOne,
@@ -429,10 +427,8 @@ const returnDataExpectedsf1l1: TupleOf<
   { status: 200, payload: returnSimpleData(user2) },
 ];
 
-const returnDataActualsf1l2: TupleOf<
-  ParametersForTestOne,
-  Length2
-> = [[user1], [user2], [user3]]; /* as const */
+const returnDataActualsf1l2: TupleOf<ParametersForTestOne, Length2> =
+  [[user1], [user2], [user3]]; /* as const */
 
 const returnDataExpectedsf1l2: TupleOf<
   ReturnDataForTestOne,
@@ -443,16 +439,14 @@ const returnDataExpectedsf1l2: TupleOf<
   { status: 200, payload: returnSimpleData(user3) },
 ];
 
-const returnDataActualsf2l1: TupleOf<
-  ParametersForTestMany,
-  Length1
-> = [
-  [[user1, user2, user3]],
-  [[user1, user3]],
-  [[user2, user3]],
-  [[user1, user2, user3, user1, user3]],
-  [[user1]],
-];
+const returnDataActualsf2l1: TupleOf<ParametersForTestMany, Length1> =
+  [
+    [[user1, user2, user3]],
+    [[user1, user3]],
+    [[user2, user3]],
+    [[user1, user2, user3, user1, user3]],
+    [[user1]],
+  ];
 
 const returnDataExpectedsf2l1: TupleOf<
   ReturnDataForTestMany,
@@ -473,10 +467,8 @@ const returnDataExpectedsf2l1: TupleOf<
   { status: 200, payload: [user1].map(returnSimpleData) },
 ];
 
-const returnDataActualsf2l2: TupleOf<
-  ParametersForTestMany,
-  Length2
-> = [[[user1, user2, user3]], [[user1, user3]], [[user2, user3]]];
+const returnDataActualsf2l2: TupleOf<ParametersForTestMany, Length2> =
+  [[[user1, user2, user3]], [[user1, user3]], [[user2, user3]]];
 
 const returnDataExpectedsf2l2: TupleOf<
   ReturnDataForTestMany,

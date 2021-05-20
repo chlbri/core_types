@@ -51,9 +51,8 @@ export type DomainUseCaseSchema<
       [key: string]: T[number];
     };
 
-export type Domain<
-  T extends IUseCase[] = IUseCase[]
-> = DomainUseCaseSchema<T, "__name">;
+export type Domain<T extends IUseCase[] = IUseCase[]> =
+  DomainUseCaseSchema<T, "__name">;
 
 export function useCase<
   D extends Domain,
