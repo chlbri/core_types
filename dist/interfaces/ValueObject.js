@@ -23,6 +23,9 @@ class ValueObject {
         }
         return arg;
     }
+    recreate(value) {
+        return new ValueObject(value, this.validators);
+    }
     validateBoolean(arg) {
         const _arg = this.validate(arg);
         return !(_arg instanceof validators_1.Exception);

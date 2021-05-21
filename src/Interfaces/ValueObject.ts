@@ -24,6 +24,10 @@ export class ValueObject<T = any, V extends RV<T> = any> {
     return arg;
   }
 
+  recreate(value?:T){
+    return new ValueObject(value, this.validators)
+  }
+
   validateBoolean(arg?: T) {
     const _arg = this.validate(arg);
     return !(_arg instanceof Exception);
