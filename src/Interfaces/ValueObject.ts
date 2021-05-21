@@ -24,8 +24,13 @@ export class ValueObject<T = any, V extends RV<T> = any> {
     return arg;
   }
 
+  validateBoolean(arg: T) {
+    const _arg = this.validate(arg);
+    return !(_arg instanceof Exception);
+  }
+
   get isValid() {
-    return !(this.safe instanceof Exception);
+    return this.validateBoolean(this.value);
   }
 
   chain(next: ValueObject): ValueObject {

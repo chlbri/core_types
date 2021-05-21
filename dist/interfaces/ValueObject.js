@@ -23,8 +23,12 @@ class ValueObject {
         }
         return arg;
     }
+    validateBoolean(arg) {
+        const _arg = this.validate(arg);
+        return !(_arg instanceof validators_1.Exception);
+    }
     get isValid() {
-        return !(this.safe instanceof validators_1.Exception);
+        return this.validateBoolean(this.value);
     }
     chain(next) {
         return this.isValid ? next : this;
