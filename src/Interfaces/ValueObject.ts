@@ -7,17 +7,21 @@ export class ValueObject<T = any, V extends RV<T> = any> {
     this.chain = this.chain.bind(this);
   }
 
-  get unSafe(): T {
+  get unSafe() {
     return this.value;
   }
 
   get safe() {
-    if (!this.validators) return this.value;
+    return this.validate(this.value);
+  }
+
+  validate(arg: T) {
+    if (!this.validators) return arg;
     for (const validator of this.validators) {
-      if (!validator.validate(this.value))
+      if (!validator.validate(arg))
         return validator.exception;
     }
-    return this.value;
+    return arg;
   }
 
   get isValid() {

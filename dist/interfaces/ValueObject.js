@@ -12,13 +12,16 @@ class ValueObject {
         return this.value;
     }
     get safe() {
+        return this.validate(this.value);
+    }
+    validate(arg) {
         if (!this.validators)
-            return this.value;
+            return arg;
         for (const validator of this.validators) {
-            if (!validator.validate(this.value))
+            if (!validator.validate(arg))
                 return validator.exception;
         }
-        return this.value;
+        return arg;
     }
     get isValid() {
         return !(this.safe instanceof validators_1.Exception);
