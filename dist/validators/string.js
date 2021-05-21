@@ -4,6 +4,9 @@ exports.FormatedNumberValidator = exports.StringRequiredValidator = exports.Stri
 const nullish_1 = require("../functions/nullish");
 const validator_1 = require("./validator");
 class StringValidator extends validator_1.Validator {
+    constructor(validate, exception) {
+        super((value) => !nullish_1.isNullish(value) && validate(value), exception);
+    }
 }
 exports.StringValidator = StringValidator;
 class StringMinLengthValidator extends StringValidator {

@@ -18,7 +18,10 @@ import {
 } from "../status";
 
 // #region functions
-function isD<T>(func: (val: number) => boolean, data: ReturnData<T>) {
+function isD<T>(
+  func: (val: number) => boolean,
+  data: ReturnData<T>
+) {
   return func(data.status);
 }
 
@@ -52,9 +55,14 @@ export function isRedirect<T>(
 
 export function hadPayload<T>(
   data: ReturnData<T>
-): data is RedirectData<T> | SuccessData<T> | InformationData<T> {
+): data is
+  | RedirectData<T>
+  | SuccessData<T>
+  | InformationData<T> {
   return (
-    isRedirect(data) || isSuccessFull(data) || isInformation(data)
+    isRedirect(data) ||
+    isSuccessFull(data) ||
+    isInformation(data)
   );
 }
 

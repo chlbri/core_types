@@ -2,10 +2,10 @@ export function isArray<T>(value: any): value is Array<T> {
   return value instanceof Array;
 }
 
-export function sliceArray<T extends any[], N extends number>(
-  array: T,
-  splicer: N
-) {
+export function sliceArray<
+  T extends any[],
+  N extends number
+>(array: T, splicer: N) {
   return [
     ...new Array(Math.ceil(array.length / splicer))
       .fill(array)

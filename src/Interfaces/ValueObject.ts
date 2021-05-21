@@ -3,7 +3,7 @@ import { Exception, IValidator } from "../validators";
 type RV<T> = readonly IValidator<T>[];
 
 export class ValueObject<T = any, V extends RV<T> = any> {
-  constructor(private value: T, public validators?: V) {
+  constructor(private value?: T, public validators?: V) {
     this.chain = this.chain.bind(this);
   }
 
@@ -15,7 +15,7 @@ export class ValueObject<T = any, V extends RV<T> = any> {
     return this.validate(this.value);
   }
 
-  validate(arg: T) {
+  validate(arg?: T) {
     if (!this.validators) return arg;
     for (const validator of this.validators) {
       if (!validator.validate(arg))
@@ -24,7 +24,7 @@ export class ValueObject<T = any, V extends RV<T> = any> {
     return arg;
   }
 
-  validateBoolean(arg: T) {
+  validateBoolean(arg?: T) {
     const _arg = this.validate(arg);
     return !(_arg instanceof Exception);
   }

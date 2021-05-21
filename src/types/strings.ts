@@ -30,7 +30,11 @@ export function isStringLocalLitterals(
 
 export type Email = `${string}@${string}.${string}`;
 
-export type _JoinStringHelper = string | number | boolean | bigint;
+export type _JoinStringHelper =
+  | string
+  | number
+  | boolean
+  | bigint;
 
 export type JoinString<
   T extends readonly any[],

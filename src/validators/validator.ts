@@ -1,6 +1,6 @@
 import { Exception } from "./exception";
 
-export type Condition<T = any> = (arg: T) => boolean;
+export type Condition<T = any> = (arg?: T) => boolean;
 
 export type ConditionMany<T extends any[] = any[]> = (
   ...arg: T
@@ -25,7 +25,7 @@ export class Validator<T = any> implements IValidator<T> {
     exception: Exception = new Exception(404)
   ) {
     const out = new Validator(
-      (arg: T) =>
+      (arg?: T) =>
         this.validate(arg) && validator.validate(arg),
       exception
     );

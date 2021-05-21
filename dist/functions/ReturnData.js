@@ -26,7 +26,9 @@ function isRedirect(data) {
 }
 exports.isRedirect = isRedirect;
 function hadPayload(data) {
-    return (isRedirect(data) || isSuccessFull(data) || isInformation(data));
+    return (isRedirect(data) ||
+        isSuccessFull(data) ||
+        isInformation(data));
 }
 exports.hadPayload = hadPayload;
 function isClientError(data) {

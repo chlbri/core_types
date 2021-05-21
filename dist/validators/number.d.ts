@@ -1,6 +1,7 @@
 import { Exception } from "./exception";
-import { Validator } from "./validator";
+import { Condition, Validator } from "./validator";
 export declare class NumberValidator extends Validator<number> {
+    constructor(validate: Condition<number>, exception?: Exception);
 }
 export declare class NumberMinValidator extends NumberValidator {
     constructor(min: number, exception?: Exception);

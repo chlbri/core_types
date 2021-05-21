@@ -3,7 +3,7 @@ import { WithId } from "../entities";
 import { isArray } from "../functions";
 import {
   DataFromPromiseWithoutId,
-  PromiseReturnData
+  PromiseReturnData,
 } from "../interfaces";
 import { LengthOf, ThenArg, TupleOf } from "../types";
 import { TestElement, TestTable } from "./types";
@@ -18,7 +18,11 @@ export function generateTestTable<
     actuals[index],
     expecteds[index],
   ]);
-  return out as TestTable<T1[number], T2[number], LengthOf<T1>>;
+  return out as TestTable<
+    T1[number],
+    T2[number],
+    LengthOf<T1>
+  >;
 }
 
 export function generateAsyncTestTable<
@@ -30,7 +34,11 @@ export function generateAsyncTestTable<
     actuals[index],
     expecteds[index],
   ]);
-  return out as TestTable<T1[number], T2[number], LengthOf<T1>>;
+  return out as TestTable<
+    T1[number],
+    T2[number],
+    LengthOf<T1>
+  >;
 }
 
 export function generateReturnDataTestTable<
@@ -49,7 +57,11 @@ export function generateReturnDataTestTable<
     actuals[index],
     expecteds[index],
   ]);
-  return out as TestTable<T1[number], T2[number], LengthOf<T1>>;
+  return out as TestTable<
+    T1[number],
+    T2[number],
+    LengthOf<T1>
+  >;
 }
 
 function testNullTest(...actual: any[]) {
@@ -82,20 +94,23 @@ export function mapperTest<P extends any[], R extends any>(
         ? `${nanoid()} ===>  `
         : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`,
       () => {
-        expect(JSON.stringify(spy(...actual))).toStrictEqual(
-          JSON.stringify(expected)
-        );
+        expect(
+          JSON.stringify(spy(...actual))
+        ).toStrictEqual(JSON.stringify(expected));
         expect(spy).toBeCalledWith(...actual);
       }
     );
   };
 }
 
-export function mapperAsyncTest<P extends any[], R extends any>(
-  spy: jest.Mock<R, P>,
-  uuid = false
-) {
-  return ([actual, expected]: TestElement<P, ThenArg<R>>) => {
+export function mapperAsyncTest<
+  P extends any[],
+  R extends any
+>(spy: jest.Mock<R, P>, uuid = false) {
+  return ([actual, expected]: TestElement<
+    P,
+    ThenArg<R>
+  >) => {
     const _actualText = testNullTest(...actual)
       ? actual[0]
       : actual.join(", ");
@@ -139,7 +154,9 @@ export function mapperReturnDataTest<
         ? `${nanoid()} ===>  `
         : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`,
       async () => {
-        const { status, payload } = (await spy(...actual)) as any;
+        const { status, payload } = (await spy(
+          ...actual
+        )) as any;
         let _processed;
         if (!payload) {
           _processed = { status };
@@ -149,7 +166,10 @@ export function mapperReturnDataTest<
             payload: payload.map(returnSimpleData),
           };
         } else {
-          _processed = { status, payload: returnSimpleData(payload) };
+          _processed = {
+            status,
+            payload: returnSimpleData(payload),
+          };
         }
         expect(JSON.stringify(_processed)).toStrictEqual(
           JSON.stringify(expected)
@@ -182,7 +202,11 @@ export function generateAsyncTests<
   T1 extends TupleOf<Parameters<F>>,
   T2 extends TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>
 >(func: F, actuals: T1, expecteds: T2, uuid = false) {
-  const table = generateAsyncTestTable(func, actuals, expecteds);
+  const table = generateAsyncTestTable(
+    func,
+    actuals,
+    expecteds
+  );
   const spy = jest.fn(func);
   const mapper = mapperAsyncTest(spy, uuid);
   const tests = table.map(mapper);
@@ -206,7 +230,11 @@ export function generateReturnDataTests<
     LengthOf<T1>
   >
 >(func: F, actuals: T1, expecteds: T2, uuid = false) {
-  const table = generateReturnDataTestTable(func, actuals, expecteds);
+  const table = generateReturnDataTestTable(
+    func,
+    actuals,
+    expecteds
+  );
   const spy = jest.fn(func);
   const mapper = mapperReturnDataTest(spy, uuid);
   const tests = table.map(mapper);
@@ -220,7 +248,9 @@ export function generateReturnDataTests<
 // #endregion
 
 // #region Helper Functions - Sync
-export function generate1Test<F extends (...args: any[]) => any>(
+export function generate1Test<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 1>,
   expecteds: TupleOf<ReturnType<F>, 1>,
@@ -229,7 +259,9 @@ export function generate1Test<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate2Tests<F extends (...args: any[]) => any>(
+export function generate2Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 2>,
   expecteds: TupleOf<ReturnType<F>, 2>,
@@ -238,7 +270,9 @@ export function generate2Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate3Tests<F extends (...args: any[]) => any>(
+export function generate3Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 3>,
   expecteds: TupleOf<ReturnType<F>, 3>,
@@ -247,7 +281,9 @@ export function generate3Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate4Tests<F extends (...args: any[]) => any>(
+export function generate4Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 4>,
   expecteds: TupleOf<ReturnType<F>, 4>,
@@ -256,7 +292,9 @@ export function generate4Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate5Tests<F extends (...args: any[]) => any>(
+export function generate5Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 5>,
   expecteds: TupleOf<ReturnType<F>, 5>,
@@ -265,7 +303,9 @@ export function generate5Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate6Tests<F extends (...args: any[]) => any>(
+export function generate6Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 6>,
   expecteds: TupleOf<ReturnType<F>, 6>,
@@ -274,7 +314,9 @@ export function generate6Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate7Tests<F extends (...args: any[]) => any>(
+export function generate7Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 7>,
   expecteds: TupleOf<ReturnType<F>, 7>,
@@ -283,7 +325,9 @@ export function generate7Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate8Tests<F extends (...args: any[]) => any>(
+export function generate8Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 8>,
   expecteds: TupleOf<ReturnType<F>, 8>,
@@ -292,7 +336,9 @@ export function generate8Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate9Tests<F extends (...args: any[]) => any>(
+export function generate9Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 9>,
   expecteds: TupleOf<ReturnType<F>, 9>,
@@ -301,7 +347,9 @@ export function generate9Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate10Tests<F extends (...args: any[]) => any>(
+export function generate10Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 10>,
   expecteds: TupleOf<ReturnType<F>, 10>,
@@ -310,7 +358,9 @@ export function generate10Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate11Tests<F extends (...args: any[]) => any>(
+export function generate11Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 11>,
   expecteds: TupleOf<ReturnType<F>, 11>,
@@ -319,7 +369,9 @@ export function generate11Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate12Tests<F extends (...args: any[]) => any>(
+export function generate12Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 12>,
   expecteds: TupleOf<ReturnType<F>, 12>,
@@ -328,7 +380,9 @@ export function generate12Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate13Tests<F extends (...args: any[]) => any>(
+export function generate13Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 13>,
   expecteds: TupleOf<ReturnType<F>, 13>,
@@ -337,7 +391,9 @@ export function generate13Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate14Tests<F extends (...args: any[]) => any>(
+export function generate14Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 14>,
   expecteds: TupleOf<ReturnType<F>, 14>,
@@ -346,7 +402,9 @@ export function generate14Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate15Tests<F extends (...args: any[]) => any>(
+export function generate15Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 15>,
   expecteds: TupleOf<ReturnType<F>, 15>,
@@ -355,7 +413,9 @@ export function generate15Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate16Tests<F extends (...args: any[]) => any>(
+export function generate16Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 16>,
   expecteds: TupleOf<ReturnType<F>, 16>,
@@ -364,7 +424,9 @@ export function generate16Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate17Tests<F extends (...args: any[]) => any>(
+export function generate17Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 17>,
   expecteds: TupleOf<ReturnType<F>, 17>,
@@ -373,7 +435,9 @@ export function generate17Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate18Tests<F extends (...args: any[]) => any>(
+export function generate18Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 18>,
   expecteds: TupleOf<ReturnType<F>, 18>,
@@ -382,7 +446,9 @@ export function generate18Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate19Tests<F extends (...args: any[]) => any>(
+export function generate19Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 19>,
   expecteds: TupleOf<ReturnType<F>, 19>,
@@ -391,7 +457,9 @@ export function generate19Tests<F extends (...args: any[]) => any>(
   return generateTests(func, actuals, expecteds, uuid);
 }
 
-export function generate20Tests<F extends (...args: any[]) => any>(
+export function generate20Tests<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 20>,
   expecteds: TupleOf<ReturnType<F>, 20>,
@@ -402,7 +470,9 @@ export function generate20Tests<F extends (...args: any[]) => any>(
 // #endregion
 
 // #region Helper Functions - Async
-export function generateAsync1Test<F extends (...args: any[]) => any>(
+export function generateAsync1Test<
+  F extends (...args: any[]) => any
+>(
   func: F,
   actuals: TupleOf<Parameters<F>, 1>,
   expecteds: TupleOf<ThenArg<ReturnType<F>>, 1>,
@@ -631,10 +701,18 @@ export function generateReturnData1Test<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 1>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 1>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    1
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData2Tests<
@@ -646,10 +724,18 @@ export function generateReturnData2Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 2>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 2>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    2
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData3Tests<
@@ -661,10 +747,18 @@ export function generateReturnData3Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 3>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 3>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    3
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData4Tests<
@@ -676,10 +770,18 @@ export function generateReturnData4Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 4>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 4>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    4
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData5Tests<
@@ -691,10 +793,18 @@ export function generateReturnData5Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 5>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 5>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    5
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData6Tests<
@@ -706,10 +816,18 @@ export function generateReturnData6Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 6>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 6>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    6
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData7Tests<
@@ -721,10 +839,18 @@ export function generateReturnData7Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 7>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 7>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    7
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData8Tests<
@@ -736,10 +862,18 @@ export function generateReturnData8Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 8>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 8>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    8
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData9Tests<
@@ -751,10 +885,18 @@ export function generateReturnData9Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 9>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 9>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    9
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData10Tests<
@@ -766,10 +908,18 @@ export function generateReturnData10Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 10>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 10>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    10
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData11Tests<
@@ -781,10 +931,18 @@ export function generateReturnData11Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 11>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 11>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    11
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData12Tests<
@@ -796,10 +954,18 @@ export function generateReturnData12Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 12>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 12>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    12
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData13Tests<
@@ -811,10 +977,18 @@ export function generateReturnData13Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 13>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 13>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    13
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData14Tests<
@@ -826,10 +1000,18 @@ export function generateReturnData14Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 14>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 14>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    14
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData15Tests<
@@ -841,10 +1023,18 @@ export function generateReturnData15Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 15>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 15>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    15
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData16Tests<
@@ -856,10 +1046,18 @@ export function generateReturnData16Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 16>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 16>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    16
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData17Tests<
@@ -871,10 +1069,18 @@ export function generateReturnData17Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 17>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 17>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    17
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData18Tests<
@@ -886,10 +1092,18 @@ export function generateReturnData18Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 18>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 18>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    18
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData19Tests<
@@ -901,10 +1115,18 @@ export function generateReturnData19Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 19>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 19>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    19
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 
 export function generateReturnData20Tests<
@@ -916,10 +1138,18 @@ export function generateReturnData20Tests<
 >(
   func: F,
   actuals: TupleOf<Parameters<F>, 20>,
-  expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, 20>,
+  expecteds: TupleOf<
+    DataFromPromiseWithoutId<ReturnType<F>>,
+    20
+  >,
   uuid = false
 ) {
-  return generateReturnDataTests(func, actuals, expecteds, uuid);
+  return generateReturnDataTests(
+    func,
+    actuals,
+    expecteds,
+    uuid
+  );
 }
 // #endregion
 

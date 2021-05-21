@@ -35,18 +35,37 @@ type ChainReturnType = ReturnType<typeof chain>;
 
 // #region Validators
 const requiredV = new RequiredValidator(EXCEPTIONS[404]);
-const numberMinV = new NumberMinValidator(5, EXCEPTIONS[302]);
-const numberExactV = new NumberExactValidator(7, EXCEPTIONS[341]);
-const numberMaxV = new NumberMaxValidator(10, EXCEPTIONS[351]);
-const numberRequiredV = new RequiredNumberValidator(EXCEPTIONS[405]);
+const numberMinV = new NumberMinValidator(
+  5,
+  EXCEPTIONS[302]
+);
+const numberExactV = new NumberExactValidator(
+  7,
+  EXCEPTIONS[341]
+);
+const numberMaxV = new NumberMaxValidator(
+  10,
+  EXCEPTIONS[351]
+);
+const numberRequiredV = new RequiredNumberValidator(
+  EXCEPTIONS[405]
+);
 
-const stringMinV = new StringMinLengthValidator(5, EXCEPTIONS[307]);
+const stringMinV = new StringMinLengthValidator(
+  5,
+  EXCEPTIONS[307]
+);
 const stringExactV = new StringExactLengthValidator(
   7,
   EXCEPTIONS[342]
 );
-const stringMaxV = new StringMaxLengthValidator(10, EXCEPTIONS[352]);
-const stringRequiredV = new StringRequiredValidator(EXCEPTIONS[406]);
+const stringMaxV = new StringMaxLengthValidator(
+  10,
+  EXCEPTIONS[352]
+);
+const stringRequiredV = new StringRequiredValidator(
+  EXCEPTIONS[406]
+);
 const stringNumberFormatedV1 = new FormatedNumberValidator(
   undefined,
   EXCEPTIONS[380]
@@ -117,7 +136,10 @@ const chainActuals = sliceArray(getActuals(), 2) as TupleOf<
   LengthChain
 >;
 
-const chainsExpected: TupleOf<ChainReturnType, LengthChain> = [
+const chainsExpected: TupleOf<
+  ChainReturnType,
+  LengthChain
+> = [
   getActuals()[1][0],
   getActuals()[2][0],
   getActuals()[5][0],
@@ -155,26 +177,27 @@ const unSafExpecteds = valueActuals as TupleOf<
   Length
 >;
 
-const isValidExpecteds: TupleOf<IsValidReturnType, Length> = [
-  true,
-  false,
-  false,
-  false,
-  true,
-  false,
-  false,
-  true,
-  false,
-  false,
-  true,
-  true,
-  true,
-  false,
-  true,
-  true,
-  false,
-  false,
-];
+const isValidExpecteds: TupleOf<IsValidReturnType, Length> =
+  [
+    true,
+    false,
+    false,
+    false,
+    true,
+    false,
+    false,
+    true,
+    false,
+    false,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    false,
+    false,
+  ];
 // #endregion
 
 describe("VO.safe", () => {
@@ -182,11 +205,21 @@ describe("VO.safe", () => {
 });
 
 describe("VO.unSafe", () => {
-  generate18Tests(unSafe, getActuals(), unSafExpecteds, true);
+  generate18Tests(
+    unSafe,
+    getActuals(),
+    unSafExpecteds,
+    true
+  );
 });
 
 describe("VO.isValid", () => {
-  generate18Tests(isValid, getActuals(), isValidExpecteds, true);
+  generate18Tests(
+    isValid,
+    getActuals(),
+    isValidExpecteds,
+    true
+  );
 });
 
 describe("VO.chain", () => {

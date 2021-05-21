@@ -13,12 +13,14 @@ type UpdateHelper<T> = {
 type WI<T> = WithId<WithoutPermissions<T>>;
 type WO<T> = WithoutId<WithoutPermissions<T>>;
 
-type PDP<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<
-  Required<NOmit<T, K[number]>>
->;
-type PDPA<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<
-  Required<NOmit<T, K[number]>>[]
->;
+type PDP<
+  T extends Entity,
+  K extends (keyof T)[] = (keyof T)[]
+> = PD<Required<NOmit<T, K[number]>>>;
+type PDPA<
+  T extends Entity,
+  K extends (keyof T)[] = (keyof T)[]
+> = PD<Required<NOmit<T, K[number]>>[]>;
 
 // type UpdateHelperId<T> = {
 //   search: string;
@@ -61,7 +63,10 @@ export interface IDAO<T extends Entity> {
     projection?: K
   ) => PDP<T, K>;
 
-  updateOne: (search: DSO<T>, newValue: WO<Partial<T>>) => PD<string>;
+  updateOne: (
+    search: DSO<T>,
+    newValue: WO<Partial<T>>
+  ) => PD<string>;
 
   updateOneById: (
     _id: string,

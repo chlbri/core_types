@@ -1,5 +1,5 @@
 import { Exception } from "./exception";
-export declare type Condition<T = any> = (arg: T) => boolean;
+export declare type Condition<T = any> = (arg?: T) => boolean;
 export declare type ConditionMany<T extends any[] = any[]> = (...arg: T) => boolean;
 export interface IValidator<T = any> {
     validate: Condition<T>;

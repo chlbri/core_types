@@ -8,7 +8,10 @@ import { IUseCase } from "./IUseCase";
 type Length5 = 5;
 
 // #region Data for tests
-const funcTables: TupleOf<(...args: any[]) => any, Length5> = [
+const funcTables: TupleOf<
+  (...args: any[]) => any,
+  Length5
+> = [
   (val1: number, val2: number) => val1 > val2,
   (val1: number, val2: number) => val1 + val2,
   (val1: number) => val1 > 0,

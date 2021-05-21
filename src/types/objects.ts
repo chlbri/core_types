@@ -14,13 +14,17 @@ export type PromisifyMethod<T> = T extends (
 
 export type PromisifyObject<T extends object> = T &
   {
-    [P in keyof T & string as PromisifyMethod<T[P]> extends never
+    [P in keyof T & string as PromisifyMethod<
+      T[P]
+    > extends never
       ? never
       : `${P}Async`]: PromisifyMethod<T[P]>;
   };
 
 export type OnlyNamesOf<T, TProp> = {
-  [K in keyof T]: Exclude<T[K], undefined> extends TProp ? K : never;
+  [K in keyof T]: Exclude<T[K], undefined> extends TProp
+    ? K
+    : never;
 }[keyof T];
 
 export type OnlyPropertiesOf<T, TProp> = Pick<

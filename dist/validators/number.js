@@ -1,8 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RequiredNumberValidator = exports.NumberMaxValidator = exports.NumberExactValidator = exports.NumberMinValidator = exports.NumberValidator = void 0;
+const functions_1 = require("../functions");
 const validator_1 = require("./validator");
 class NumberValidator extends validator_1.Validator {
+    constructor(validate, exception) {
+        super((value) => !functions_1.isNullish(value) && validate(value), exception);
+    }
 }
 exports.NumberValidator = NumberValidator;
 class NumberMinValidator extends NumberValidator {

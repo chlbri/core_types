@@ -94,7 +94,10 @@ function mapperReturnDataTest(spy, uuid = false) {
                 };
             }
             else {
-                _processed = { status, payload: returnSimpleData(payload) };
+                _processed = {
+                    status,
+                    payload: returnSimpleData(payload),
+                };
             }
             expect(JSON.stringify(_processed)).toStrictEqual(JSON.stringify(expected));
             expect(spy).toBeCalledWith(...actual);

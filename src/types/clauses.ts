@@ -138,11 +138,12 @@ type VSOString = VSOAny<string> &
 // #endregion
 
 // TODO: add logical operators and $exists, $type
-export type ValueSearchOperations<T = string> = T extends number
-  ? VSONumber
-  : T extends string
-  ? VSOString
-  : VSOAny<T>;
+export type ValueSearchOperations<T = string> =
+  T extends number
+    ? VSONumber
+    : T extends string
+    ? VSOString
+    : VSOAny<T>;
 
 type VSO<T = any> = ValueSearchOperations<T>;
 
@@ -187,7 +188,9 @@ export type Slice = {
 // #endregion
 
 export function isSearchOperation(val: any): val is VSO {
-  return Object.keys(val).every((val) => val.startsWith("$"));
+  return Object.keys(val).every((val) =>
+    val.startsWith("$")
+  );
 }
 
 export type SearchOperation<K> = K extends
