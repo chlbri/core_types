@@ -2,7 +2,7 @@ import {
   Actor,
   Entity,
   WithId,
-  WithoutId,
+  WithoutId
 } from "../entities";
 import { WithoutPermissions } from "../entities/WithoutPermissions";
 import { DataSearchOperations, NOmit } from "../types";
@@ -10,7 +10,7 @@ import { IDAO } from "./DAO";
 import { ILogger } from "./Logger";
 import {
   PromiseReturnData as PD,
-  ReturnData as RD,
+  ReturnData as RD
 } from "./ReturnData";
 import { PermissionsDAO } from "./types";
 

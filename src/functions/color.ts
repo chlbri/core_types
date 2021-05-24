@@ -2,7 +2,7 @@ import {
   Color1Digit,
   Color2Digits,
   ColorNumberDigits,
-  TransparencyDigits,
+  TransparencyDigits
 } from "../types";
 
 export function rgba(

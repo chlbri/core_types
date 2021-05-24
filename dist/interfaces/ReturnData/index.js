@@ -16,3 +16,4 @@ __exportStar(require("./Permission"), exports);
 __exportStar(require("./Redirect"), exports);
 __exportStar(require("./ServerError"), exports);
 __exportStar(require("./Success"), exports);
+__exportStar(require("./TimeOutError"), exports);

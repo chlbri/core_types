@@ -1,6 +1,6 @@
 import {
   ExceptionStatus,
-  EXCEPTION_CODES,
+  EXCEPTION_CODES
 } from "../status";
 import { generateTests } from "../test/functions";
 import { TupleOf } from "../types";

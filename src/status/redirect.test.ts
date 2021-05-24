@@ -21,4 +21,6 @@ generateStatusTests(isStatusRedirect, [
   false,
   false,
   false,
+  false,
+  false,
 ]);

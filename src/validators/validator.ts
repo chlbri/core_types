@@ -1,4 +1,4 @@
-import { Exception } from "./exception";
+import { Exception, EXCEPTIONS } from "./exception";
 
 export type Condition<T = any> = (arg?: T) => boolean;
 
@@ -18,11 +18,11 @@ export interface IValidatorMany<T extends any[] = any[]> {
 export class Validator<T = any> implements IValidator<T> {
   constructor(
     public validate: Condition<T>,
-    public exception: Exception = new Exception(404)
+    public exception: Exception = EXCEPTIONS[404]
   ) {}
   chain(
     validator: Validator<T>,
-    exception: Exception = new Exception(404)
+    exception: Exception = EXCEPTIONS[404]
   ) {
     const out = new Validator(
       (arg?: T) =>

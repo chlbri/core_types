@@ -52,3 +52,6 @@ export type AddString<
   Before extends string = "",
   After extends string = ""
 > = `${Before}${T & string}${After}`;
+
+export type StatusString =
+  typeof STRINGS.STATUS_STRINGS[number];

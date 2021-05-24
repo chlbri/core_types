@@ -11,32 +11,38 @@ import { TestElement, TestTable } from "./types";
 // #region Configurations
 export function generateTestTable<
   F extends (...args: any[]) => any,
-  T1 extends TupleOf<Parameters<F>>,
-  T2 extends TupleOf<ReturnType<F>, LengthOf<T1>>
->(func: F, actuals: T1, expecteds: T2) {
+  T1 extends ReadonlyArray<Parameters<F>>
+>(
+  func: F,
+  actuals: T1,
+  expecteds: TupleOf<ReturnType<F>, LengthOf<T1>>
+) {
   const out = actuals.map((_, index) => [
     actuals[index],
     expecteds[index],
   ]);
   return out as TestTable<
     T1[number],
-    T2[number],
+    TupleOf<ReturnType<F>, LengthOf<T1>>[number],
     LengthOf<T1>
   >;
 }
 
 export function generateAsyncTestTable<
   F extends (...args: any[]) => any,
-  T1 extends TupleOf<Parameters<F>>,
-  T2 extends TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>
->(func: F, actuals: T1, expecteds: T2) {
+  T1 extends ReadonlyArray<Parameters<F>>
+>(
+  func: F,
+  actuals: T1,
+  expecteds: TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>
+) {
   const out = actuals.map((_, index) => [
     actuals[index],
     expecteds[index],
   ]);
   return out as TestTable<
     T1[number],
-    T2[number],
+    TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>[number],
     LengthOf<T1>
   >;
 }
@@ -47,19 +53,25 @@ export function generateReturnDataTestTable<
   ) =>
     | PromiseReturnData<WithId<any>>
     | PromiseReturnData<WithId<any>[]>,
-  T1 extends TupleOf<Parameters<F>>,
-  T2 extends TupleOf<
+  T1 extends ReadonlyArray<Parameters<F>>
+>(
+  func: F,
+  actuals: T1,
+  expecteds: TupleOf<
     DataFromPromiseWithoutId<ReturnType<F>>,
     LengthOf<T1>
   >
->(func: F, actuals: T1, expecteds: T2) {
+) {
   const out = actuals.map((_, index) => [
     actuals[index],
     expecteds[index],
   ]);
   return out as TestTable<
     T1[number],
-    T2[number],
+    TupleOf<
+      DataFromPromiseWithoutId<ReturnType<F>>,
+      LengthOf<T1>
+    >[number],
     LengthOf<T1>
   >;
 }
@@ -182,9 +194,13 @@ export function mapperReturnDataTest<
 
 export function generateTests<
   F extends (...args: any[]) => any,
-  T1 extends TupleOf<Parameters<F>>,
-  T2 extends TupleOf<ReturnType<F>, LengthOf<T1>>
->(func: F, actuals: T1, expecteds: T2, uuid = false) {
+  T1 extends ReadonlyArray<Parameters<F>>
+>(
+  func: F,
+  actuals: T1,
+  expecteds: TupleOf<ReturnType<F>, LengthOf<T1>>,
+  uuid = false
+) {
   const table = generateTestTable(func, actuals, expecteds);
   const spy = jest.fn(func);
   const mapper = mapperTest(spy, uuid);

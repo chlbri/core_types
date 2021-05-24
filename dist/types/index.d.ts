@@ -5,5 +5,5 @@ export * from "./nullish";
 export * from "./numbers";
 export * from "./objects";
 export * from "./promises";
-export * from "./vo";
 export * from "./strings";
+export * from "./vo";

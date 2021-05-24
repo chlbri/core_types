@@ -36,3 +36,13 @@ export const LETTERS = [
   "ù",
   "û",
 ] as const;
+
+export const STATUS_STRINGS = [
+  "information",
+  "success",
+  "redirect",
+  "client-error",
+  "server-error",
+  "permission-error",
+  "timeout-error",
+] as const;

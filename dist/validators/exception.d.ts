@@ -1,13 +1,11 @@
 import { ExceptionStatus } from "../status";
 export interface IException<T extends ExceptionStatus = ExceptionStatus> {
-    readonly statut: T;
+    readonly status: T;
 }
 export declare class Exception<T extends ExceptionStatus = ExceptionStatus> implements IException<T> {
-    readonly statut: T;
-    constructor(statut: T);
+    readonly status: T;
+    constructor(status: T);
 }
-declare type ExceptionObject = {
-    [key in ExceptionStatus]?: Exception;
+export declare const EXCEPTIONS: {
+    [key in ExceptionStatus]: Exception;
 };
-export declare const EXCEPTIONS: Required<ExceptionObject>;
-export {};

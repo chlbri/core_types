@@ -6,18 +6,21 @@ import {
   ReturnData,
   ServerErrorData,
   SuccessData,
+  TimeOutErrorData
 } from "../interfaces";
 import {
   isStatus,
-  isStatusClientError,
+  isStatusClientError, isStatusException,
+
+
   isStatusInformation,
   isStatusPermission,
   isStatusRedirect,
   isStatusServerError,
   isStatusSuccessFull,
+  isTimeOutClientError
 } from "../status";
 
-// #region functions
 function isD<T>(
   func: (val: number) => boolean,
   data: ReturnData<T>
@@ -25,26 +28,17 @@ function isD<T>(
   return func(data.status);
 }
 
-export function isSuccessFull<T>(
-  data: ReturnData<T>
-): data is SuccessData<T> {
-  return isD(isStatusSuccessFull, data);
-}
-
-const r3: ReturnData = {
-  status: 500,
-};
-
+// #region Had Payload
 export function isInformation<T>(
   data: ReturnData<T>
 ): data is InformationData<T> {
   return isD(isStatusInformation, data);
 }
 
-export function isPermission(
-  data: ReturnData
-): data is PermissionErrorData {
-  return isD(isStatusPermission, data);
+export function isSuccessFull<T>(
+  data: ReturnData<T>
+): data is SuccessData<T> {
+  return isD(isStatusSuccessFull, data);
 }
 
 export function isRedirect<T>(
@@ -65,7 +59,9 @@ export function hadPayload<T>(
     isInformation(data)
   );
 }
+// #endregion
 
+// #region Errors
 export function isClientError(
   data: ReturnData
 ): data is ClientErrorData {
@@ -78,9 +74,31 @@ export function isServerError(
   return isD(isStatusServerError, data);
 }
 
+export function isTimeOutError(
+  data: ReturnData
+): data is TimeOutErrorData {
+  return isD(isTimeOutClientError, data);
+}
+
+export function isPermissionError(
+  data: ReturnData
+): data is PermissionErrorData {
+  return isD(isStatusPermission, data);
+}
+
+export function isError(
+  data: ReturnData
+): data is
+  | ClientErrorData
+  | ServerErrorData
+  | PermissionErrorData
+  | TimeOutErrorData {
+  return isD(isStatusException, data);
+}
+// #endregion
+
 export function isReturnData<T>(
   data: ReturnData<T>
 ): data is ReturnData<T> {
   return isD(isStatus, data);
 }
-// #endregion

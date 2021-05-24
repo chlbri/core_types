@@ -1,26 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isReturnData = exports.isServerError = exports.isClientError = exports.hadPayload = exports.isRedirect = exports.isPermission = exports.isInformation = exports.isSuccessFull = void 0;
+exports.isReturnData = exports.isError = exports.isPermissionError = exports.isTimeOutError = exports.isServerError = exports.isClientError = exports.hadPayload = exports.isRedirect = exports.isSuccessFull = exports.isInformation = void 0;
 const status_1 = require("../status");
-// #region functions
 function isD(func, data) {
     return func(data.status);
 }
-function isSuccessFull(data) {
-    return isD(status_1.isStatusSuccessFull, data);
-}
-exports.isSuccessFull = isSuccessFull;
-const r3 = {
-    status: 500,
-};
+// #region Had Payload
 function isInformation(data) {
     return isD(status_1.isStatusInformation, data);
 }
 exports.isInformation = isInformation;
-function isPermission(data) {
-    return isD(status_1.isStatusPermission, data);
+function isSuccessFull(data) {
+    return isD(status_1.isStatusSuccessFull, data);
 }
-exports.isPermission = isPermission;
+exports.isSuccessFull = isSuccessFull;
 function isRedirect(data) {
     return isD(status_1.isStatusRedirect, data);
 }
@@ -31,6 +24,8 @@ function hadPayload(data) {
         isInformation(data));
 }
 exports.hadPayload = hadPayload;
+// #endregion
+// #region Errors
 function isClientError(data) {
     return isD(status_1.isStatusClientError, data);
 }
@@ -39,8 +34,20 @@ function isServerError(data) {
     return isD(status_1.isStatusServerError, data);
 }
 exports.isServerError = isServerError;
+function isTimeOutError(data) {
+    return isD(status_1.isTimeOutClientError, data);
+}
+exports.isTimeOutError = isTimeOutError;
+function isPermissionError(data) {
+    return isD(status_1.isStatusPermission, data);
+}
+exports.isPermissionError = isPermissionError;
+function isError(data) {
+    return isD(status_1.isStatusException, data);
+}
+exports.isError = isError;
+// #endregion
 function isReturnData(data) {
     return isD(status_1.isStatus, data);
 }
 exports.isReturnData = isReturnData;
-// #endregion

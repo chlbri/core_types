@@ -21,4 +21,6 @@ generateStatusTests(isStatusPermission, [
   false,
   true,
   true,
+  false,
+  false,
 ]);

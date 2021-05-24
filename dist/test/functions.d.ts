@@ -3,14 +3,14 @@ import { WithId } from "../entities";
 import { DataFromPromiseWithoutId, PromiseReturnData } from "../interfaces";
 import { LengthOf, ThenArg, TupleOf } from "../types";
 import { TestElement } from "./types";
-export declare function generateTestTable<F extends (...args: any[]) => any, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<ReturnType<F>, LengthOf<T1>>>(func: F, actuals: T1, expecteds: T2): TupleOf<TestElement<T1[number], T2[number]>, LengthOf<T1>>;
-export declare function generateAsyncTestTable<F extends (...args: any[]) => any, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>>(func: F, actuals: T1, expecteds: T2): TupleOf<TestElement<T1[number], T2[number]>, LengthOf<T1>>;
-export declare function generateReturnDataTestTable<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, LengthOf<T1>>>(func: F, actuals: T1, expecteds: T2): TupleOf<TestElement<T1[number], T2[number]>, LengthOf<T1>>;
+export declare function generateTestTable<F extends (...args: any[]) => any, T1 extends ReadonlyArray<Parameters<F>>>(func: F, actuals: T1, expecteds: TupleOf<ReturnType<F>, LengthOf<T1>>): TupleOf<TestElement<T1[number], TupleOf<ReturnType<F>, LengthOf<T1>>[number]>, LengthOf<T1>>;
+export declare function generateAsyncTestTable<F extends (...args: any[]) => any, T1 extends ReadonlyArray<Parameters<F>>>(func: F, actuals: T1, expecteds: TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>): TupleOf<TestElement<T1[number], TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>[number]>, LengthOf<T1>>;
+export declare function generateReturnDataTestTable<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, T1 extends ReadonlyArray<Parameters<F>>>(func: F, actuals: T1, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, LengthOf<T1>>): TupleOf<TestElement<T1[number], TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, LengthOf<T1>>[number]>, LengthOf<T1>>;
 export declare function mapperTest<P extends any[], R extends any>(spy: jest.Mock<R, P>, uuid?: boolean): ([actual, expected]: TestElement<P, R>) => void;
 export declare function mapperAsyncTest<P extends any[], R extends any>(spy: jest.Mock<R, P>, uuid?: boolean): ([actual, expected]: TestElement<P, ThenArg<R>>) => void;
 export declare function returnSimpleData(data: any): any;
 export declare function mapperReturnDataTest<P extends any[], R extends PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>>(spy: jest.Mock<R, P>, uuid?: boolean): ([actual, expected]: TestElement<P, DataFromPromiseWithoutId<R>>) => void;
-export declare function generateTests<F extends (...args: any[]) => any, T1 extends TupleOf<Parameters<F>>, T2 extends TupleOf<ReturnType<F>, LengthOf<T1>>>(func: F, actuals: T1, expecteds: T2, uuid?: boolean): {
+export declare function generateTests<F extends (...args: any[]) => any, T1 extends ReadonlyArray<Parameters<F>>>(func: F, actuals: T1, expecteds: TupleOf<ReturnType<F>, LengthOf<T1>>, uuid?: boolean): {
     readonly tests: void[];
     readonly spy: jest.Mock<any, any[]>;
 };

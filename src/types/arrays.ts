@@ -5,6 +5,25 @@ export type IndexOfArray<
   ? S[number]
   : IndexOfArray<T, [S["length"], ...S]>;
 
+type _DivideBy<N extends number, T extends readonly any[]> =
+  T["length"] extends N
+    ? [true]
+    : T extends readonly [
+        ...TupleOf<T[number], N>,
+        ...infer U
+      ]
+    ? [true, ..._DivideBy<N, U>]
+    : never;
+
+export type DivideBy<
+  N extends number,
+  T extends readonly any[]
+> = _DivideBy<N, T>["length"];
+
+const arr = [1, 2, 3, 4, 3, 4, 3, 4, 3] as const;
+
+type T4 = DivideBy<3, typeof arr>;
+
 export type LengthOf<T> = T extends any[] | readonly any[]
   ? T["length"]
   : never;
@@ -20,7 +39,7 @@ export type TupleOf<T = any, N extends number = number> =
   N extends N
     ? number extends N
       ? T[]
-      : _TupleOf<T, N>
+      : [..._TupleOf<T, N>]
     : never;
 
 export type GetTupleType<T> = T extends TupleOf<
@@ -36,6 +55,13 @@ export type GetTupleNumber<T> = T extends TupleOf<
 >
   ? U
   : never;
+
+function tester<C extends ReadonlyArray<string>, V>(
+  arr1: C,
+  arr2: TupleOf<V, LengthOf<C>>
+) {}
+
+tester(["hddfdj", "uhdif"] as const, [4, 3]);
 
 type _UnionToIntersection<U> = (
   U extends unknown ? (k: U) => void : never

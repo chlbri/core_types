@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LETTERS = void 0;
+exports.STATUS_STRINGS = exports.LETTERS = void 0;
 exports.LETTERS = [
     "a",
     "b",
@@ -38,4 +38,13 @@ exports.LETTERS = [
     "ô",
     "ù",
     "û",
+];
+exports.STATUS_STRINGS = [
+    "information",
+    "success",
+    "redirect",
+    "client-error",
+    "server-error",
+    "permission-error",
+    "timeout-error",
 ];

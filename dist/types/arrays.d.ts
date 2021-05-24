@@ -1,7 +1,12 @@
 export declare type IndexOfArray<T extends readonly unknown[], S extends number[] = []> = T["length"] extends S["length"] ? S[number] : IndexOfArray<T, [S["length"], ...S]>;
+declare type _DivideBy<N extends number, T extends readonly any[]> = T["length"] extends N ? [true] : T extends readonly [
+    ...TupleOf<T[number], N>,
+    ...infer U
+] ? [true, ..._DivideBy<N, U>] : never;
+export declare type DivideBy<N extends number, T extends readonly any[]> = _DivideBy<N, T>["length"];
 export declare type LengthOf<T> = T extends any[] | readonly any[] ? T["length"] : never;
 declare type _TupleOf<T, N extends number, R extends unknown[] = []> = R["length"] extends N ? R : _TupleOf<T, N, [...R, T]>;
-export declare type TupleOf<T = any, N extends number = number> = N extends N ? number extends N ? T[] : _TupleOf<T, N> : never;
+export declare type TupleOf<T = any, N extends number = number> = N extends N ? number extends N ? T[] : [..._TupleOf<T, N>] : never;
 export declare type GetTupleType<T> = T extends TupleOf<infer U, any> ? U : never;
 export declare type GetTupleNumber<T> = T extends TupleOf<any, infer U> ? U : never;
 declare type _UnionToIntersection<U> = (U extends unknown ? (k: U) => void : never) extends (k: infer I) => void ? I : never;

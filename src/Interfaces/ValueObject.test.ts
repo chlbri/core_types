@@ -1,5 +1,9 @@
 import { sliceArray } from "../functions";
-import { generate18Tests, generate9Tests } from "../test";
+import {
+  generate18Tests,
+  generate9Tests,
+  generateTests,
+} from "../test";
 import { LengthOf, TupleOf } from "../types";
 import {
   EXCEPTIONS,
@@ -37,15 +41,15 @@ type ChainReturnType = ReturnType<typeof chain>;
 const requiredV = new RequiredValidator(EXCEPTIONS[404]);
 const numberMinV = new NumberMinValidator(
   5,
-  EXCEPTIONS[302]
+  EXCEPTIONS[502]
 );
 const numberExactV = new NumberExactValidator(
   7,
-  EXCEPTIONS[341]
+  EXCEPTIONS[541]
 );
 const numberMaxV = new NumberMaxValidator(
   10,
-  EXCEPTIONS[351]
+  EXCEPTIONS[551]
 );
 const numberRequiredV = new RequiredNumberValidator(
   EXCEPTIONS[405]
@@ -53,26 +57,26 @@ const numberRequiredV = new RequiredNumberValidator(
 
 const stringMinV = new StringMinLengthValidator(
   5,
-  EXCEPTIONS[307]
+  EXCEPTIONS[507]
 );
 const stringExactV = new StringExactLengthValidator(
   7,
-  EXCEPTIONS[342]
+  EXCEPTIONS[542]
 );
 const stringMaxV = new StringMaxLengthValidator(
   10,
-  EXCEPTIONS[352]
+  EXCEPTIONS[552]
 );
 const stringRequiredV = new StringRequiredValidator(
   EXCEPTIONS[406]
 );
 const stringNumberFormatedV1 = new FormatedNumberValidator(
   undefined,
-  EXCEPTIONS[380]
+  EXCEPTIONS[580]
 );
 const stringNumberFormatedV2 = new FormatedNumberValidator(
   6,
-  EXCEPTIONS[390]
+  EXCEPTIONS[590]
 );
 // #endregion
 
@@ -87,7 +91,7 @@ const valueActuals = [
   17,
   undefined,
   undefined,
-  "123456731045",
+  "125456751045",
   "4444",
   "cinq5",
   "55555",
@@ -131,10 +135,12 @@ function getActuals() {
   }) as TupleOf<SafeParameters, Length>;
 }
 
-const chainActuals = sliceArray(getActuals(), 2) as TupleOf<
-  ChainParameters,
-  LengthChain
->;
+const chainActuals = sliceArray(
+  validatorsActuals.map((validatorsActual, i) => {
+    return new VO(valueActuals[i], validatorsActual);
+  }),
+  2
+);
 
 const chainsExpected: TupleOf<
   ChainReturnType,
@@ -150,26 +156,36 @@ const chainsExpected: TupleOf<
   getActuals()[15][0],
   getActuals()[16][0],
 ];
+const chainsExpected2 = [
+  getActuals()[1][0],
+  getActuals()[2][0],
+  getActuals()[5][0],
+  getActuals()[6][0],
+  getActuals()[8][0],
+  getActuals()[11][0],
+  getActuals()[13][0],
+  getActuals()[16][0],
+];
 
 const safExpecteds: TupleOf<SafeReturnType, Length> = [
   valueActuals[0],
-  EXCEPTIONS[351],
-  EXCEPTIONS[404],
-  EXCEPTIONS[351],
+  numberMaxV.exception,
+  requiredV.exception,
+  numberMaxV.exception,
   valueActuals[4],
-  EXCEPTIONS[307],
-  EXCEPTIONS[380],
+  stringMinV.exception,
+  stringNumberFormatedV1.exception,
   valueActuals[7],
-  EXCEPTIONS[390],
-  EXCEPTIONS[390],
+  stringNumberFormatedV2.exception,
+  stringNumberFormatedV2.exception,
   valueActuals[10],
   valueActuals[11],
   valueActuals[12],
-  EXCEPTIONS[352],
+  stringMaxV.exception,
   valueActuals[14],
   valueActuals[15],
-  EXCEPTIONS[341],
-  EXCEPTIONS[405],
+  numberExactV.exception,
+  numberRequiredV.exception,
 ];
 
 const unSafExpecteds = valueActuals as TupleOf<
@@ -225,5 +241,20 @@ describe("VO.isValid", () => {
 describe("VO.chain", () => {
   console.log("chainActuals :", chainActuals);
   console.log("chainsExpected :", chainsExpected);
-  generate9Tests(chain, chainActuals, chainsExpected, true);
+  generateTests(
+    chain,
+    chainActuals,
+    [
+      getActuals()[1][0],
+      getActuals()[2][0],
+      getActuals()[5][0],
+      getActuals()[6][0],
+      getActuals()[8][0],
+      getActuals()[11][0],
+      getActuals()[13][0],
+      getActuals()[15][0],
+      getActuals()[16][0],
+    ],
+    true
+  );
 });

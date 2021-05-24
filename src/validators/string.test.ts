@@ -5,7 +5,7 @@ import {
   StringExactLengthValidator,
   StringMaxLengthValidator,
   StringMinLengthValidator,
-  StringRequiredValidator,
+  StringRequiredValidator
 } from "./string";
 
 type Length = 8;

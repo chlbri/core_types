@@ -21,4 +21,6 @@ generateStatusTests(isStatusServerError, [
   false,
   false,
   false,
+  false,
+  false,
 ]);
