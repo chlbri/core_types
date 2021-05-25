@@ -11,7 +11,7 @@ declare type WI<T> = WithId<WithoutPermissions<T>>;
 declare type WO<T> = WithoutId<WithoutPermissions<T>>;
 declare type PDP<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<Required<NOmit<T, K[number]>>>;
 declare type PDPA<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<Required<NOmit<T, K[number]>>[]>;
-export interface IDAO<T extends Entity> {
+export interface IDAO<T extends Entity = Entity> {
     createOne: (value: WithoutPermissions<T>) => PD<string>;
     createMany: (values: WO<T>[]) => PD<string[]>;
     upsertOne: (value: WI<T>) => PD<string>;

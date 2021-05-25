@@ -1,12 +1,15 @@
-import { WithPassword } from "../entities";
 import { PromiseReturnData as PD } from "./ReturnData";
-export interface IAuthRepo1<User> {
-    signIn: (...args: string[]) => PD<User>;
-    signUp: (...args: string[]) => PD<User>;
+export interface IAuthRepo<User> {
     currentUser: User;
-}
-export interface IAuthRepo2<User> {
-    requestCode: (login: string) => PD<WithPassword<User>>;
-    signIn: (...args: string[]) => PD<User>;
-    currentUser: User;
+    signInWithEmailAndPassword: (email: string, password: string) => PD<User>;
+    signUpWithEmailAndPassword: (email: string, password: string, ...data: any[]) => PD<User>;
+    signWithEmail: (email: string, code: any) => PD<User>;
+    signWithWhatsApp: (phoneNumber: string, code: any) => PD<User>;
+    signWithPhoneNumber: (phoneNumber: string, code: any) => PD<User>;
+    signWithFacebook: (tokens: any) => PD<User>;
+    signWithGithub: (tokens: any) => PD<User>;
+    signWithAppleID: (tokens: any) => PD<User>;
+    signWithGoogle: (tokens: any) => PD<User>;
+    signWithTwitter: (tokens: any) => PD<User>;
+    signInAnonymously: () => PD<User>;
 }
