@@ -17,14 +17,20 @@ export * from "./ServerError";
 export * from "./Success";
 export * from "./TimeOutError";
 
-export type ReturnData<T = any> =
-  | SuccessData<T>
-  | InformationData<T>
-  | RedirectData<T>
+export type ErrorData =
   | ClientErrorData
   | ServerErrorData
   | PermissionErrorData
   | TimeOutErrorData;
+
+export type ResolveData<T = any> =
+  | InformationData<T>
+  | SuccessData<T>
+  | RedirectData<T>;
+
+export type ReturnData<T = any> =
+  | ResolveData<T>
+  | ErrorData;
 
 export type PromiseReturnData<T = any> = Promise<
   ReturnData<T>

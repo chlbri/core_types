@@ -8,8 +8,10 @@
   "types": "dist/index.d.ts",
   "private": true,
   "scripts": {
+    "clean": "rimraf ./dist",
     "tsc": "tsc",
-    "test": "jest",
+    "compile": "yarn run clean && tsc",
+    "test": "jest --verbose --detectOpenHandles --watch",
     "generateTestsFunctions": "ts-node src\test\functions.ts"
   },
   "dependencies": {
