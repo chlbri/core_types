@@ -1,15 +1,16 @@
 import { PromiseReturnData as PD } from "./ReturnData";
-export interface IAuthRepo<User> {
-    currentUser: User;
-    signInWithEmailAndPassword: (email: string, password: string) => PD<User>;
-    signUpWithEmailAndPassword: (email: string, password: string, ...data: any[]) => PD<User>;
-    signWithEmail: (email: string, code: any) => PD<User>;
-    signWithWhatsApp: (phoneNumber: string, code: any) => PD<User>;
-    signWithPhoneNumber: (phoneNumber: string, code: any) => PD<User>;
-    signWithFacebook: (tokens: any) => PD<User>;
-    signWithGithub: (tokens: any) => PD<User>;
-    signWithAppleID: (tokens: any) => PD<User>;
-    signWithGoogle: (tokens: any) => PD<User>;
-    signWithTwitter: (tokens: any) => PD<User>;
-    signInAnonymously: () => PD<User>;
+export interface IAuthRepo {
+    currentUserID: string;
+    signInWithEmailAndPassword: (email: string, password: string) => PD<string>;
+    signUpWithEmailAndPassword: (email: string, password: string, ...data: any[]) => PD<string>;
+    signWithEmail: (email: string, code: any) => PD<string>;
+    signWithWhatsApp: (phoneNumber: string, code: any) => PD<string>;
+    signWithPhoneNumber: (phoneNumber: string, code: any) => PD<string>;
+    signWithFacebook: (tokens: any) => PD<string>;
+    signWithGithub: (tokens: any) => PD<string>;
+    signWithAppleID: (tokens: any) => PD<string>;
+    signWithGoogle: (tokens: any) => PD<string>;
+    signWithTwitter: (tokens: any) => PD<string>;
+    signInAnonymously: () => PD<string>;
+    signOut: () => PD<true>;
 }
