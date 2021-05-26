@@ -7,7 +7,7 @@ type User = {
 };
 
 export interface IAuthRepo {
-  currentUserID: User;
+  currentUser: User;
   signInWithEmailAndPassword: (email: string, password: string) => PD<User>;
   signUpWithEmailAndPassword: (
     email: string,
