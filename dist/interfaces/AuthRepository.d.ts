@@ -1,11 +1,11 @@
 import { PromiseReturnData as PD } from "./ReturnData";
 declare type User = {
-    id: string;
+    id?: string;
     expirationLocal?: Date;
     expirationOnline?: Date;
 };
 export interface IAuthRepo {
-    currentUserID?: User;
+    currentUserID: User;
     signInWithEmailAndPassword: (email: string, password: string) => PD<User>;
     signUpWithEmailAndPassword: (email: string, password: string, ...data: any[]) => PD<User>;
     signWithEmail: (email: string, code: any) => PD<User>;
