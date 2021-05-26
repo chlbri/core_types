@@ -1,28 +1,34 @@
 import { WithPassword } from "../entities";
 import { PromiseReturnData as PD } from "./ReturnData";
 
+type User = {
+  id?: string;
+  expirationLocal?: Date;
+  expirationOnline?: Date;
+};
+
 export interface IAuthRepo {
   currentUserID: string;
-  signInWithEmailAndPassword: (email: string, password: string) => PD<string>;
+  signInWithEmailAndPassword: (email: string, password: string) => PD<User>;
   signUpWithEmailAndPassword: (
     email: string,
     password: string,
     ...data: any[]
-  ) => PD<string>;
-  signWithEmail: (email: string, code: any) => PD<string>;
-  signWithWhatsApp: (phoneNumber: string, code: any) => PD<string>;
-  signWithPhoneNumber: (phoneNumber: string, code: any) => PD<string>;
+  ) => PD<User>;
+  signWithEmail: (email: string, code: any) => PD<User>;
+  signWithWhatsApp: (phoneNumber: string, code: any) => PD<User>;
+  signWithPhoneNumber: (phoneNumber: string, code: any) => PD<User>;
   // TODO : Search for tokens required for Facebook
-  signWithFacebook: (tokens: any) => PD<string>;
+  signWithFacebook: (tokens: any) => PD<User>;
   // TODO : Search for tokens required for Github
-  signWithGithub: (tokens: any) => PD<string>;
+  signWithGithub: (tokens: any) => PD<User>;
   // TODO : Search for tokens required for AppleID
-  signWithAppleID: (tokens: any) => PD<string>;
+  signWithAppleID: (tokens: any) => PD<User>;
   // TODO : Search for tokens required for Google OAuth
-  signWithGoogle: (tokens: any) => PD<string>;
+  signWithGoogle: (tokens: any) => PD<User>;
   // TODO : Search for tokens required for Twitter
-  signWithTwitter: (tokens: any) => PD<string>;
+  signWithTwitter: (tokens: any) => PD<User>;
   // TODO : Search how to do it!
-  signInAnonymously: () => PD<string>;
+  signInAnonymously: () => PD<User>;
   signOut: () => PD<true>;
 }
