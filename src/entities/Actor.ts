@@ -6,5 +6,5 @@ export interface Actor
   login: string;
   ip: string;
   location?: string;
-  permissions: number[];
+  permissions: string[];
 }

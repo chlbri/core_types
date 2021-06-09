@@ -8,17 +8,21 @@ type DSO<T> = DataSearchOperations<WithoutPermissions<T>>;
 type UpdateHelper<T> = {
   search: DSO<T>;
   newValue: WithoutId<Partial<T>>;
+  limit?: number;
 };
 
 type WI<T> = WithId<WithoutPermissions<T>>;
 type WO<T> = WithoutId<WithoutPermissions<T>>;
 
 type PDP<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<
-  Required<NOmit<T, K[number]>>
+  Required<Pick<T, K[number]>>
 >;
 type PDPA<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<
-  Required<NOmit<T, K[number]>>[]
+  Required<Pick<T, K[number]>>[]
 >;
+
+type IDs<T extends Entity> = NonNullable<T["_id"]>[];
+type ID<T extends Entity> = NonNullable<T["_id"]>;
 
 // type UpdateHelperId<T> = {
 //   search: string;
@@ -32,6 +36,16 @@ export interface IDAO<T extends Entity = Entity> {
 
   upsertOne: (value: WI<T>) => PD<string>;
 
+  readOne: <K extends (keyof T)[] = (keyof T)[]>(
+    search: DSO<T>,
+    projection?: K
+  ) => PDP<T, K>;
+
+  readOneById: <K extends (keyof T)[] = (keyof T)[]>(
+    _id: ID<T>,
+    projection?: K
+  ) => PDP<T, K>;
+
   readMany: <K extends (keyof T)[] = (keyof T)[]>(
     search?: DSO<T>,
     options?: {
@@ -40,30 +54,20 @@ export interface IDAO<T extends Entity = Entity> {
     }
   ) => PDPA<T, K>;
 
-  count: (search?: DSO<T>) => PD<number>;
-
   readManyByIds: <K extends (keyof T)[] = (keyof T)[]>(
-    ids: string[],
+    ids: IDs<T>,
     options?: {
       projection?: K;
       limit?: number;
-      serach: DSO<T>;
+      search?: DSO<T>;
     }
   ) => PDPA<T, K>;
 
-  readOne: <K extends (keyof T)[] = (keyof T)[]>(
-    search: DSO<T>,
-    projection?: K
-  ) => PDP<T, K>;
-
-  readOneById: <K extends (keyof T)[] = (keyof T)[]>(
-    _id: string,
-    projection?: K
-  ) => PDP<T, K>;
+  count: (search?: DSO<T>) => PD<number>;
 
   updateOne: (search: DSO<T>, newValue: WO<Partial<T>>) => PD<string>;
 
-  updateOneById: (_id: string, newValue: WO<Partial<T>>) => PD<string>;
+  updateOneById: (_id: ID<T>, newValue: WO<Partial<T>>) => PD<string>;
 
   updateMany: (
     search: DSO<T>,
@@ -72,7 +76,7 @@ export interface IDAO<T extends Entity = Entity> {
   ) => PD<string[]>;
 
   updateManyByIds: (
-    ids: string[],
+    ids: IDs<T>,
     newValue: WO<Partial<T>>,
     options?: {
       search?: DSO<T>;
@@ -80,16 +84,16 @@ export interface IDAO<T extends Entity = Entity> {
     }
   ) => PD<string[]>;
 
-  bulkUpdate: (updates: UpdateHelper<T>) => PD<string[]>;
+  bulkUpdate: (updates: UpdateHelper<T>[]) => PD<string[]>;
 
   deleteOne: (search: DSO<T>) => PD<string>;
 
-  deleteOneById: (search: string) => PD<string>;
+  deleteOneById: (_id: ID<T>) => PD<string>;
 
-  deleteMany: (search: DSO<T>) => PD<string[]>;
+  deleteMany: (search: DSO<T>, limit?: number) => PD<string[]>;
 
-  deleteManyByIds: <A extends string[]>(
-    ids: A,
+  deleteManyByIds: (
+    ids: IDs<T>,
     options?: {
       search?: DSO<T>;
       limit?: number;

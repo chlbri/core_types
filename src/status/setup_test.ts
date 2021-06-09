@@ -1,7 +1,4 @@
-import {
-  generate19Tests,
-  generateTests,
-} from "../test/functions";
+import { generate19Tests, generateTests } from "../test/functions";
 import { TupleOf } from "../types";
 
 export function generateStatusTests(

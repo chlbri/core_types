@@ -1,8 +1,6 @@
+import { NOmit } from "./objects";
 export declare type IndexOfArray<T extends readonly unknown[], S extends number[] = []> = T["length"] extends S["length"] ? S[number] : IndexOfArray<T, [S["length"], ...S]>;
-declare type _DivideBy<N extends number, T extends readonly any[]> = T["length"] extends N ? [true] : T extends readonly [
-    ...TupleOf<T[number], N>,
-    ...infer U
-] ? [true, ..._DivideBy<N, U>] : never;
+declare type _DivideBy<N extends number, T extends readonly any[]> = T["length"] extends N ? [true] : T extends readonly [...TupleOf<T[number], N>, ...infer U] ? [true, ..._DivideBy<N, U>] : never;
 export declare type DivideBy<N extends number, T extends readonly any[]> = _DivideBy<N, T>["length"];
 export declare type LengthOf<T> = T extends any[] | readonly any[] ? T["length"] : never;
 declare type _TupleOf<T, N extends number, R extends unknown[] = []> = R["length"] extends N ? R : _TupleOf<T, N, [...R, T]>;
@@ -15,4 +13,5 @@ declare type _Push<T extends unknown[], V> = [...T, V];
 declare type _TuplifyUnionBoolean<T> = [T] extends [never] ? true : false;
 export declare type TuplifyUnion<T> = true extends _TuplifyUnionBoolean<T> ? [] : _Push<TuplifyUnion<Exclude<T, _LastOf<T>>>, _LastOf<T>>;
 export declare type Reverse<T> = T extends [] ? T : T extends [infer Head, ...infer Tail] ? [...Reverse<Tail>, Head] : T;
+export declare type NArrayOmit<T extends any[], K extends keyof T[number] = keyof T[number]> = NOmit<T[number], K>[];
 export {};

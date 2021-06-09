@@ -421,7 +421,7 @@ describe("Asynchronous ==>", () => {
 // #endregion
 
 // #region ReturnData
-interface User extends Entity, Login {}
+interface User extends Pick<Entity,'_id'>, Login {}
 
 type RDW<T> = ReturnData<WithId<T>>;
 type RDWA<T> = ReturnData<WithId<T>[]>;

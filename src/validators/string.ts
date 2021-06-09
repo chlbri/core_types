@@ -4,14 +4,8 @@ import { Exception } from "./exception";
 import { Condition, Validator } from "./validator";
 
 export class StringValidator extends Validator<string> {
-  constructor(
-    validate: Condition<string>,
-    exception?: Exception
-  ) {
-    super(
-      (value) => !isNullish(value) && validate(value),
-      exception
-    );
+  constructor(validate: Condition<string>, exception?: Exception) {
+    super((value) => !isNullish(value) && validate(value), exception);
   }
 }
 
@@ -40,14 +34,9 @@ export class StringRequiredValidator extends Validator {
 }
 
 export class FormatedNumberValidator extends StringValidator {
-  constructor(
-    num?: Nullish<number>,
-    exception?: Exception
-  ) {
+  constructor(num?: Nullish<number>, exception?: Exception) {
     super((value) => {
-      const reg = new RegExp(
-        `^\\d${isNullish(num) ? "+" : `{${num}}`}$`
-      );
+      const reg = new RegExp(`^\\d${isNullish(num) ? "+" : `{${num}}`}$`);
       return reg.test(value!);
     }, exception);
   }

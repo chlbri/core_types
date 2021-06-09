@@ -4,5 +4,5 @@ export interface Actor extends Required<WithoutPermissions<Entity>> {
     login: string;
     ip: string;
     location?: string;
-    permissions: number[];
+    permissions: string[];
 }

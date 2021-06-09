@@ -18,8 +18,7 @@ export class ValueObject<T = any, V extends RV<T> = any> {
   validate(arg?: T) {
     if (!this.validators) return arg;
     for (const validator of this.validators) {
-      if (!validator.validate(arg))
-        return validator.exception;
+      if (!validator.validate(arg)) return validator.exception;
     }
     return arg;
   }
@@ -39,6 +38,10 @@ export class ValueObject<T = any, V extends RV<T> = any> {
 
   chain(next: ValueObject): ValueObject {
     return this.isValid ? next : this;
+  }
+
+  unChain(next: ValueObject): ValueObject {
+    return this.isValid ? this : next;
   }
 }
 

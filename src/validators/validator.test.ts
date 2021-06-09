@@ -28,12 +28,10 @@ const exceptionsTable: TupleOf<Exception, Length> = [
   EXCEPTIONS[403],
 ];
 
-const validatorsTable = functionsTable.map(
-  (validate, i) => {
-    const exception = exceptionsTable[i];
-    return [{ validate, exception }];
-  }
-) as TupleOf<[IValidator], Length>;
+const validatorsTable = functionsTable.map((validate, i) => {
+  const exception = exceptionsTable[i];
+  return [{ validate, exception }];
+}) as TupleOf<[IValidator], Length>;
 
 function testerFunction(validator: IValidator) {
   return validator.validate;
@@ -44,19 +42,11 @@ function testerException(validator: IValidator) {
 }
 
 describe("Test Functions  =================================>", () => {
-  generate3Tests(
-    testerFunction,
-    validatorsTable,
-    functionsTable
-  );
+  generate3Tests(testerFunction, validatorsTable, functionsTable);
 });
 
 describe("Test Exceptions  =================================>", () => {
-  generate3Tests(
-    testerException,
-    validatorsTable,
-    exceptionsTable
-  );
+  generate3Tests(testerException, validatorsTable, exceptionsTable);
 });
 
 describe("Validation of values  =================================>", () => {
@@ -64,41 +54,14 @@ describe("Validation of values  =================================>", () => {
     validator: [IValidator],
     expecteds: TupleOf<boolean, Length2>
   ) {
-    return describe(`${JSON.stringify(
-      validator[0]
-    )}  ====>`, () => {
-      generate6Tests(
-        validator[0].validate,
-        valuesTable,
-        expecteds
-      );
+    return describe(`${JSON.stringify(validator[0])}  ====>`, () => {
+      generate6Tests(validator[0].validate, valuesTable, expecteds);
     });
   }
 
-  tester(validatorsTable[0], [
-    false,
-    false,
-    true,
-    false,
-    false,
-    false,
-  ]);
+  tester(validatorsTable[0], [false, false, true, false, false, false]);
 
-  tester(validatorsTable[1], [
-    false,
-    false,
-    false,
-    true,
-    false,
-    false,
-  ]);
+  tester(validatorsTable[1], [false, false, false, true, false, false]);
 
-  tester(validatorsTable[2], [
-    false,
-    false,
-    false,
-    false,
-    true,
-    false,
-  ]);
+  tester(validatorsTable[2], [false, false, false, false, true, false]);
 });

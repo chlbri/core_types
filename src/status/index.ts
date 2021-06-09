@@ -23,16 +23,13 @@ export const STATUS_CODES = [
 
 export type Status = typeof STATUS_CODES[number];
 
-export type ExceptionStatus =
-  typeof EXCEPTION_CODES[number];
+export type ExceptionStatus = typeof EXCEPTION_CODES[number];
 
 export function isStatus(val: number): val is Status {
   return isN(STATUS_CODES, val);
 }
 
-export function isStatusException(
-  val: number
-): val is ExceptionStatus {
+export function isStatusException(val: number): val is ExceptionStatus {
   return isN(EXCEPTION_CODES, val);
 }
 
@@ -43,4 +40,3 @@ export * from "./redirect";
 export * from "./server";
 export * from "./successfull";
 export * from "./timeout";
-

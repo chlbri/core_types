@@ -1,17 +1,11 @@
-import {
-  ExceptionStatus,
-  EXCEPTION_CODES
-} from "../status";
+import { ExceptionStatus, EXCEPTION_CODES } from "../status";
 
-export interface IException<
-  T extends ExceptionStatus = ExceptionStatus
-> {
+export interface IException<T extends ExceptionStatus = ExceptionStatus> {
   readonly status: T;
 }
 
-export class Exception<
-  T extends ExceptionStatus = ExceptionStatus
-> implements IException<T>
+export class Exception<T extends ExceptionStatus = ExceptionStatus>
+  implements IException<T>
 {
   constructor(public readonly status: T) {}
 }
@@ -30,5 +24,4 @@ export const EXCEPTIONS: {
   {} as ExceptionObject
 ) as Required<ExceptionObject>;
 
-const ert =
-  EXCEPTIONS[434]; /* as Required<ExceptionObject> */
+const ert = EXCEPTIONS[434]; /* as Required<ExceptionObject> */

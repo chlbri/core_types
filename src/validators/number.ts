@@ -3,14 +3,8 @@ import { Exception } from "./exception";
 import { Condition, Validator } from "./validator";
 
 export class NumberValidator extends Validator<number> {
-  constructor(
-    validate: Condition<number>,
-    exception?: Exception
-  ) {
-    super(
-      (value) => !isNullish(value) && validate(value),
-      exception
-    );
+  constructor(validate: Condition<number>, exception?: Exception) {
+    super((value) => !isNullish(value) && validate(value), exception);
   }
 }
 

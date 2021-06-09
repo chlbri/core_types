@@ -2,9 +2,9 @@ import { SimpleObject } from "../interfaces";
 
 export interface Entity {
   _id?: string;
-  _read?: number;
-  _update?: number;
-  _delete?: number;
+  _read: string;
+  _update: string;
+  _delete: string;
 }
 
 export function isEntity(val: any): val is Entity {
