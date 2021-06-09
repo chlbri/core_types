@@ -11,6 +11,7 @@ export declare class ValueObject<T = any, V extends RV<T> = any> {
     validateBoolean(arg?: T): boolean;
     get isValid(): boolean;
     chain(next: ValueObject): ValueObject;
+    unChain(next: ValueObject): ValueObject;
 }
 export declare type SimpleObject<T> = T extends ValueObject<infer R> ? R : T extends (...args: any[]) => any ? never : T;
 export {};

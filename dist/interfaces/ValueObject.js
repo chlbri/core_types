@@ -36,5 +36,8 @@ class ValueObject {
     chain(next) {
         return this.isValid ? next : this;
     }
+    unChain(next) {
+        return this.isValid ? this : next;
+    }
 }
 exports.ValueObject = ValueObject;
