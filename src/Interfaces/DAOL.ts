@@ -1,17 +1,9 @@
-import {
-  Actor,
-  Entity,
-  WithId,
-  WithoutId
-} from "../entities";
+import { Actor, Entity, WithId, WithoutId } from "../entities";
 import { WithoutPermissions } from "../entities/WithoutPermissions";
 import { DataSearchOperations, NOmit } from "../types";
 import { IDAO } from "./DAO";
 import { ILogger } from "./Logger";
-import {
-  PromiseReturnData as PD,
-  ReturnData as RD
-} from "./ReturnData";
+import { PromiseReturnData as PD, ReturnData as RD } from "./ReturnData";
 import { PermissionsDAO } from "./types";
 
 type DSO<T> = DataSearchOperations<WithoutPermissions<T>>;
@@ -24,14 +16,12 @@ type UpdateHelper<T> = {
 type WI<T> = WithId<WithoutPermissions<T>>;
 type WO<T> = WithoutId<WithoutPermissions<T>>;
 
-type PDP<
-  T extends Entity,
-  K extends (keyof T)[] = (keyof T)[]
-> = PD<Required<NOmit<T, K[number]>>>;
-type PDPA<
-  T extends Entity,
-  K extends (keyof T)[] = (keyof T)[]
-> = PD<Required<NOmit<T, K[number]>>[]>;
+type PDP<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<
+  Required<NOmit<T, K[number]>>
+>;
+type PDPA<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<
+  Required<NOmit<T, K[number]>>[]
+>;
 
 // type UpdateHelperId<T> = {
 //   search: string;
@@ -69,9 +59,7 @@ export abstract class IDAOL<T extends Entity> {
 
   abstract count: (search?: DSO<T>) => PD<number>;
 
-  abstract readManyByIds: <
-    K extends (keyof T)[] = (keyof T)[]
-  >(
+  abstract readManyByIds: <K extends (keyof T)[] = (keyof T)[]>(
     ids: string[],
     options?: {
       projection?: K;
@@ -85,9 +73,7 @@ export abstract class IDAOL<T extends Entity> {
     projection?: K
   ) => PDP<T, K>;
 
-  abstract readOneById: <
-    K extends (keyof T)[] = (keyof T)[]
-  >(
+  abstract readOneById: <K extends (keyof T)[] = (keyof T)[]>(
     _id: string,
     projection?: K
   ) => PDP<T, K>;
@@ -117,9 +103,7 @@ export abstract class IDAOL<T extends Entity> {
     }
   ) => PD<string[]>;
 
-  abstract bulkUpdate: (
-    updates: UpdateHelper<T>
-  ) => PD<string[]>;
+  abstract bulkUpdate: (updates: UpdateHelper<T>) => PD<string[]>;
 
   abstract deleteOne: (search: DSO<T>) => PD<string>;
 

@@ -4,7 +4,7 @@ import {
   NumberExactValidator,
   NumberMaxValidator,
   NumberMinValidator,
-  RequiredNumberValidator,
+  RequiredNumberValidator
 } from "./number";
 
 type Length = 8;

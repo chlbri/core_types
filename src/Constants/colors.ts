@@ -254,14 +254,7 @@ export const COLOR_NUMBER_DIGITS = [
   255,
 ] as const;
 
-export const COLOR_STRING_DIGITS = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-] as const;
+export const COLOR_STRING_DIGITS = ["a", "b", "c", "d", "e", "f"] as const;
 
 export const CSS_COLORS = [
   "aliceblue",
@@ -414,7 +407,4 @@ export const CSS_COLORS = [
   "yellowgreen",
 ] as const;
 
-export const COLOR_DIGITS = [
-  ...DIGITS,
-  ...COLOR_STRING_DIGITS,
-] as const;
+export const COLOR_DIGITS = [...DIGITS, ...COLOR_STRING_DIGITS] as const;

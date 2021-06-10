@@ -1,3 +1,4 @@
+import { LengthOf, TuplifyUnion } from "./arrays";
 import { AddString } from "./strings";
 
 export type NExtract<T, U extends T> = Extract<T, U>;
@@ -17,6 +18,34 @@ export type PromisifyObject<T extends object> = T &
       : `${P}Async`]: PromisifyMethod<T[P]>;
   };
 
+type FilterFlags<Base, Condition> = {
+  [Key in keyof Base]: Condition extends Base[Key] ? Key : never;
+};
+
+type NotFilterFlags<Base, Condition> = {
+  [Key in keyof Base]: Condition extends Base[Key] ? never : Key;
+};
+
+type AllowedNames<Base, Condition> = FilterFlags<
+  Base,
+  Condition
+>[keyof Base];
+
+type NotAllowedNames<Base, Condition> = NotFilterFlags<
+  Base,
+  Condition
+>[keyof Base];
+
+export type SubType<Base, Condition> = Pick<
+  Base,
+  AllowedNames<Base, Condition>
+>;
+
+export type NotSubType<Base, Condition> = Pick<
+  Base,
+  NotAllowedNames<Base, Condition>
+>;
+
 export type OnlyNamesOf<T, TProp> = {
   [K in keyof T]: Exclude<T[K], undefined> extends TProp ? K : never;
 }[keyof T];
@@ -29,3 +58,21 @@ export type OnPropChangedMethods<T, I extends keyof T> = T &
       cb: (newValue: T[K]) => void
     ) => void;
   };
+
+type _OmitWithoutPartial<T, O extends string> = {
+  [key in keyof Omit<T, O>]: O extends keyof T[key]
+    ? LengthOf<TuplifyUnion<keyof _OmitWithoutPartial<T[key], O>>> extends 1
+      ? _OmitWithoutPartial<T[key], O>[keyof _OmitWithoutPartial<T[key], O>]
+      : _OmitWithoutPartial<T[key], O>
+    : T[key];
+};
+
+type _OmitWithPartial<T, O extends string> = NotSubType<
+  _OmitWithoutPartial<T, O>,
+  undefined
+> &
+  Partial<SubType<_OmitWithoutPartial<T, O>, undefined>>;
+
+export type OmitRecursive<T, O extends string> = {
+  [key in keyof _OmitWithPartial<T, O>]: _OmitWithPartial<T[key], O>;
+};

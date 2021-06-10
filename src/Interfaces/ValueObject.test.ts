@@ -1,5 +1,5 @@
 import { sliceArray } from "../functions";
-import { generate18Tests, generate9Tests, generateTests } from "../test";
+import { generate18Tests, generateTests } from "../test";
 import { LengthOf, TupleOf } from "../types";
 import {
   EXCEPTIONS,
@@ -13,7 +13,7 @@ import {
   StringExactLengthValidator,
   StringMaxLengthValidator,
   StringMinLengthValidator,
-  StringRequiredValidator,
+  StringRequiredValidator
 } from "../validators";
 import { ValueObject as VO } from "./ValueObject";
 

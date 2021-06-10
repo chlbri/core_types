@@ -46,3 +46,5 @@ export const STATUS_STRINGS = [
   "permission-error",
   "timeout-error",
 ] as const;
+
+export const PERMISSIONS_STRINGS = ["_read", "_update", "_delete"] as const;

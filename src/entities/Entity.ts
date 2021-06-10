@@ -12,9 +12,7 @@ export function isEntity(val: any): val is Entity {
 }
 
 export type SimpleEntity<T extends Entity> = {
-  [K in Exclude<keyof T, "_id"> as SimpleObject<
-    T[K]
-  > extends never
+  [K in Exclude<keyof T, "_id"> as SimpleObject<T[K]> extends never
     ? never
     : K]: SimpleObject<T[K]>;
 };

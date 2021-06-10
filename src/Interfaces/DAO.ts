@@ -1,5 +1,5 @@
 import { Entity, WithId, WithoutId } from "../entities";
-import { DataSearchOperations, NOmit } from "../types";
+import { DataSearchOperations } from "../types";
 import { WithoutPermissions } from "./../entities/WithoutPermissions";
 import { PromiseReturnData as PD } from "./ReturnData";
 

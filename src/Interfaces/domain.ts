@@ -51,12 +51,14 @@ export type DomainUseCaseSchema<
       [key: string]: T[number];
     };
 
-export type Domain<T extends IUseCase[] = IUseCase[]> =
-  DomainUseCaseSchema<T, "__name">;
+export type Domain<T extends IUseCase[] = IUseCase[]> = DomainUseCaseSchema<
+  T,
+  "__name"
+>;
 
-export function useCase<
-  D extends Domain,
-  K extends keyof D = keyof D
->(domain: D, use: K): D[K]["call"] {
+export function useCase<D extends Domain, K extends keyof D = keyof D>(
+  domain: D,
+  use: K
+): D[K]["call"] {
   return domain[use].call;
 }

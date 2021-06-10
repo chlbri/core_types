@@ -25,9 +25,7 @@ function isD(func: (val: number) => boolean, data: any) {
 }
 
 // #region Had Payload
-export function isInformation<T>(
-  data: any
-): data is InformationData<T> {
+export function isInformation<T>(data: any): data is InformationData<T> {
   return isD(isStatusInformation, data);
 }
 
@@ -42,9 +40,7 @@ export function isRedirect<T>(data: any): data is RedirectData<T> {
 export function hadPayload<T>(
   data: any
 ): data is RedirectData<T> | SuccessData<T> | InformationData<T> {
-  return (
-    isRedirect(data) || isSuccessFull(data) || isInformation(data)
-  );
+  return isRedirect(data) || isSuccessFull(data) || isInformation(data);
 }
 // #endregion
 
@@ -57,9 +53,7 @@ export function isServerError(data: any): data is ServerErrorData {
   return isD(isStatusServerError, data);
 }
 
-export function isPermissionError(
-  data: any
-): data is PermissionErrorData {
+export function isPermissionError(data: any): data is PermissionErrorData {
   return isD(isStatusPermission, data);
 }
 

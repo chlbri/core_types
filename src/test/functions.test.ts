@@ -1,10 +1,5 @@
 import { v4 } from "uuid";
-import {
-  Entity,
-  Login,
-  WithId,
-  WithoutId,
-} from "../entities";
+import { Entity, Login, WithId, WithoutId } from "../entities";
 import { sleep } from "../functions";
 import { ReturnData } from "../interfaces";
 import { TupleOf } from "../types";
@@ -59,11 +54,7 @@ const actuals2f1: TupleOf<ForTest1, Length2> = [
   [24, 7],
 ]; /* as const */
 
-const actuals2f2: TupleOf<ForTest2, Length2> = [
-  [-5],
-  [-15],
-  [24],
-];
+const actuals2f2: TupleOf<ForTest2, Length2> = [[-5], [-15], [24]];
 
 const expecteds1: TupleOf<boolean, Length1> = [
   false,
@@ -73,26 +64,14 @@ const expecteds1: TupleOf<boolean, Length1> = [
   true,
 ];
 
-const expecteds2: TupleOf<boolean, Length2> = [
-  false,
-  false,
-  true,
-];
+const expecteds2: TupleOf<boolean, Length2> = [false, false, true];
 
 describe("Synchronous ==>", () => {
   describe("Generate the Table of Tests ==>", () => {
     const spy = jest.fn(generateTestTable);
     it("For 5 elements ==>", () => {
-      const actual = spy(
-        dumpFunction1,
-        actuals1f1,
-        expecteds1
-      );
-      const expected: TestTable<
-        ForTest1,
-        boolean,
-        Length1
-      > = [
+      const actual = spy(dumpFunction1, actuals1f1, expecteds1);
+      const expected: TestTable<ForTest1, boolean, Length1> = [
         [[5, 6], false],
         [[1, 0], true],
         [[15, 37], false],
@@ -101,35 +80,19 @@ describe("Synchronous ==>", () => {
       ];
 
       expect(actual).toStrictEqual(expected);
-      expect(spy).toBeCalledWith(
-        dumpFunction1,
-        actuals1f1,
-        expecteds1
-      );
+      expect(spy).toBeCalledWith(dumpFunction1, actuals1f1, expecteds1);
     });
 
     it("For 3 elements ==>", () => {
-      const actual = spy(
-        dumpFunction2,
-        actuals2f1,
-        expecteds2
-      );
-      const expected: TestTable<
-        ForTest1,
-        boolean,
-        Length2
-      > = [
+      const actual = spy(dumpFunction2, actuals2f1, expecteds2);
+      const expected: TestTable<ForTest1, boolean, Length2> = [
         [[5, 6], false],
         [[15, 37], false],
         [[24, 7], true],
       ];
 
       expect(actual).toStrictEqual(expected);
-      expect(spy).toBeCalledWith(
-        dumpFunction2,
-        actuals2f1,
-        expecteds2
-      );
+      expect(spy).toBeCalledWith(dumpFunction2, actuals2f1, expecteds2);
     });
   });
 
@@ -185,38 +148,22 @@ describe("Synchronous ==>", () => {
     (() =>
       describe(`Function ==> ${dumpFunction1}`, () => {
         describe("For 5 elements ==>", () => {
-          generateTests(
-            dumpFunction1,
-            actuals1f1,
-            expecteds1
-          );
+          generateTests(dumpFunction1, actuals1f1, expecteds1);
         });
 
         describe("For 3 elements ==>", () => {
-          generateTests(
-            dumpFunction1,
-            actuals2f1,
-            expecteds2
-          );
+          generateTests(dumpFunction1, actuals2f1, expecteds2);
         });
       }))();
 
     (() =>
       describe(`Function ==> ${dumpFunction2}`, () => {
         describe("For 5 elements", () => {
-          generateTests(
-            dumpFunction2,
-            actuals1f2,
-            expecteds1
-          );
+          generateTests(dumpFunction2, actuals1f2, expecteds1);
         });
 
         describe("For 3 elements ==>", () => {
-          generateTests(
-            dumpFunction2,
-            actuals2f2,
-            expecteds2
-          );
+          generateTests(dumpFunction2, actuals2f2, expecteds2);
         });
       }))();
   });
@@ -256,11 +203,7 @@ const asyncActuals2f1: TupleOf<AsyncForTest1, Length2> = [
   [24, 7],
 ]; /* as const */
 
-const asyncActuals2f2: TupleOf<AsyncForTest2, Length2> = [
-  [-5],
-  [-15],
-  [24],
-];
+const asyncActuals2f2: TupleOf<AsyncForTest2, Length2> = [[-5], [-15], [24]];
 
 const asyncExpecteds1: TupleOf<boolean, Length1> = [
   false,
@@ -270,11 +213,7 @@ const asyncExpecteds1: TupleOf<boolean, Length1> = [
   true,
 ];
 
-const asyncExpecteds2: TupleOf<boolean, Length2> = [
-  false,
-  false,
-  true,
-];
+const asyncExpecteds2: TupleOf<boolean, Length2> = [false, false, true];
 
 describe("Asynchronous ==>", () => {
   describe("Generate the Table of Tests ==>", () => {
@@ -285,11 +224,7 @@ describe("Asynchronous ==>", () => {
         asyncActuals1f1,
         asyncExpecteds1
       );
-      const expected: TestTable<
-        AsyncForTest1,
-        boolean,
-        Length1
-      > = [
+      const expected: TestTable<AsyncForTest1, boolean, Length1> = [
         [[5, 6], false],
         [[1, 0], true],
         [[15, 37], false],
@@ -311,11 +246,7 @@ describe("Asynchronous ==>", () => {
         asyncActuals2f1,
         asyncExpecteds2
       );
-      const expected: TestTable<
-        AsyncForTest1,
-        boolean,
-        Length2
-      > = [
+      const expected: TestTable<AsyncForTest1, boolean, Length2> = [
         [[5, 6], false],
         [[15, 37], false],
         [[24, 7], true],
@@ -421,7 +352,7 @@ describe("Asynchronous ==>", () => {
 // #endregion
 
 // #region ReturnData
-interface User extends Pick<Entity,'_id'>, Login {}
+interface User extends Pick<Entity, "_id">, Login {}
 
 type RDW<T> = ReturnData<WithId<T>>;
 type RDWA<T> = ReturnData<WithId<T>[]>;
@@ -469,15 +400,15 @@ const user3 = {
 };
 // #endregion
 
-const returnDataActualsf1l1: TupleOf<
-  ParametersForTestOne,
-  Length1
-> = [[user1], [user3], [user2], [user1], [user2]];
+const returnDataActualsf1l1: TupleOf<ParametersForTestOne, Length1> = [
+  [user1],
+  [user3],
+  [user2],
+  [user1],
+  [user2],
+];
 
-const returnDataExpectedsf1l1: TupleOf<
-  ReturnDataForTestOne,
-  Length1
-> = [
+const returnDataExpectedsf1l1: TupleOf<ReturnDataForTestOne, Length1> = [
   { status: 200, payload: returnSimpleData(user1) },
   { status: 200, payload: returnSimpleData(user3) },
   { status: 200, payload: returnSimpleData(user2) },
@@ -485,24 +416,19 @@ const returnDataExpectedsf1l1: TupleOf<
   { status: 200, payload: returnSimpleData(user2) },
 ];
 
-const returnDataActualsf1l2: TupleOf<
-  ParametersForTestOne,
-  Length2
-> = [[user1], [user2], [user3]]; /* as const */
+const returnDataActualsf1l2: TupleOf<ParametersForTestOne, Length2> = [
+  [user1],
+  [user2],
+  [user3],
+]; /* as const */
 
-const returnDataExpectedsf1l2: TupleOf<
-  ReturnDataForTestOne,
-  Length2
-> = [
+const returnDataExpectedsf1l2: TupleOf<ReturnDataForTestOne, Length2> = [
   { status: 200, payload: returnSimpleData(user1) },
   { status: 200, payload: returnSimpleData(user2) },
   { status: 200, payload: returnSimpleData(user3) },
 ];
 
-const returnDataActualsf2l1: TupleOf<
-  ParametersForTestMany,
-  Length1
-> = [
+const returnDataActualsf2l1: TupleOf<ParametersForTestMany, Length1> = [
   [[user1, user2, user3]],
   [[user1, user3]],
   [[user2, user3]],
@@ -510,10 +436,7 @@ const returnDataActualsf2l1: TupleOf<
   [[user1]],
 ];
 
-const returnDataExpectedsf2l1: TupleOf<
-  ReturnDataForTestMany,
-  Length1
-> = [
+const returnDataExpectedsf2l1: TupleOf<ReturnDataForTestMany, Length1> = [
   {
     status: 200,
     payload: [user1, user2, user3].map(returnSimpleData),
@@ -528,26 +451,18 @@ const returnDataExpectedsf2l1: TupleOf<
   },
   {
     status: 200,
-    payload: [user1, user2, user3, user1, user3].map(
-      returnSimpleData
-    ),
+    payload: [user1, user2, user3, user1, user3].map(returnSimpleData),
   },
   { status: 200, payload: [user1].map(returnSimpleData) },
 ];
 
-const returnDataActualsf2l2: TupleOf<
-  ParametersForTestMany,
-  Length2
-> = [
+const returnDataActualsf2l2: TupleOf<ParametersForTestMany, Length2> = [
   [[user1, user2, user3]],
   [[user1, user3]],
   [[user2, user3]],
 ];
 
-const returnDataExpectedsf2l2: TupleOf<
-  ReturnDataForTestMany,
-  Length2
-> = [
+const returnDataExpectedsf2l2: TupleOf<ReturnDataForTestMany, Length2> = [
   {
     status: 200,
     payload: [user1, user2, user3].map(returnSimpleData),
@@ -681,9 +596,7 @@ describe("Return Data", () => {
             [[user1, user2, user3]],
             {
               status: 200,
-              payload: [user1, user2, user3].map(
-                returnSimpleData
-              ),
+              payload: [user1, user2, user3].map(returnSimpleData),
             },
           ],
           [
@@ -704,13 +617,9 @@ describe("Return Data", () => {
             [[user1, user2, user3, user1, user3]],
             {
               status: 200,
-              payload: [
-                user1,
-                user2,
-                user3,
-                user1,
-                user3,
-              ].map(returnSimpleData),
+              payload: [user1, user2, user3, user1, user3].map(
+                returnSimpleData
+              ),
             },
           ],
           [
@@ -745,9 +654,7 @@ describe("Return Data", () => {
             [[user1, user2, user3]],
             {
               status: 200,
-              payload: [user1, user2, user3].map(
-                returnSimpleData
-              ),
+              payload: [user1, user2, user3].map(returnSimpleData),
             },
           ],
           [

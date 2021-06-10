@@ -129,7 +129,7 @@ type VSONumber = VSOAny<number> &
 type VSOString = VSOAny<string> & StringContains & StartsWith & EndsWith;
 // #endregion
 
-// TODO: add logical operators and $exists, $type
+// TODO: add logical $type
 export type ValueSearchOperations<T = string> = T extends number
   ? VSONumber
   : T extends string

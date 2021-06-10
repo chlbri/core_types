@@ -1,5 +1,4 @@
 import { ServerErrorStatus } from "../../status";
-
 export type ServerErrorData = {
   status: ServerErrorStatus;
 };

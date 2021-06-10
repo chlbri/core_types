@@ -1,5 +1,5 @@
 import { Actor, Entity } from "../../entities";
-import { NExtract, NOmit } from "../../types";
+import { NExtract } from "../../types";
 import { IDAO } from "../DAO";
 import { ReturnData } from "../ReturnData";
 
@@ -35,4 +35,3 @@ export type LogDRead<T = any> = {
   table: string;
   action: NExtract<LogDatAction, "createOne" | "createMany" | "upsertOne">;
 } & ReturnData<string>;
-

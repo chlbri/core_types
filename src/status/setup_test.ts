@@ -1,5 +1,4 @@
-import { generate19Tests, generateTests } from "../test/functions";
-import { TupleOf } from "../types";
+import { generateTests } from "../test/functions";
 
 export function generateStatusTests(
   func: (...val: [number]) => boolean,
