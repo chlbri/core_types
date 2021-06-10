@@ -24,10 +24,12 @@ export declare type OnlyPropertiesOf<T, TProp> = Pick<T, OnlyNamesOf<T, TProp>>;
 export declare type OnPropChangedMethods<T, I extends keyof T> = T & {
     [K in I & string as AddString<K, "", "Changed">]: (cb: (newValue: T[K]) => void) => void;
 };
+export declare type Undefiny<T> = NotSubType<T, undefined> & Partial<SubType<T, undefined>>;
+export declare type Nullify<T> = NotSubType<T, null> & Partial<SubType<T, null>>;
 declare type _OmitWithoutPartial<T, O extends string> = {
     [key in keyof Omit<T, O>]: O extends keyof T[key] ? LengthOf<TuplifyUnion<keyof _OmitWithoutPartial<T[key], O>>> extends 1 ? _OmitWithoutPartial<T[key], O>[keyof _OmitWithoutPartial<T[key], O>] : _OmitWithoutPartial<T[key], O> : T[key];
 };
-declare type _OmitWithPartial<T, O extends string> = NotSubType<_OmitWithoutPartial<T, O>, undefined> & Partial<SubType<_OmitWithoutPartial<T, O>, undefined>>;
+declare type _OmitWithPartial<T, O extends string> = Undefiny<_OmitWithoutPartial<T, O>>;
 export declare type OmitRecursive<T, O extends string> = {
     [key in keyof _OmitWithPartial<T, O>]: _OmitWithPartial<T[key], O>;
 };

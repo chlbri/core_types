@@ -59,6 +59,11 @@ export type OnPropChangedMethods<T, I extends keyof T> = T &
     ) => void;
   };
 
+export type Undefiny<T> = NotSubType<T, undefined> &
+  Partial<SubType<T, undefined>>;
+
+export type Nullify<T> = NotSubType<T, null> & Partial<SubType<T, null>>;
+
 type _OmitWithoutPartial<T, O extends string> = {
   [key in keyof Omit<T, O>]: O extends keyof T[key]
     ? LengthOf<TuplifyUnion<keyof _OmitWithoutPartial<T[key], O>>> extends 1
@@ -67,11 +72,9 @@ type _OmitWithoutPartial<T, O extends string> = {
     : T[key];
 };
 
-type _OmitWithPartial<T, O extends string> = NotSubType<
-  _OmitWithoutPartial<T, O>,
-  undefined
-> &
-  Partial<SubType<_OmitWithoutPartial<T, O>, undefined>>;
+type _OmitWithPartial<T, O extends string> = Undefiny<
+  _OmitWithoutPartial<T, O>
+>;
 
 export type OmitRecursive<T, O extends string> = {
   [key in keyof _OmitWithPartial<T, O>]: _OmitWithPartial<T[key], O>;
