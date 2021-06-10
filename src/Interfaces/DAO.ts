@@ -3,7 +3,7 @@ import { DataSearchOperations, NOmit } from "../types";
 import { WithoutPermissions } from "./../entities/WithoutPermissions";
 import { PromiseReturnData as PD } from "./ReturnData";
 
-type DSO<T> = DataSearchOperations<WithoutPermissions<T>>;
+export type DSO<T> = DataSearchOperations<WithoutPermissions<T>>;
 
 type UpdateHelper<T> = {
   search: DSO<T>;
@@ -11,18 +11,18 @@ type UpdateHelper<T> = {
   limit?: number;
 };
 
-type WI<T> = WithId<WithoutPermissions<T>>;
-type WO<T> = WithoutId<WithoutPermissions<T>>;
+export type WI<T> = WithId<WithoutPermissions<T>>;
+export type WO<T> = WithoutId<WithoutPermissions<T>>;
 
-type PDP<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<
+export type PDP<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<
   Required<Pick<T, K[number]>>
 >;
-type PDPA<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<
+export type PDPA<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<
   Required<Pick<T, K[number]>>[]
 >;
 
-type IDs<T extends Entity> = NonNullable<T["_id"]>[];
-type ID<T extends Entity> = NonNullable<T["_id"]>;
+export type IDs<T extends Entity> = NonNullable<T["_id"]>[];
+export type ID<T extends Entity> = NonNullable<T["_id"]>;
 
 // type UpdateHelperId<T> = {
 //   search: string;

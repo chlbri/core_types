@@ -2,18 +2,18 @@ import { Entity, WithId, WithoutId } from "../entities";
 import { DataSearchOperations } from "../types";
 import { WithoutPermissions } from "./../entities/WithoutPermissions";
 import { PromiseReturnData as PD } from "./ReturnData";
-declare type DSO<T> = DataSearchOperations<WithoutPermissions<T>>;
+export declare type DSO<T> = DataSearchOperations<WithoutPermissions<T>>;
 declare type UpdateHelper<T> = {
     search: DSO<T>;
     newValue: WithoutId<Partial<T>>;
     limit?: number;
 };
-declare type WI<T> = WithId<WithoutPermissions<T>>;
-declare type WO<T> = WithoutId<WithoutPermissions<T>>;
-declare type PDP<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<Required<Pick<T, K[number]>>>;
-declare type PDPA<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<Required<Pick<T, K[number]>>[]>;
-declare type IDs<T extends Entity> = NonNullable<T["_id"]>[];
-declare type ID<T extends Entity> = NonNullable<T["_id"]>;
+export declare type WI<T> = WithId<WithoutPermissions<T>>;
+export declare type WO<T> = WithoutId<WithoutPermissions<T>>;
+export declare type PDP<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<Required<Pick<T, K[number]>>>;
+export declare type PDPA<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<Required<Pick<T, K[number]>>[]>;
+export declare type IDs<T extends Entity> = NonNullable<T["_id"]>[];
+export declare type ID<T extends Entity> = NonNullable<T["_id"]>;
 export interface IDAO<T extends Entity = Entity> {
     createOne: (value: WithoutPermissions<T>) => PD<string>;
     createMany: (values: WO<T>[]) => PD<string[]>;
