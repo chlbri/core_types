@@ -1,6 +1,6 @@
 import { NOmit } from "./objects";
 export declare type IndexOfArray<T extends readonly unknown[], S extends number[] = []> = T["length"] extends S["length"] ? S[number] : IndexOfArray<T, [S["length"], ...S]>;
-declare type _DivideBy<N extends number, T extends readonly any[]> = T["length"] extends N ? [true] : T extends readonly [...TupleOf<T[number], N>, ...infer U] ? [true, ..._DivideBy<N, U>] : never;
+export declare type _DivideBy<N extends number, T extends readonly any[]> = T["length"] extends N ? [true] : T extends readonly [...TupleOf<T[number], N>, ...infer U] ? [true, ..._DivideBy<N, U>] : never;
 export declare type DivideBy<N extends number, T extends readonly any[]> = _DivideBy<N, T>["length"];
 export declare type LengthOf<T> = T extends any[] | readonly any[] ? T["length"] : never;
 declare type _TupleOf<T, N extends number, R extends unknown[] = []> = R["length"] extends N ? R : _TupleOf<T, N, [...R, T]>;

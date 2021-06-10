@@ -254,14 +254,7 @@ exports.COLOR_NUMBER_DIGITS = [
     254,
     255,
 ];
-exports.COLOR_STRING_DIGITS = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-];
+exports.COLOR_STRING_DIGITS = ["a", "b", "c", "d", "e", "f"];
 exports.CSS_COLORS = [
     "aliceblue",
     "antiquewhite",
@@ -412,7 +405,4 @@ exports.CSS_COLORS = [
     "yellow",
     "yellowgreen",
 ];
-exports.COLOR_DIGITS = [
-    ...numbers_1.DIGITS,
-    ...exports.COLOR_STRING_DIGITS,
-];
+exports.COLOR_DIGITS = [...numbers_1.DIGITS, ...exports.COLOR_STRING_DIGITS];

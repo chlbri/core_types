@@ -9,8 +9,6 @@ function sliceArray(array, splicer) {
     const arr = [...array];
     return new Array(Math.ceil(array.length / splicer))
         .fill(arr)
-        .map((_) => arr
-        .splice(0, splicer)
-        .map((val) => (isArray(val) ? val[0] : val)));
+        .map((_) => arr.splice(0, splicer).map((val) => (isArray(val) ? val[0] : val)));
 }
 exports.sliceArray = sliceArray;

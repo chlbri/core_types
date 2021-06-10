@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.STATUS_STRINGS = exports.LETTERS = void 0;
+exports.PERMISSIONS_STRINGS = exports.STATUS_STRINGS = exports.LETTERS = void 0;
 exports.LETTERS = [
     "a",
     "b",
@@ -48,3 +48,4 @@ exports.STATUS_STRINGS = [
     "permission-error",
     "timeout-error",
 ];
+exports.PERMISSIONS_STRINGS = ["_read", "_update", "_delete"];
