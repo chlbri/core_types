@@ -1,11 +1,13 @@
-import { LengthOf, TuplifyUnion } from "./arrays";
-import { AddString } from "./strings";
+import { LengthOf, TuplifyUnion } from './arrays';
+import { AddString } from './strings';
 
 export type NExtract<T, U extends T> = Extract<T, U>;
 export type NExclude<T, U extends T> = Exclude<T, U>;
 export type NOmit<T, K extends keyof T> = Omit<T, K>;
 
-export type PromisifyMethod<T> = T extends (...args: infer P) => infer R
+export type PromisifyMethod<T> = T extends (
+  ...args: infer P
+) => infer R
   ? R extends Promise<any>
     ? T
     : (...args: P) => Promise<R>
@@ -47,27 +49,38 @@ export type NotSubType<Base, Condition> = Pick<
 >;
 
 export type OnlyNamesOf<T, TProp> = {
-  [K in keyof T]: Exclude<T[K], undefined> extends TProp ? K : never;
+  [K in keyof T]: Exclude<T[K], undefined> extends TProp
+    ? K
+    : never;
 }[keyof T];
 
-export type OnlyPropertiesOf<T, TProp> = Pick<T, OnlyNamesOf<T, TProp>>;
+export type OnlyPropertiesOf<T, TProp> = Pick<
+  T,
+  OnlyNamesOf<T, TProp>
+>;
 
 export type OnPropChangedMethods<T, I extends keyof T> = T &
   {
-    [K in I & string as AddString<K, "", "Changed">]: (
-      cb: (newValue: T[K]) => void
+    [K in I & string as AddString<K, '', 'Changed'>]: (
+      cb: (newValue: T[K]) => void,
     ) => void;
   };
 
 export type Undefiny<T> = NotSubType<T, undefined> &
   Partial<SubType<T, undefined>>;
 
-export type Nullify<T> = NotSubType<T, null> & Partial<SubType<T, null>>;
+export type Nullify<T> = NotSubType<T, null> &
+  Partial<SubType<T, null>>;
 
 type _OmitWithoutPartial<T, O extends string> = {
   [key in keyof Omit<T, O>]: O extends keyof T[key]
-    ? LengthOf<TuplifyUnion<keyof _OmitWithoutPartial<T[key], O>>> extends 1
-      ? _OmitWithoutPartial<T[key], O>[keyof _OmitWithoutPartial<T[key], O>]
+    ? LengthOf<
+        TuplifyUnion<keyof _OmitWithoutPartial<T[key], O>>
+      > extends 1
+      ? _OmitWithoutPartial<T[key], O>[keyof _OmitWithoutPartial<
+          T[key],
+          O
+        >]
       : _OmitWithoutPartial<T[key], O>
     : T[key];
 };
@@ -77,5 +90,8 @@ type _OmitWithPartial<T, O extends string> = Undefiny<
 >;
 
 export type OmitRecursive<T, O extends string> = {
-  [key in keyof _OmitWithPartial<T, O>]: _OmitWithPartial<T[key], O>;
+  [key in keyof _OmitWithPartial<T, O>]: _OmitWithPartial<
+    T[key],
+    O
+  >;
 };

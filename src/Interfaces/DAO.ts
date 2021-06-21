@@ -1,7 +1,7 @@
-import { Entity, WithId, WithoutId } from "../entities";
-import { DataSearchOperations } from "../types";
-import { WithoutPermissions } from "./../entities/WithoutPermissions";
-import { PromiseReturnData as PD } from "./ReturnData";
+import { Entity, WithId, WithoutId } from '../entities';
+import { DataSearchOperations } from '../types';
+import { WithoutPermissions } from './../entities/WithoutPermissions';
+import { PromiseReturnData as PD } from './ReturnData';
 
 export type DSO<T> = DataSearchOperations<WithoutPermissions<T>>;
 
@@ -14,15 +14,17 @@ type UpdateHelper<T> = {
 export type WI<T> = WithId<WithoutPermissions<T>>;
 export type WO<T> = WithoutId<WithoutPermissions<T>>;
 
-export type PDP<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<
-  Required<Pick<T, K[number]>>
->;
-export type PDPA<T extends Entity, K extends (keyof T)[] = (keyof T)[]> = PD<
-  Required<Pick<T, K[number]>>[]
->;
+export type PDP<
+  T extends Entity,
+  K extends (keyof T)[] = (keyof T)[],
+> = PD<Required<Pick<T, K[number]>>>;
+export type PDPA<
+  T extends Entity,
+  K extends (keyof T)[] = (keyof T)[],
+> = PD<Required<Pick<T, K[number]>>[]>;
 
-export type IDs<T extends Entity> = NonNullable<T["_id"]>[];
-export type ID<T extends Entity> = NonNullable<T["_id"]>;
+export type IDs<T extends Entity> = NonNullable<T['_id']>[];
+export type ID<T extends Entity> = NonNullable<T['_id']>;
 
 // type UpdateHelperId<T> = {
 //   search: string;
@@ -38,12 +40,12 @@ export interface IDAO<T extends Entity = Entity> {
 
   readOne: <K extends (keyof T)[] = (keyof T)[]>(
     search: DSO<T>,
-    projection?: K
+    projection?: K,
   ) => PDP<T, K>;
 
   readOneById: <K extends (keyof T)[] = (keyof T)[]>(
     _id: ID<T>,
-    projection?: K
+    projection?: K,
   ) => PDP<T, K>;
 
   readMany: <K extends (keyof T)[] = (keyof T)[]>(
@@ -51,7 +53,7 @@ export interface IDAO<T extends Entity = Entity> {
     options?: {
       projection?: K;
       limit?: number;
-    }
+    },
   ) => PDPA<T, K>;
 
   readManyByIds: <K extends (keyof T)[] = (keyof T)[]>(
@@ -60,19 +62,25 @@ export interface IDAO<T extends Entity = Entity> {
       projection?: K;
       limit?: number;
       search?: DSO<T>;
-    }
+    },
   ) => PDPA<T, K>;
 
   count: (search?: DSO<T>) => PD<number>;
 
-  updateOne: (search: DSO<T>, newValue: WO<Partial<T>>) => PD<string>;
+  updateOne: (
+    search: DSO<T>,
+    newValue: WO<Partial<T>>,
+  ) => PD<string>;
 
-  updateOneById: (_id: ID<T>, newValue: WO<Partial<T>>) => PD<string>;
+  updateOneById: (
+    _id: ID<T>,
+    newValue: WO<Partial<T>>,
+  ) => PD<string>;
 
   updateMany: (
     search: DSO<T>,
     newValue: WO<Partial<T>>,
-    limit?: number
+    limit?: number,
   ) => PD<string[]>;
 
   updateManyByIds: (
@@ -81,7 +89,7 @@ export interface IDAO<T extends Entity = Entity> {
     options?: {
       search?: DSO<T>;
       limit?: number;
-    }
+    },
   ) => PD<string[]>;
 
   bulkUpdate: (updates: UpdateHelper<T>[]) => PD<string[]>;
@@ -97,6 +105,6 @@ export interface IDAO<T extends Entity = Entity> {
     options?: {
       search?: DSO<T>;
       limit?: number;
-    }
+    },
   ) => PD<string[]>;
 }

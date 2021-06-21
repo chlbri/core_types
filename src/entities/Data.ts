@@ -1,4 +1,4 @@
-import { AtomicData } from "./AtomicData";
+import { AtomicData } from './AtomicData';
 
 /**
  * SIgnature only

@@ -1,4 +1,4 @@
-import { TupleOf } from "./arrays";
+import { TupleOf } from './arrays';
 
 export type Equals = {
   $eq: any;
@@ -49,21 +49,21 @@ export type EndsWith = {
 };
 
 export type Language =
-  | "da"
-  | "du"
-  | "en"
-  | "fi"
-  | "fr"
-  | "de"
-  | "hu"
-  | "it"
-  | "nb"
-  | "pt"
-  | "ro"
-  | "ru"
-  | "es"
-  | "sv"
-  | "tr";
+  | 'da'
+  | 'du'
+  | 'en'
+  | 'fi'
+  | 'fr'
+  | 'de'
+  | 'hu'
+  | 'it'
+  | 'nb'
+  | 'pt'
+  | 'ro'
+  | 'ru'
+  | 'es'
+  | 'sv'
+  | 'tr';
 
 export type RegEx = {
   $regex: string | RegExp;
@@ -74,17 +74,19 @@ export type Text = {
 };
 
 export type TypeAliases =
-  | "double"
-  | "string"
-  | "object"
-  | "array"
-  | "binData"
-  | "objectId"
-  | "bool";
+  | 'double'
+  | 'string'
+  | 'object'
+  | 'array'
+  | 'binData'
+  | 'objectId'
+  | 'bool';
 
 // #region Array
 
-type ArrayHelper1<T extends any[]> = Partial<VSO<T[number]>> | T[number];
+type ArrayHelper1<T extends any[]> =
+  | Partial<VSO<T[number]>>
+  | T[number];
 export type All<T extends any[] = any[]> = {
   $all: T extends any[] ? ArrayHelper1<T> : never;
 };
@@ -111,7 +113,10 @@ export type NotExistsProp = {
   $exists: false;
 };
 
-type VSOAny<T = any> = Equals & NotEquals & ObjectIn<T> & ObjectNotIn<T>;
+type VSOAny<T = any> = Equals &
+  NotEquals &
+  ObjectIn<T> &
+  ObjectNotIn<T>;
 
 type EP = ExistsProp | NotExistsProp;
 // #endregion
@@ -126,7 +131,10 @@ type VSONumber = VSOAny<number> &
 // #endregion
 
 // #region VSOString
-type VSOString = VSOAny<string> & StringContains & StartsWith & EndsWith;
+type VSOString = VSOAny<string> &
+  StringContains &
+  StartsWith &
+  EndsWith;
 // #endregion
 
 // TODO: add logical $type
@@ -147,7 +155,7 @@ export type And<T = string> = {
 };
 
 const ande: And<string> = {
-  $and: [{ $and: [], $cts: "3" }],
+  $and: [{ $and: [], $cts: '3' }],
 };
 
 export type Not<T = string> = {
@@ -162,7 +170,11 @@ export type Or<T = string> = {
   $or: LogH<T>[];
 };
 
-export type LogicalClauses<T = string> = And<T> | Not<T> | Nor<T> | Or<T>;
+export type LogicalClauses<T = string> =
+  | And<T>
+  | Not<T>
+  | Nor<T>
+  | Or<T>;
 
 // #endregion
 
@@ -175,7 +187,7 @@ export type Slice = {
 // #endregion
 
 export function isSearchOperation(val: any): val is VSO {
-  return Object.keys(val).every((val) => val.startsWith("$"));
+  return Object.keys(val).every((val) => val.startsWith('$'));
 }
 
 export type SearchOperation<K> = K extends

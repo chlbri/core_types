@@ -3,7 +3,7 @@
   "description": "Core of all projects",
   "author": "chlbri",
   "license": "MIT",
-  "version": "0.0.85",
+  "version": "0.0.9",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": true,
@@ -11,7 +11,7 @@
     "clean": "rimraf ./dist",
     "tsc": "tsc",
     "compile": "yarn run clean && tsc",
-    "test": "jest --verbose --detectOpenHandles",
+    "test": "jest --detectOpenHandles",
     "generateTestsFunctions": "ts-node src\test\functions.ts"
   },
   "dependencies": {

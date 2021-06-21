@@ -1,6 +1,6 @@
-import { sliceArray } from "../functions";
-import { generate18Tests, generateTests } from "../test";
-import { LengthOf, TupleOf } from "../types";
+import { sliceArray } from '../functions';
+import { generate18Tests, generateTests } from '../test';
+import { LengthOf, TupleOf } from '../types';
 import {
   EXCEPTIONS,
   FormatedNumberValidator,
@@ -13,9 +13,9 @@ import {
   StringExactLengthValidator,
   StringMaxLengthValidator,
   StringMinLengthValidator,
-  StringRequiredValidator
-} from "../validators";
-import { ValueObject as VO } from "./ValueObject";
+  StringRequiredValidator,
+} from '../validators';
+import { ValueObject as VO } from './ValueObject';
 
 // #region Functions to test
 const safe = (vo: VO) => vo.safe;
@@ -36,21 +36,37 @@ type ChainReturnType = ReturnType<typeof chain>;
 // #region Validators
 const requiredV = new RequiredValidator(EXCEPTIONS[404]);
 const numberMinV = new NumberMinValidator(5, EXCEPTIONS[502]);
-const numberExactV = new NumberExactValidator(7, EXCEPTIONS[541]);
+const numberExactV = new NumberExactValidator(
+  7,
+  EXCEPTIONS[541],
+);
 const numberMaxV = new NumberMaxValidator(10, EXCEPTIONS[551]);
-const numberRequiredV = new RequiredNumberValidator(EXCEPTIONS[405]);
+const numberRequiredV = new RequiredNumberValidator(
+  EXCEPTIONS[405],
+);
 
-const stringMinV = new StringMinLengthValidator(5, EXCEPTIONS[507]);
-const stringExactV = new StringExactLengthValidator(7, EXCEPTIONS[542]);
-const stringMaxV = new StringMaxLengthValidator(10, EXCEPTIONS[552]);
-const stringRequiredV = new StringRequiredValidator(EXCEPTIONS[406]);
+const stringMinV = new StringMinLengthValidator(
+  5,
+  EXCEPTIONS[507],
+);
+const stringExactV = new StringExactLengthValidator(
+  7,
+  EXCEPTIONS[542],
+);
+const stringMaxV = new StringMaxLengthValidator(
+  10,
+  EXCEPTIONS[552],
+);
+const stringRequiredV = new StringRequiredValidator(
+  EXCEPTIONS[406],
+);
 const stringNumberFormatedV1 = new FormatedNumberValidator(
   undefined,
-  EXCEPTIONS[580]
+  EXCEPTIONS[580],
 );
 const stringNumberFormatedV2 = new FormatedNumberValidator(
   6,
-  EXCEPTIONS[590]
+  EXCEPTIONS[590],
 );
 // #endregion
 
@@ -65,20 +81,20 @@ const valueActuals = [
   17,
   undefined,
   undefined,
-  "125456751045",
-  "4444",
-  "cinq5",
-  "55555",
-  "55555",
-  "six==6",
-  "666666",
-  "sept==7",
-  "six==6",
-  "onze======11",
+  '125456751045',
+  '4444',
+  'cinq5',
+  '55555',
+  '55555',
+  'six==6',
+  '666666',
+  'sept==7',
+  'six==6',
+  'onze======11',
   45,
   7,
   415,
-  "45",
+  '45',
 ] as const;
 
 const validatorsActuals: TupleOf<IValidator[], Length> = [
@@ -113,7 +129,7 @@ const chainActuals = sliceArray(
   validatorsActuals.map((validatorsActual, i) => {
     return new VO(valueActuals[i], validatorsActual);
   }),
-  2
+  2,
 );
 
 const chainsExpected: TupleOf<ChainReturnType, LengthChain> = [
@@ -159,7 +175,10 @@ const safExpecteds: TupleOf<SafeReturnType, Length> = [
   numberRequiredV.exception,
 ];
 
-const unSafExpecteds = valueActuals as TupleOf<UnSafeReturnType, Length>;
+const unSafExpecteds = valueActuals as TupleOf<
+  UnSafeReturnType,
+  Length
+>;
 
 const isValidExpecteds: TupleOf<IsValidReturnType, Length> = [
   true,
@@ -183,21 +202,21 @@ const isValidExpecteds: TupleOf<IsValidReturnType, Length> = [
 ];
 // #endregion
 
-describe("VO.safe", () => {
+describe('VO.safe', () => {
   generate18Tests(safe, getActuals(), safExpecteds, true);
 });
 
-describe("VO.unSafe", () => {
+describe('VO.unSafe', () => {
   generate18Tests(unSafe, getActuals(), unSafExpecteds, true);
 });
 
-describe("VO.isValid", () => {
+describe('VO.isValid', () => {
   generate18Tests(isValid, getActuals(), isValidExpecteds, true);
 });
 
-describe("VO.chain", () => {
-  console.log("chainActuals :", chainActuals);
-  console.log("chainsExpected :", chainsExpected);
+describe('VO.chain', () => {
+  console.log('chainActuals :', chainActuals);
+  console.log('chainsExpected :', chainsExpected);
   generateTests(
     chain,
     chainActuals,
@@ -212,6 +231,6 @@ describe("VO.chain", () => {
       getActuals()[15][0],
       getActuals()[16][0],
     ],
-    true
+    true,
   );
 });

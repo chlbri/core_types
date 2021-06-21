@@ -5,6 +5,8 @@ import { Exception, EXCEPTIONS } from "./exception";
 
 generateTests(
   (code: ExceptionStatus) => EXCEPTIONS[code],
-  EXCEPTION_CODES.map((val) => [val]) as TupleOf<[ExceptionStatus]>,
-  EXCEPTION_CODES.map((val) => new Exception(val))
+  EXCEPTION_CODES.map((val) => [val]) as TupleOf<
+    [ExceptionStatus]
+  >,
+  EXCEPTION_CODES.map((val) => new Exception(val)),
 );

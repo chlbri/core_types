@@ -1,4 +1,4 @@
-import { Exception, IValidator } from "../validators";
+import { Exception, IValidator } from '../validators';
 
 type RV<T> = readonly IValidator<T>[];
 

@@ -1,5 +1,5 @@
-import { isStatusRedirect } from "./redirect";
-import { generateStatusTests } from "./setup_test";
+import { isStatusRedirect } from './redirect';
+import { generateStatusTests } from './setup_test';
 
 generateStatusTests(isStatusRedirect, [
   false,

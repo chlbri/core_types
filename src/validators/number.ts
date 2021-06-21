@@ -1,10 +1,16 @@
-import { isNullish } from "../functions";
-import { Exception } from "./exception";
-import { Condition, Validator } from "./validator";
+import { isNullish } from '../functions';
+import { Exception } from './exception';
+import { Condition, Validator } from './validator';
 
 export class NumberValidator extends Validator<number> {
-  constructor(validate: Condition<number>, exception?: Exception) {
-    super((value) => !isNullish(value) && validate(value), exception);
+  constructor(
+    validate: Condition<number>,
+    exception?: Exception,
+  ) {
+    super(
+      (value) => !isNullish(value) && validate(value),
+      exception,
+    );
   }
 }
 
@@ -29,7 +35,7 @@ export class NumberMaxValidator extends NumberValidator {
 export class RequiredNumberValidator extends Validator {
   constructor(exception?: Exception) {
     super((value) => {
-      return typeof value === "number";
+      return typeof value === 'number';
     }, exception);
   }
 }

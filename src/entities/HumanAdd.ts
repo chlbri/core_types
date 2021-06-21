@@ -1,4 +1,4 @@
-import { Human } from "./Human";
+import { Human } from './Human';
 
 export interface HumanAdd extends Human {
   bio: string;

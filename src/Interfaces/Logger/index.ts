@@ -1,5 +1,5 @@
-import { Actor } from "../../entities";
-import { LogAuthAction, LogDatAction } from "./types";
+import { Actor } from '../../entities';
+import { LogAuthAction, LogDatAction } from './types';
 
 export interface ILogger {
   dataLog: (table: string, data: any) => void;

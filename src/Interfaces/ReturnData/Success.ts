@@ -1,10 +1,11 @@
-import { SuccesfullStatus } from "../../status";
+import { SuccesfullStatus } from '../../status';
 
 export type SuccessData<T = any> = {
   status: SuccesfullStatus;
   payload: T;
 };
 
+/* prettier-ignore */
 export const SUCCESS_CONSTANTS = {
   200: { status: 200, payload: undefined } as SuccessData<undefined>,
   201: { status: 201, payload: undefined } as SuccessData<undefined>,

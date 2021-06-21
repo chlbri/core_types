@@ -1,5 +1,5 @@
-import { isStatusInformation } from "./information";
-import { generateStatusTests } from "./setup_test";
+import { isStatusInformation } from './information';
+import { generateStatusTests } from './setup_test';
 
 generateStatusTests(isStatusInformation, [
   false,

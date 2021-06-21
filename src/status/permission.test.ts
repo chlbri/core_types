@@ -1,5 +1,5 @@
-import { isStatusPermission } from "./permission";
-import { generateStatusTests } from "./setup_test";
+import { isStatusPermission } from './permission';
+import { generateStatusTests } from './setup_test';
 
 generateStatusTests(isStatusPermission, [
   false,

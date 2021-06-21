@@ -1,5 +1,5 @@
-import { generateStatusTests } from "./setup_test";
-import { isStatusSuccessFull } from "./successfull";
+import { generateStatusTests } from './setup_test';
+import { isStatusSuccessFull } from './successfull';
 
 generateStatusTests(isStatusSuccessFull, [
   false,

@@ -1,8 +1,8 @@
-import { generateTests } from "../test/functions";
+import { generateTests } from '../test/functions';
 
 export function generateStatusTests(
   func: (...val: [number]) => boolean,
-  expecteds: boolean[]
+  expecteds: boolean[],
 ) {
   return generateTests(
     func,
@@ -29,6 +29,6 @@ export function generateStatusTests(
       [900],
       [941],
     ],
-    expecteds
+    expecteds,
   );
 }

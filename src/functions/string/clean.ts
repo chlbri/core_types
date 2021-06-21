@@ -1,4 +1,4 @@
-import { isStringLocalLitterals } from "../../types";
+import { isStringLocalLitterals } from '../../types';
 
 export function isClean(value: string) {
   let out = true;
@@ -15,7 +15,7 @@ export function clean(value: string) {
   let out = value;
   for (const iter of value) {
     if (!isStringLocalLitterals(iter)) {
-      out = out.replace(iter, "");
+      out = out.replace(iter, '');
     }
   }
   return out;

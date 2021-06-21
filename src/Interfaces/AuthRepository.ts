@@ -1,4 +1,4 @@
-import { PromiseReturnData as PD } from "./ReturnData";
+import { PromiseReturnData as PD } from './ReturnData';
 
 type User = {
   id?: string;
@@ -8,7 +8,10 @@ type User = {
 
 export interface IAuthRepo {
   currentUser: User;
-  signInWithEmailAndPassword: (email: string, password: string) => PD<User>;
+  signInWithEmailAndPassword: (
+    email: string,
+    password: string,
+  ) => PD<User>;
   signUpWithEmailAndPassword: (
     email: string,
     password: string,
@@ -16,7 +19,10 @@ export interface IAuthRepo {
   ) => PD<User>;
   signWithEmail: (email: string, code: any) => PD<User>;
   signWithWhatsApp: (phoneNumber: string, code: any) => PD<User>;
-  signWithPhoneNumber: (phoneNumber: string, code: any) => PD<User>;
+  signWithPhoneNumber: (
+    phoneNumber: string,
+    code: any,
+  ) => PD<User>;
   // TODO : Search for tokens required for Facebook
   signWithFacebook: (tokens: any) => PD<User>;
   // TODO : Search for tokens required for Github

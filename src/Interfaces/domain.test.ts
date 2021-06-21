@@ -1,7 +1,7 @@
-import { generate5Tests } from "../test";
-import { TupleOf } from "../types";
-import { Domain, useCase } from "./domain";
-import { IUseCase } from "./IUseCase";
+import { generate5Tests } from '../test';
+import { TupleOf } from '../types';
+import { Domain, useCase } from './domain';
+import { IUseCase } from './IUseCase';
 
 // const spy = jest.fn(useCase);
 
@@ -13,15 +13,15 @@ const funcTables: TupleOf<(...args: any[]) => any, Length5> = [
   (val1: number, val2: number) => val1 + val2,
   (val1: number) => val1 > 0,
   (val1: string) => val1.length,
-  (val1: boolean) => "" + val1,
+  (val1: boolean) => '' + val1,
 ];
 
 const namesTable: TupleOf<string, Length5> = [
-  "useCase1",
-  "useCase2",
-  "useCase3",
-  "useCase4",
-  "useCase5",
+  'useCase1',
+  'useCase2',
+  'useCase3',
+  'useCase4',
+  'useCase5',
 ];
 
 const usesTable = funcTables.map((call, index) => {

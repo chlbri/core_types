@@ -1,5 +1,5 @@
-import { isStatusClientError } from "./client";
-import { generateStatusTests } from "./setup_test";
+import { isStatusClientError } from './client';
+import { generateStatusTests } from './setup_test';
 
 generateStatusTests(isStatusClientError, [
   false,

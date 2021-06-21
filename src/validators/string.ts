@@ -1,11 +1,17 @@
-import { isNullish } from "../functions/nullish";
-import { Nullish } from "../types";
-import { Exception } from "./exception";
-import { Condition, Validator } from "./validator";
+import { isNullish } from '../functions/nullish';
+import { Nullish } from '../types';
+import { Exception } from './exception';
+import { Condition, Validator } from './validator';
 
 export class StringValidator extends Validator<string> {
-  constructor(validate: Condition<string>, exception?: Exception) {
-    super((value) => !isNullish(value) && validate(value), exception);
+  constructor(
+    validate: Condition<string>,
+    exception?: Exception,
+  ) {
+    super(
+      (value) => !isNullish(value) && validate(value),
+      exception,
+    );
   }
 }
 
@@ -29,14 +35,16 @@ export class StringMaxLengthValidator extends StringValidator {
 
 export class StringRequiredValidator extends Validator {
   constructor(exception?: Exception) {
-    super((value) => typeof value === "string", exception);
+    super((value) => typeof value === 'string', exception);
   }
 }
 
 export class FormatedNumberValidator extends StringValidator {
   constructor(num?: Nullish<number>, exception?: Exception) {
     super((value) => {
-      const reg = new RegExp(`^\\d${isNullish(num) ? "+" : `{${num}}`}$`);
+      const reg = new RegExp(
+        `^\\d${isNullish(num) ? '+' : `{${num}}`}$`,
+      );
       return reg.test(value!);
     }, exception);
   }
