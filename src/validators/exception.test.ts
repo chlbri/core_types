@@ -1,7 +1,7 @@
-import { ExceptionStatus, EXCEPTION_CODES } from "../status";
-import { generateTests } from "../test/functions";
-import { TupleOf } from "../types";
-import { Exception, EXCEPTIONS } from "./exception";
+import { ExceptionStatus, EXCEPTION_CODES } from '../status';
+import { generateTests } from '../test/functions';
+import { TupleOf } from '../types';
+import { Exception, EXCEPTIONS } from './exception';
 
 generateTests(
   (code: ExceptionStatus) => EXCEPTIONS[code],

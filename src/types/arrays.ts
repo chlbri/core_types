@@ -30,15 +30,20 @@ export type LengthOf<T> = T extends any[] | readonly any[]
   : never;
 
 // #region  TupleOf
-type _TupleOf<T, N extends number, R extends unknown[] = []> =
-  R['length'] extends N ? R : _TupleOf<T, N, [...R, T]>;
+type _TupleOf<
+  T,
+  N extends number,
+  R extends unknown[] = [],
+> = R['length'] extends N ? R : _TupleOf<T, N, [...R, T]>;
 
-export type TupleOf<T = any, N extends number = number> =
-  N extends N
-    ? number extends N
-      ? T[]
-      : [..._TupleOf<T, N>]
-    : never;
+export type TupleOf<
+  T = any,
+  N extends number = number,
+> = N extends N
+  ? number extends N
+    ? T[]
+    : [..._TupleOf<T, N>]
+  : never;
 
 export type GetTupleType<T> = T extends TupleOf<infer U, any>
   ? U

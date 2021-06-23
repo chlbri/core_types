@@ -19,8 +19,10 @@ type UpdateHelper<T> = {
 type WI<T> = WithId<WithoutPermissions<T>>;
 type WO<T> = WithoutId<WithoutPermissions<T>>;
 
-type PDP<T extends Entity, K extends (keyof T)[] = (keyof T)[]> =
-  PD<Required<NOmit<T, K[number]>>>;
+type PDP<
+  T extends Entity,
+  K extends (keyof T)[] = (keyof T)[],
+> = PD<Required<NOmit<T, K[number]>>>;
 type PDPA<
   T extends Entity,
   K extends (keyof T)[] = (keyof T)[],

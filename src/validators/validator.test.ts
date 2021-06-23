@@ -1,7 +1,7 @@
-import { generate3Tests, generate6Tests } from "../test";
-import { TupleOf } from "../types";
-import { Exception, EXCEPTIONS } from "./exception";
-import { Condition, IValidator } from "./validator";
+import { generate3Tests, generate6Tests } from '../test';
+import { TupleOf } from '../types';
+import { Exception, EXCEPTIONS } from './exception';
+import { Condition, IValidator } from './validator';
 
 type Length = 3;
 

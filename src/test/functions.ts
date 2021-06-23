@@ -1,9 +1,12 @@
-import { nanoid } from "nanoid";
-import { WithId } from "../entities";
-import { isArray } from "../functions";
-import { DataFromPromiseWithoutId, PromiseReturnData } from "../interfaces";
-import { LengthOf, ThenArg, TupleOf } from "../types";
-import { TestElement, TestTable } from "./types";
+import { nanoid } from 'nanoid';
+import { WithId } from '../entities';
+import { isArray } from '../functions';
+import {
+  DataFromPromiseWithoutId,
+  PromiseReturnData,
+} from '../interfaces';
+import { LengthOf, ThenArg, TupleOf } from '../types';
+import { TestElement, TestTable } from './types';
 
 // #region Configurations
 export function generateTestTable<
