@@ -215,8 +215,6 @@ describe('VO.isValid', () => {
 });
 
 describe('VO.chain', () => {
-  console.log('chainActuals :', chainActuals);
-  console.log('chainsExpected :', chainsExpected);
   generateTests(
     chain,
     chainActuals,
