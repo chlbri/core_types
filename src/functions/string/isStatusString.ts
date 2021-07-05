@@ -1,4 +1,4 @@
-import { STATUS_STRINGS } from '../../constants/strings';
+import { STATUS_STRINGS } from '../../Constants/strings';
 import { StatusString } from '../../types';
 import { isS } from './isS';
 

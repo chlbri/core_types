@@ -22,7 +22,7 @@ const _1 = require("./_");
 exports.EXCEPTION_CODES = [
     ...client_1.CLIENT_ERROR_STATUS,
     ...server_1.SERVER_ERROR_STATUS,
-    ...permission_1.PERMISSION_ERROR_STATUS,
+    ...permission_1.PERMISSION_DENIED_STATUS,
     ...timeout_1.TIMEOUT_ERROR_STATUS,
 ];
 exports.STATUS_CODES = [

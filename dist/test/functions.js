@@ -6,17 +6,26 @@ const nanoid_1 = require("nanoid");
 const functions_1 = require("../functions");
 // #region Configurations
 function generateTestTable(func, actuals, expecteds) {
-    const out = actuals.map((_, index) => [actuals[index], expecteds[index]]);
+    const out = actuals.map((_, index) => [
+        actuals[index],
+        expecteds[index],
+    ]);
     return out;
 }
 exports.generateTestTable = generateTestTable;
 function generateAsyncTestTable(func, actuals, expecteds) {
-    const out = actuals.map((_, index) => [actuals[index], expecteds[index]]);
+    const out = actuals.map((_, index) => [
+        actuals[index],
+        expecteds[index],
+    ]);
     return out;
 }
 exports.generateAsyncTestTable = generateAsyncTestTable;
 function generateReturnDataTestTable(func, actuals, expecteds) {
-    const out = actuals.map((_, index) => [actuals[index], expecteds[index]]);
+    const out = actuals.map((_, index) => [
+        actuals[index],
+        expecteds[index],
+    ]);
     return out;
 }
 exports.generateReturnDataTestTable = generateReturnDataTestTable;
@@ -25,14 +34,17 @@ function testNullTest(...actual) {
         actual === [null] ||
         actual === undefined ||
         actual === [undefined] ||
-        actual.every((v) => v == null || v === [null] || v === undefined || v === [undefined]);
+        actual.every((v) => v == null ||
+            v === [null] ||
+            v === undefined ||
+            v === [undefined]);
     return inner;
 }
 function mapperTest(spy, uuid = false) {
     return ([actual, expected]) => {
         const _actualText = testNullTest(...actual)
             ? actual[0]
-            : actual.join(", ");
+            : actual.join(', ');
         return it(uuid
             ? `${nanoid_1.nanoid()} ===>  `
             : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`, () => {
@@ -46,7 +58,7 @@ function mapperAsyncTest(spy, uuid = false) {
     return ([actual, expected]) => {
         const _actualText = testNullTest(...actual)
             ? actual[0]
-            : actual.join(", ");
+            : actual.join(', ');
         return it(uuid
             ? `${nanoid_1.nanoid()} ===>  `
             : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`, async () => {
@@ -66,7 +78,7 @@ function mapperReturnDataTest(spy, uuid = false) {
     return ([actual, expected]) => {
         const _actualText = testNullTest(...actual)
             ? actual[0]
-            : actual.join(", ");
+            : actual.join(', ');
         return it(uuid
             ? `${nanoid_1.nanoid()} ===>  `
             : `Arguments : [ ${_actualText} ] shoulds return ${expected} ===>`, async () => {

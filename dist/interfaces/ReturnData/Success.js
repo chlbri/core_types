@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SUCCESS_CONSTANTS = void 0;
+/* prettier-ignore */
 exports.SUCCESS_CONSTANTS = {
     200: { status: 200, payload: undefined },
     201: { status: 201, payload: undefined },

@@ -1,6 +1,7 @@
-import { ClientErrorStatus } from "../../status";
+import { ClientErrorStatus } from '../../status';
 export declare type ClientErrorData = {
     status: ClientErrorStatus;
+    message: string;
 };
 export declare const CLIENT_ERROR_CONSTANTS: {
     readonly 400: ClientErrorData;

@@ -12,4 +12,4 @@ exports.EXCEPTIONS = status_1.EXCEPTION_CODES.reduce((acc, curr) => ({
     ...acc,
     [curr]: new Exception(curr),
 }), {});
-const ert = exports.EXCEPTIONS[434]; /* as Required<ExceptionObject> */
+const ert = exports.EXCEPTIONS[404]; /* as Required<ExceptionObject> */

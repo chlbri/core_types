@@ -1,4 +1,4 @@
-import { TupleOf } from "./arrays";
+import { TupleOf } from './arrays';
 export declare type Equals = {
     $eq: any;
 };
@@ -35,14 +35,14 @@ export declare type StartsWith = {
 export declare type EndsWith = {
     $ew: string;
 };
-export declare type Language = "da" | "du" | "en" | "fi" | "fr" | "de" | "hu" | "it" | "nb" | "pt" | "ro" | "ru" | "es" | "sv" | "tr";
+export declare type Language = 'da' | 'du' | 'en' | 'fi' | 'fr' | 'de' | 'hu' | 'it' | 'nb' | 'pt' | 'ro' | 'ru' | 'es' | 'sv' | 'tr';
 export declare type RegEx = {
     $regex: string | RegExp;
 };
 export declare type Text = {
     $text: string | RegExp;
 };
-export declare type TypeAliases = "double" | "string" | "object" | "array" | "binData" | "objectId" | "bool";
+export declare type TypeAliases = 'double' | 'string' | 'object' | 'array' | 'binData' | 'objectId' | 'bool';
 declare type ArrayHelper1<T extends any[]> = Partial<VSO<T[number]>> | T[number];
 export declare type All<T extends any[] = any[]> = {
     $all: T extends any[] ? ArrayHelper1<T> : never;

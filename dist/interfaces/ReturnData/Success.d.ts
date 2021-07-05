@@ -1,4 +1,4 @@
-import { SuccesfullStatus } from "../../status";
+import { SuccesfullStatus } from '../../status';
 export declare type SuccessData<T = any> = {
     status: SuccesfullStatus;
     payload: T;

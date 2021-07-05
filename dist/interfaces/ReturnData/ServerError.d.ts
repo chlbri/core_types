@@ -1,6 +1,7 @@
-import { ServerErrorStatus } from "../../status";
+import { ServerErrorStatus } from '../../status';
 export declare type ServerErrorData = {
     status: ServerErrorStatus;
+    message: string;
 };
 export declare const SERVER_ERROR_CONSTANTS: {
     readonly 500: ServerErrorData;

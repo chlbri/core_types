@@ -1,4 +1,4 @@
-import { Exception, IValidator } from "../validators";
+import { Exception, IValidator } from '../validators';
 declare type RV<T> = readonly IValidator<T>[];
 export declare class ValueObject<T = any, V extends RV<T> = any> {
     private value?;

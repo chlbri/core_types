@@ -1,5 +1,5 @@
-import { LengthOf, TuplifyUnion } from "./arrays";
-import { AddString } from "./strings";
+import { LengthOf, TuplifyUnion } from './arrays';
+import { AddString } from './strings';
 export declare type NExtract<T, U extends T> = Extract<T, U>;
 export declare type NExclude<T, U extends T> = Exclude<T, U>;
 export declare type NOmit<T, K extends keyof T> = Omit<T, K>;
@@ -22,7 +22,7 @@ export declare type OnlyNamesOf<T, TProp> = {
 }[keyof T];
 export declare type OnlyPropertiesOf<T, TProp> = Pick<T, OnlyNamesOf<T, TProp>>;
 export declare type OnPropChangedMethods<T, I extends keyof T> = T & {
-    [K in I & string as AddString<K, "", "Changed">]: (cb: (newValue: T[K]) => void) => void;
+    [K in I & string as AddString<K, '', 'Changed'>]: (cb: (newValue: T[K]) => void) => void;
 };
 export declare type Undefiny<T> = NotSubType<T, undefined> & Partial<SubType<T, undefined>>;
 export declare type Nullify<T> = NotSubType<T, null> & Partial<SubType<T, null>>;

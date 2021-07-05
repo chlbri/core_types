@@ -1,10 +1,10 @@
-import { Actor, Entity, WithId, WithoutId } from "../entities";
-import { WithoutPermissions } from "../entities/WithoutPermissions";
-import { DataSearchOperations, NOmit } from "../types";
-import { IDAO } from "./DAO";
-import { ILogger } from "./Logger";
-import { PromiseReturnData as PD } from "./ReturnData";
-import { PermissionsDAO } from "./types";
+import { Actor, Entity, WithId, WithoutId } from '../entities';
+import { WithoutPermissions } from '../entities/WithoutPermissions';
+import { DataSearchOperations, NOmit } from '../types';
+import { IDAO } from './DAO';
+import { ILogger } from './Logger';
+import { PromiseReturnData as PD } from './ReturnData';
+import { PermissionsDAO } from './types';
 declare type DSO<T> = DataSearchOperations<WithoutPermissions<T>>;
 declare type UpdateHelper<T> = {
     search: DSO<T>;

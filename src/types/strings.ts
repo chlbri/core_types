@@ -1,4 +1,4 @@
-import { NUMBERS, STRINGS } from '../constants';
+import { NUMBERS, STRINGS } from '../Constants';
 
 export type LowerLetters = typeof STRINGS.LETTERS[number];
 

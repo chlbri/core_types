@@ -1,8 +1,8 @@
 /// <reference types="jest" />
-import { WithId } from "../entities";
-import { DataFromPromiseWithoutId, PromiseReturnData } from "../interfaces";
-import { LengthOf, ThenArg, TupleOf } from "../types";
-import { TestElement } from "./types";
+import { WithId } from '../entities';
+import { DataFromPromiseWithoutId, PromiseReturnData } from '../interfaces';
+import { LengthOf, ThenArg, TupleOf } from '../types';
+import { TestElement } from './types';
 export declare function generateTestTable<F extends (...args: any[]) => any, T1 extends ReadonlyArray<Parameters<F>>>(func: F, actuals: T1, expecteds: TupleOf<ReturnType<F>, LengthOf<T1>>): TupleOf<TestElement<T1[number], TupleOf<ReturnType<F>, LengthOf<T1>>[number]>, LengthOf<T1>>;
 export declare function generateAsyncTestTable<F extends (...args: any[]) => any, T1 extends ReadonlyArray<Parameters<F>>>(func: F, actuals: T1, expecteds: TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>): TupleOf<TestElement<T1[number], TupleOf<ThenArg<ReturnType<F>>, LengthOf<T1>>[number]>, LengthOf<T1>>;
 export declare function generateReturnDataTestTable<F extends (...args: any[]) => PromiseReturnData<WithId<any>> | PromiseReturnData<WithId<any>[]>, T1 extends ReadonlyArray<Parameters<F>>>(func: F, actuals: T1, expecteds: TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, LengthOf<T1>>): TupleOf<TestElement<T1[number], TupleOf<DataFromPromiseWithoutId<ReturnType<F>>, LengthOf<T1>>[number]>, LengthOf<T1>>;

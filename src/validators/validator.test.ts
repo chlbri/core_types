@@ -23,7 +23,7 @@ const functionsTable: TupleOf<Condition, Length> = [
 ];
 
 const exceptionsTable: TupleOf<Exception, Length> = [
-  EXCEPTIONS[303],
+  EXCEPTIONS[6303],
   EXCEPTIONS[503],
   EXCEPTIONS[403],
 ];

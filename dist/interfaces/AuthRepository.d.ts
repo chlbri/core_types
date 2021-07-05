@@ -1,4 +1,4 @@
-import { PromiseReturnData as PD } from "./ReturnData";
+import { PromiseReturnData as PD } from './ReturnData';
 declare type User = {
     id?: string;
     expirationLocal?: Date;

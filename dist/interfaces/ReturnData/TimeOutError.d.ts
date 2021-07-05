@@ -1,6 +1,7 @@
-import { TimeOutErrorStatus } from "../../status";
+import { TimeOutErrorStatus } from '../../status';
 export declare type TimeOutErrorData = {
     status: TimeOutErrorStatus;
+    message: string;
 };
 export declare const TIMEOUT_ERROR_CONSTANTS: {
     readonly 900: TimeOutErrorData;

@@ -27,4 +27,4 @@ export const EXCEPTIONS: {
   {} as ExceptionObject,
 ) as Required<ExceptionObject>;
 
-const ert = EXCEPTIONS[434]; /* as Required<ExceptionObject> */
+const ert = EXCEPTIONS[404]; /* as Required<ExceptionObject> */

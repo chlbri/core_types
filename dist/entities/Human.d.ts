@@ -1,4 +1,4 @@
 export interface Human {
-  firstNames: string;
-  lastName: string;
+    firstNames: string;
+    lastName: string;
 }

@@ -1,6 +1,6 @@
-import { Nullish } from "../types";
-import { Exception } from "./exception";
-import { Condition, Validator } from "./validator";
+import { Nullish } from '../types';
+import { Exception } from './exception';
+import { Condition, Validator } from './validator';
 export declare class StringValidator extends Validator<string> {
     constructor(validate: Condition<string>, exception?: Exception);
 }

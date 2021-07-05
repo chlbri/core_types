@@ -17,7 +17,7 @@ function clean(value) {
     let out = value;
     for (const iter of value) {
         if (!types_1.isStringLocalLitterals(iter)) {
-            out = out.replace(iter, "");
+            out = out.replace(iter, '');
         }
     }
     return out;

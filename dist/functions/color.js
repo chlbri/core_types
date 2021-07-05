@@ -6,10 +6,10 @@ function rgba(red, green, blue, alpha) {
 }
 exports.rgba = rgba;
 function colorHex1(red, green, blue, alpha) {
-    return `#${red}${green}${blue}${alpha !== null && alpha !== void 0 ? alpha : ""}`;
+    return `#${red}${green}${blue}${alpha !== null && alpha !== void 0 ? alpha : ''}`;
 }
 exports.colorHex1 = colorHex1;
 function colorHex2(red, green, blue, alpha) {
-    return `#${red}${green}${blue}${alpha !== null && alpha !== void 0 ? alpha : ""}`;
+    return `#${red}${green}${blue}${alpha !== null && alpha !== void 0 ? alpha : ''}`;
 }
 exports.colorHex2 = colorHex2;

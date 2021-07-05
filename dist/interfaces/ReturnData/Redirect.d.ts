@@ -1,8 +1,8 @@
-import { RedirectStatus } from "../../status";
-import { Nullish } from "../../types";
+import { RedirectStatus } from '../../status';
 export declare type RedirectData<T = any> = {
     status: RedirectStatus;
-    payload?: Nullish<T>;
+    payload: T;
+    message: string;
 };
 export declare const REDIRECT_DATA_CONSTANTS: {
     readonly 300: RedirectData<undefined>;

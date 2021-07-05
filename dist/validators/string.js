@@ -29,14 +29,14 @@ class StringMaxLengthValidator extends StringValidator {
 exports.StringMaxLengthValidator = StringMaxLengthValidator;
 class StringRequiredValidator extends validator_1.Validator {
     constructor(exception) {
-        super((value) => typeof value === "string", exception);
+        super((value) => typeof value === 'string', exception);
     }
 }
 exports.StringRequiredValidator = StringRequiredValidator;
 class FormatedNumberValidator extends StringValidator {
     constructor(num, exception) {
         super((value) => {
-            const reg = new RegExp(`^\\d${nullish_1.isNullish(num) ? "+" : `{${num}}`}$`);
+            const reg = new RegExp(`^\\d${nullish_1.isNullish(num) ? '+' : `{${num}}`}$`);
             return reg.test(value);
         }, exception);
     }

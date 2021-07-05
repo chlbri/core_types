@@ -1,8 +1,8 @@
-import { InformationStatus } from "../../status";
-import { Nullish } from "../../types";
+import { InformationStatus } from '../../status';
 export declare type InformationData<T = any> = {
     status: InformationStatus;
-    payload?: Nullish<T>;
+    payload: T;
+    message: string;
 };
 export declare const INFORMATION_CONSTANTS: {
     readonly 100: InformationData<undefined>;

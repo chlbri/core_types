@@ -1,6 +1,6 @@
 import { Entity, WithId, WithoutId } from '../entities';
 import { DataSearchOperations } from '../types';
-import { WithoutPermissions } from './../entities/WithoutPermissions';
+import { WithoutPermissions } from '../entities/WithoutPermissions';
 import { PromiseReturnData as PD } from './ReturnData';
 
 export type DSO<T> = DataSearchOperations<WithoutPermissions<T>>;

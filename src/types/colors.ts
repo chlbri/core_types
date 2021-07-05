@@ -1,4 +1,4 @@
-import { COLORS } from '../constants';
+import { COLORS } from '../Constants';
 
 export type Color1Digit = typeof COLORS.COLOR_DIGITS[number];
 export type TransparencyDigits =

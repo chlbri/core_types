@@ -1,4 +1,4 @@
-import { ExceptionStatus } from "../status";
+import { ExceptionStatus } from '../status';
 export interface IException<T extends ExceptionStatus = ExceptionStatus> {
     readonly status: T;
 }

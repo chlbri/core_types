@@ -30,7 +30,7 @@ exports.NumberMaxValidator = NumberMaxValidator;
 class RequiredNumberValidator extends validator_1.Validator {
     constructor(exception) {
         super((value) => {
-            return typeof value === "number";
+            return typeof value === 'number';
         }, exception);
     }
 }
