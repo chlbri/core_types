@@ -12,6 +12,7 @@
     "tsc": "tsc",
     "compile": "yarn run clean && tsc",
     "test": "jest --detectOpenHandles",
+    "git_tags":"git push --tags",
     "generateTestsFunctions": "ts-node src\test\functions.ts"
   },
   "dependencies": {
